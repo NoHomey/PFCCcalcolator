@@ -1,0 +1,7 @@
+m1 stands for mile stone #1:
+
+    Futers to be implemented by 14.03.2015-23:59:59 are:
+    
+        f#1:    sample user interface for choosing food and quantety.
+        f#2:    sample result field.
+        f#3:    part of the foods and food's ingredient data base.
