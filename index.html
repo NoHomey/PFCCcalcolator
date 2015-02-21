@@ -2,36 +2,29 @@
 <html>
 <head>
 <script>
-function disableAll() {
-    document.getElementById("Select1").disabled=true;
-document.getElementById("Select2").disabled=true;
-document.getElementById("Select3").disabled=true;
+function LockAll(Lock) {
+    document.getElementById("Select1").disabled = Lock;
+    document.getElementById("Select2").disabled = Lock;
+    document.getElementById("Select3").disabled = Lock;
 }
-function enableAll() {
-    document.getElementById("Select1").disabled=false;
-document.getElementById("Select2").disabled=false;
-document.getElementById("Select3").disabled=false;
 
-}
-function listAll() {
-    document.getElementById("Select1").size = document.getElementById("Select1").length;
- document.getElementById("Select2").size = document.getElementById("Select2").length;
- document.getElementById("Select3").size = document.getElementById("Select3").length;
-document.getElementById("opt").value = "UnList Options";
-
-}
-function unlistAll() {
+function ExpandAll(newValue) {
     document.getElementById("Select1").size = 1;
-  document.getElementById("Select2").size = 1;
- document.getElementById("Select3").size = 1;
-document.getElementById("opt").value = "List Options";
-
+    document.getElementById("Select2").size = 1;
+    document.getElementById("Select3").size = 1;
+    if(newValue === "UnList Options") {
+        document.getElementById("opt").value = "UnList Options";
+        document.getElementById("Select1").size = document.getElementById("Select1").length;
+        document.getElementById("Select2").size = document.getElementById("Select2").length;
+        document.getElementById("Select3").size = document.getElementById("Select3").length;
+    }
+    else {document.getElementById("opt").value = "List Options";}
 
 }
 
 function onEachClick() {
- if(document.getElementById("opt").value === "List Options") {listAll();}
- else {unlistAll();}
+    if(document.getElementById("opt").value === "List Options") {ExpandAll("UnList Options");}
+    else {ExpandAll("List Options");}
 
 }
 
@@ -106,7 +99,7 @@ function dysplayChoices() {
   <option>Baked</option>
 </select>
 
-<input id="Select4" type="number"  value="Quantety">
+<input id="Select4" type="number">
 <input id="addIt" type="button" onclick="add()" value="+" >
 <br></br>
 <input id="opt" type="button" onclick="onEachClick()" value="List Options" >
