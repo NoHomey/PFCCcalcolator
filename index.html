@@ -53,12 +53,65 @@ function add() {
 
 }
 
+SmartChoice = {Fruit:["Apple", "Orange", "Bannana"], Vegetable:["Potato", "Tomato", "Onion"], Egg:["Chicken", "Turkey", "Duck"], Milk:["Cow", "Goat"]};
+
+function clearAllOpt() {
+ var select = document.getElementById("Select2");
+ var i;
+ for (i in select.options) {
+  select.options[i] = null;
+ }
+
+}
+
+function dysplayChoices() {
+ var option;
+ var toSelect2 = document.getElementById("Select2");
+ var obj = document.getElementById("Select1");
+ var res = obj.options[obj.selectedIndex].text;
+ clearAllOpt();
+ option = document.createElement("option");
+ toSelect2.add(option);
+ switch(res) {
+  case "Fruit": 
+   for(var index in SmartChoice.Fruit) {
+    option = document.createElement("option");
+    option.text = SmartChoice.Fruit[index];
+    toSelect2.add(option);
+   }
+  break;
+  case "Vegetable": 
+   for(var index in SmartChoice.Vegetable) {
+    option = document.createElement("option");
+    option.text = SmartChoice.Vegetable[index];
+    toSelect2.add(option);
+   }
+  break;
+  case "Egg": 
+   for(var index in SmartChoice.Egg) {
+    option = document.createElement("option");
+    option.text = SmartChoice.Egg[index];
+    toSelect2.add(option);
+   }
+   break;
+   case "Milk": 
+   for(var index in SmartChoice.Milk) {
+    option = document.createElement("option");
+    option.text = SmartChoice.Milk[index];
+    toSelect2.add(option);
+   }
+   break;
+
+ }
+
+}
+
 </script>
 </head>
 <body>
 
 <form>
-<select id="Select1">
+<select onchange="dysplayChoices()" id="Select1">
   <option></option>
   <option>Fruit</option>
   <option>Vegetable</option>
