@@ -31,17 +31,21 @@ function onEachClick() {
 
 }
 
-function add() {
+function getKey() {
   var res = "";
   var obj = document.getElementById("Select1");
   res = obj.options[obj.selectedIndex].text;
   var obj = document.getElementById("Select3");
   res = res + obj.options[obj.selectedIndex].text;
-    document.getElementById("test").innerHTML = 
-    res;
+    
+  return res;
 
 }
 
+function add() {
+ document.getElementById("test").innerHTML = getKey();
+
+}
 
 </script>
 </head>
