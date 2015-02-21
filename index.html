@@ -21,8 +21,13 @@ function unlistAll() {
     document.getElementById("Select1").size = 1;
  document.getElementById("Select3").size = 1;
 document.getElementById("opt").value = "List Options";
-document.getElementById("nopt").id = "opt";
 
+
+}
+
+function onEachClick() {
+ if(document.getElementById("opt").value === "List Options") {listAll();}
+ else {unlistAll();}
 
 }
 </script>
@@ -44,7 +49,7 @@ document.getElementById("nopt").id = "opt";
   <option>Baked</option>
 </select>
 <br></br>
-<input id="opt" type="button" onclick="listAll()" value="List Options" >
+<input id="opt" type="button" onclick="onEachClick()" value="List Options" >
 </form>
 
 </body>
