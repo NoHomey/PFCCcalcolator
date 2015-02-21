@@ -38,9 +38,9 @@ function onEachClick() {
 function getKey() {
   var res = "";
   var obj = document.getElementById("Select1");
-  res = obj.options[obj.selectedIndex].text + '-';
+  res = obj.options[obj.selectedIndex].text;
   var obj = document.getElementById("Select2");
-  res = res + obj.options[obj.selectedIndex].text + '-';
+  res = res + obj.options[obj.selectedIndex].text;
   var obj = document.getElementById("Select3");
   res = res + obj.options[obj.selectedIndex].text;
     
@@ -54,6 +54,7 @@ function add() {
 }
 
 SmartChoice = {Fruit:["Apple", "Orange", "Bannana"], Vegetable:["Potato", "Tomato", "Onion"], Egg:["Chicken", "Turkey", "Duck"], Milk:["Cow", "Goat"]};
+DataBase = {FruitAppleRaw:{Protein:37.2, Fat:4.3, Carbs:29.3, Cals:100}, EggChickenFried:{Protein:7.2, Fat:42.3, Carbs:19.3, Cals:100}, Milk:{Protein:7.2, Fat:7.3, Carbs:9.3, Cals:100}};
 
 function clearAllOpt() {
  var select = document.getElementById("Select2");
@@ -72,36 +73,10 @@ function dysplayChoices() {
  clearAllOpt();
  option = document.createElement("option");
  toSelect2.add(option);
- switch(res) {
-  case "Fruit": 
-   for(var index in SmartChoice.Fruit) {
+ for(var index in SmartChoice[res]) {
     option = document.createElement("option");
-    option.text = SmartChoice.Fruit[index];
+    option.text = SmartChoice[res][index];
     toSelect2.add(option);
-   }
-  break;
-  case "Vegetable": 
-   for(var index in SmartChoice.Vegetable) {
-    option = document.createElement("option");
-    option.text = SmartChoice.Vegetable[index];
-    toSelect2.add(option);
-   }
-  break;
-  case "Egg": 
-   for(var index in SmartChoice.Egg) {
-    option = document.createElement("option");
-    option.text = SmartChoice.Egg[index];
-    toSelect2.add(option);
-   }
-   break;
-   case "Milk": 
-   for(var index in SmartChoice.Milk) {
-    option = document.createElement("option");
-    option.text = SmartChoice.Milk[index];
-    toSelect2.add(option);
-   }
-   break;
-
  }
 
 }
@@ -130,6 +105,8 @@ function dysplayChoices() {
   <option>Boiled</option>
   <option>Baked</option>
 </select>
+
+<input id="Select4" type="number"  value="Quantety">
 <input id="addIt" type="button" onclick="add()" value="+" >
 <br></br>
 <input id="opt" type="button" onclick="onEachClick()" value="List Options" >
