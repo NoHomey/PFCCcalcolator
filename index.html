@@ -34,7 +34,7 @@ function onEachClick() {
 function getKey() {
   var res = "";
   var obj = document.getElementById("Select1");
-  res = obj.options[obj.selectedIndex].text;
+  res = obj.options[obj.selectedIndex].text + '-';
   var obj = document.getElementById("Select3");
   res = res + obj.options[obj.selectedIndex].text;
     
@@ -53,13 +53,19 @@ function add() {
 
 <form>
 <select id="Select1">
+  <option></option>
   <option>Fruit</option>
   <option>Vegetable</option>
   <option>Egg</option>
   <option>Milk</option>
 </select>
 
+<select id="Select2">
+  <option></option>
+</select>
+
 <select id="Select3">
+  <option></option>
   <option>Raw</option>
   <option>Fried</option>
   <option>Boiled</option>
