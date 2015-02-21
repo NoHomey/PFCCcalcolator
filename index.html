@@ -2,11 +2,28 @@
 <html>
 <head>
 <script>
-function disable(Id) {
-    document.getElementById(Id).disabled=true;
+function disableAll() {
+    document.getElementById("Select1").disabled=true;
+document.getElementById("Select3").disabled=true;
 }
-function enable() {
-    document.getElementById(Id).disabled=false;
+function enableAll() {
+    document.getElementById("Select1").disabled=false;
+document.getElementById("Select3").disabled=false;
+
+}
+function listAll() {
+    document.getElementById("Select1").size = document.getElementById("Select1").length;
+ document.getElementById("Select3").size = document.getElementById("Select3").length;
+document.getElementById("opt").value = "UnList Options";
+
+}
+function unlistAll() {
+    document.getElementById("Select1").size = 1;
+ document.getElementById("Select3").size = 1;
+document.getElementById("opt").value = "List Options";
+document.getElementById("nopt").id = "opt";
+
+
 }
 </script>
 </head>
@@ -26,6 +43,8 @@ function enable() {
   <option>Boiled</option>
   <option>Baked</option>
 </select>
+<br></br>
+<input id="opt" type="button" onclick="listAll()" value="List Options" >
 </form>
 
 </body>
