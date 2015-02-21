@@ -4,21 +4,25 @@
 <script>
 function disableAll() {
     document.getElementById("Select1").disabled=true;
+document.getElementById("Select2").disabled=true;
 document.getElementById("Select3").disabled=true;
 }
 function enableAll() {
     document.getElementById("Select1").disabled=false;
+document.getElementById("Select2").disabled=false;
 document.getElementById("Select3").disabled=false;
 
 }
 function listAll() {
     document.getElementById("Select1").size = document.getElementById("Select1").length;
+ document.getElementById("Select2").size = document.getElementById("Select2").length;
  document.getElementById("Select3").size = document.getElementById("Select3").length;
 document.getElementById("opt").value = "UnList Options";
 
 }
 function unlistAll() {
     document.getElementById("Select1").size = 1;
+  document.getElementById("Select2").size = 1;
  document.getElementById("Select3").size = 1;
 document.getElementById("opt").value = "List Options";
 
@@ -35,6 +39,8 @@ function getKey() {
   var res = "";
   var obj = document.getElementById("Select1");
   res = obj.options[obj.selectedIndex].text + '-';
+  var obj = document.getElementById("Select2");
+  res = res + obj.options[obj.selectedIndex].text + '-';
   var obj = document.getElementById("Select3");
   res = res + obj.options[obj.selectedIndex].text;
     
