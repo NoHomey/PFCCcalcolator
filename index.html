@@ -30,6 +30,19 @@ function onEachClick() {
  else {unlistAll();}
 
 }
+
+function add() {
+  var res = "";
+  var obj = document.getElementById("Select1");
+  res = obj.options[obj.selectedIndex].text;
+  var obj = document.getElementById("Select3");
+  res = res + obj.options[obj.selectedIndex].text;
+    document.getElementById("test").innerHTML = 
+    res;
+
+}
+
+
 </script>
 </head>
 <body>
@@ -48,10 +61,10 @@ function onEachClick() {
   <option>Boiled</option>
   <option>Baked</option>
 </select>
-<input id="opt" type="button" onclick="add()" value="+" >
+<input id="addIt" type="button" onclick="add()" value="+" >
 <br></br>
 <input id="opt" type="button" onclick="onEachClick()" value="List Options" >
 </form>
-
+<p id="test">BLaBla</p>
 </body>
 </html>
