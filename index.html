@@ -16,7 +16,7 @@
         <strong id="outCal"></strong>
         <br>
     </div>
-    <form>
+    <form onkeypress="return refToAddIt(event)">
         <select onchange="dysplayChoices()" id="Select1">
             <option disabled selected></option>
             <option>Fruit</option>
@@ -35,7 +35,7 @@
             <option>Baked</option>
         </select>
         <input id="Select4" type="number" min="0" value="0">
-        <input id="addIt" type="button" onclick="add()" value="+">
+        <input id="addIt" type="button" onclick="addIt()" value="+">
         <br></br>
         <input id="opt" type="button" onclick="onEachClick()" value="List Options">
     </form>
