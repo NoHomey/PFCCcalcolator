@@ -2,6 +2,17 @@
 <html>
 <head>
 <script>
+
+    protn = 0;
+    fat = 0;
+    carbs = 0;
+    cals = 0;
+SmartChoice = {Fruit:["Apple", "Orange", "Bannana"], Vegetable:["Potato", "Tomato", "Onion"], Egg:["Chicken", "Turkey", "Duck"], Milk:["Cow", "Goat"]};
+DataBase = {FruitAppleRaw:{Protein:37.2, Fat:4.3, Carbs:29.3, Cals:100}, EggChickenFried:{Protein:7.2, Fat:42.3, Carbs:19.3, Cals:100}, MilkCowBoiled:{Protein:7.2, Fat:7.3, Carbs:9.3, Cals:100}};
+
+
+
+
 function LockAll(Lock) {
     document.getElementById("Select1").disabled = Lock;
     document.getElementById("Select2").disabled = Lock;
@@ -41,13 +52,28 @@ function getKey() {
 
 }
 
-function add() {
- document.getElementById("test").innerHTML = getKey();
-
+function printResult() {
+    var protnMsg = "Total Protein:	";
+    var fatMsg = "Total Fat:	";
+    var carbsMsg = "Total Carbs:	";
+    var calsMsg = "Total Calories:	";
+    document.getElementById("outP").innerHTML = protnMsg + protn;
+    document.getElementById("outF").innerHTML = fatMsg + fat;
+    document.getElementById("outC").innerHTML = carbsMsg + carbs;
+    document.getElementById("outCal").innerHTML = calsMsg + cals;
+    
 }
+    
 
-SmartChoice = {Fruit:["Apple", "Orange", "Bannana"], Vegetable:["Potato", "Tomato", "Onion"], Egg:["Chicken", "Turkey", "Duck"], Milk:["Cow", "Goat"]};
-DataBase = {FruitAppleRaw:{Protein:37.2, Fat:4.3, Carbs:29.3, Cals:100}, EggChickenFried:{Protein:7.2, Fat:42.3, Carbs:19.3, Cals:100}, Milk:{Protein:7.2, Fat:7.3, Carbs:9.3, Cals:100}};
+function add() {
+ var Key = getKey();
+ protn += DataBase[Key].Protein;
+ fat += DataBase[Key].Fat;
+ carbs += DataBase[Key].Carbs;
+ cals += DataBase[Key].Cals;
+ printResult();
+ 
+}
 
 function clearAllOpt() {
  var select = document.getElementById("Select2");
@@ -77,6 +103,14 @@ function dysplayChoices() {
 </script>
 </head>
 <body>
+
+<div>
+ <strong id="outP"></strong><br>
+ <strong id="outF"></strong><br>
+ <strong id="outC"></strong><br>
+ <strong id="outCal"></strong><br>
+
+</div>
 
 <form>
 <select onchange="dysplayChoices()" id="Select1">
