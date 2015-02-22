@@ -79,13 +79,21 @@ function printResult() {
     document.getElementById("outCal").innerHTML = c + cals
 }
 
-function add() {
+function addIt() {
+    var Qua = document.getElementById("Select4").value;
     var a = getKey();
-    protn += DataBase[a].Protein;
-    fat += DataBase[a].Fat;
-    carbs += DataBase[a].Carbs;
-    cals += DataBase[a].Cals;
+    protn += Qua * (DataBase[a].Protein / 100);
+    fat += Qua * (DataBase[a].Fat / 100);
+    carbs += Qua * (DataBase[a].Carbs / 100);
+    cals += Qua * (DataBase[a].Cals / 100);
     printResult()
+}
+
+function refToAddIt(e) {
+    if (e.keyCode === 13) {
+        addIt();
+        return false;
+    }
 }
 
 function clearAllOpt() {
@@ -103,6 +111,8 @@ function dysplayChoices() {
     var c = e.options[e.selectedIndex].text;
     clearAllOpt();
     d = document.createElement("option");
+    d.disabled = true;
+    d.selected = true;
     a.add(d);
     for (var b in SmartChoice[c]) {
         d = document.createElement("option");
