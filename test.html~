@@ -2,13 +2,7 @@
 <html>
 
 <head>
-     <script src="js/expander.js"></script>
-     <script src="js/schoice.js"></script>
-     <script src ="js/dbase.js"></script>
-     <script src="js/locker.js"></script>
-     <script src="js/selectopter.js"></script>
-     <script src="js/adder.js"></script>
-     <script src="js/main.js"></script>
+     <script src="js\expander.js" src="js/schoice.js" src ="js/dbase.js" src="js/locker.js" src="js/selectopter.js" src="js/adder.js" src="js/main.js"></script>
 </head>
 
 <body>
