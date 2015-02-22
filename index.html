@@ -16,7 +16,7 @@
         <strong id="outCal"></strong>
         <br>
     </div>
-    <form onkeypress="return refToAddIt(event)">
+    <form onkeypress="return refToAddToStack(event)">
         <select onchange="dysplayChoices()" id="Select1">
             <option disabled selected></option>
             <option>Fruit</option>
@@ -35,11 +35,16 @@
             <option>Baked</option>
         </select>
         <input id="Select4" type="number" min="0" value="0">
-        <input id="addIt" type="button" onclick="addIt()" value="+">
+        <select id="Select5">
+            <option selected>Gram (g)</option>
+            <option>Kilogram (kg)</option>
+            <option>Pound (lb)</option>
+            <option>Ounce (oz)</option>
+        </select>
+        <input id="addIt" type="button" onclick="addToStack()" value="+">
         <br></br>
         <input id="opt" type="button" onclick="onEachClick()" value="List Options">
     </form>
-    <p id="test">BLaBla</p>
 </body>
 
 </html>
