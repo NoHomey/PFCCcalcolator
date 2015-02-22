@@ -1,143 +1,45 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<script>
-
-    protn = 0;
-    fat = 0;
-    carbs = 0;
-    cals = 0;
-SmartChoice = {Fruit:["Apple", "Orange", "Bannana"], Vegetable:["Potato", "Tomato", "Onion"], Egg:["Chicken", "Turkey", "Duck"], Milk:["Cow", "Goat"]};
-DataBase = {FruitAppleRaw:{Protein:37.2, Fat:4.3, Carbs:29.3, Cals:100}, EggChickenFried:{Protein:7.2, Fat:42.3, Carbs:19.3, Cals:100}, MilkCowBoiled:{Protein:7.2, Fat:7.3, Carbs:9.3, Cals:100}};
-
-
-
-
-function LockAll(Lock) {
-    document.getElementById("Select1").disabled = Lock;
-    document.getElementById("Select2").disabled = Lock;
-    document.getElementById("Select3").disabled = Lock;
-}
-
-function ExpandAll(newValue) {
-    document.getElementById("Select1").size = 1;
-    document.getElementById("Select2").size = 1;
-    document.getElementById("Select3").size = 1;
-    if(newValue === "UnList Options") {
-        document.getElementById("opt").value = "UnList Options";
-        document.getElementById("Select1").size = document.getElementById("Select1").length;
-        document.getElementById("Select2").size = document.getElementById("Select2").length;
-        document.getElementById("Select3").size = document.getElementById("Select3").length;
-    }
-    else {document.getElementById("opt").value = "List Options";}
-
-}
-
-function onEachClick() {
-    if(document.getElementById("opt").value === "List Options") {ExpandAll("UnList Options");}
-    else {ExpandAll("List Options");}
-
-}
-
-function getKey() {
-  var res = "";
-  var obj = document.getElementById("Select1");
-  res = obj.options[obj.selectedIndex].text;
-  var obj = document.getElementById("Select2");
-  res = res + obj.options[obj.selectedIndex].text;
-  var obj = document.getElementById("Select3");
-  res = res + obj.options[obj.selectedIndex].text;
-    
-  return res;
-
-}
-
-function printResult() {
-    var protnMsg = "Total Protein:	";
-    var fatMsg = "Total Fat:	";
-    var carbsMsg = "Total Carbs:	";
-    var calsMsg = "Total Calories:	";
-    document.getElementById("outP").innerHTML = protnMsg + protn;
-    document.getElementById("outF").innerHTML = fatMsg + fat;
-    document.getElementById("outC").innerHTML = carbsMsg + carbs;
-    document.getElementById("outCal").innerHTML = calsMsg + cals;
-    
-}
-    
-
-function add() {
- var Key = getKey();
- protn += DataBase[Key].Protein;
- fat += DataBase[Key].Fat;
- carbs += DataBase[Key].Carbs;
- cals += DataBase[Key].Cals;
- printResult();
- 
-}
-
-function clearAllOpt() {
- var select = document.getElementById("Select2");
- var i;
- for (i in select.options) {
-  select.options[i] = null;
- }
-
-}
-
-function dysplayChoices() {
- var option;
- var toSelect2 = document.getElementById("Select2");
- var obj = document.getElementById("Select1");
- var res = obj.options[obj.selectedIndex].text;
- clearAllOpt();
- option = document.createElement("option");
- toSelect2.add(option);
- for(var index in SmartChoice[res]) {
-    option = document.createElement("option");
-    option.text = SmartChoice[res][index];
-    toSelect2.add(option);
- }
-
-}
-
-</script>
+    <script src="main.js"></script>
 </head>
+
 <body>
-
-<div>
- <strong id="outP"></strong><br>
- <strong id="outF"></strong><br>
- <strong id="outC"></strong><br>
- <strong id="outCal"></strong><br>
-
-</div>
-
-<form>
-<select onchange="dysplayChoices()" id="Select1">
-  <option></option>
-  <option>Fruit</option>
-  <option>Vegetable</option>
-  <option>Egg</option>
-  <option>Milk</option>
-</select>
-
-<select id="Select2">
-  <option></option>
-</select>
-
-<select id="Select3">
-  <option></option>
-  <option>Raw</option>
-  <option>Fried</option>
-  <option>Boiled</option>
-  <option>Baked</option>
-</select>
-
-<input id="Select4" type="number">
-<input id="addIt" type="button" onclick="add()" value="+" >
-<br></br>
-<input id="opt" type="button" onclick="onEachClick()" value="List Options" >
-</form>
-<p id="test">BLaBla</p>
+    <div>
+        <strong id="outP"></strong>
+        <br>
+        <strong id="outF"></strong>
+        <br>
+        <strong id="outC"></strong>
+        <br>
+        <strong id="outCal"></strong>
+        <br>
+    </div>
+    <form>
+        <select onchange="dysplayChoices()" id="Select1">
+            <option></option>
+            <option>Fruit</option>
+            <option>Vegetable</option>
+            <option>Egg</option>
+            <option>Milk</option>
+        </select>
+        <select id="Select2">
+            <option></option>
+        </select>
+        <select id="Select3">
+            <option></option>
+            <option>Raw</option>
+            <option>Fried</option>
+            <option>Boiled</option>
+            <option>Baked</option>
+        </select>
+        <input id="Select4" type="number">
+        <input id="addIt" type="button" onclick="add()" value="+">
+        <br></br>
+        <input id="opt" type="button" onclick="onEachClick()" value="List Options">
+    </form>
+    <p id="test">BLaBla</p>
 </body>
+
 </html>
