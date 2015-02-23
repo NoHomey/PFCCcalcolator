@@ -1,8 +1,5 @@
-protn = 0;
-fat = 0;
-carbs = 0;
-cals = 0;
-iLock = new Locker();
-iExpander = new Expander();
-iSelectOpter = new SelectOpter();
-iAdder = new Adder();
+var Protein, Fat, Calories, Carbs;
+Protein = Fat = Calories = Carbs = 0;
+InstanceOfExpander = new Expander();
+InstanceOfSelect2Options = new Select2Options();
+InstanceOfAdderReferencer = new AdderReferencer();

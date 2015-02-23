@@ -2,11 +2,19 @@
 <html>
 
 <head>
+     <script src="js/adderreferencer.js"></script>
+     <script src="js/resultupdater.js"></script>
+     <script src="js/quantetyreturner.js"></script>
+     <script src="js/keygeter.js"></script>
+     <script src="js/blankoptionkeeper.js"></script>
+     <script src="js/clearselect2options.js"></script>
+     <script src="js/lockswicher.js"></script>
+     <script src="js/currentstateofexpander.js"></script>
      <script src="js/expander.js"></script>
      <script src="js/schoice.js"></script>
      <script src ="js/dbase.js"></script>
      <script src="js/locker.js"></script>
-     <script src="js/selectopter.js"></script>
+     <script src="js/select2options.js"></script>
      <script src="js/adder.js"></script>
      <script src="js/main.js"></script>
 </head>
@@ -22,8 +30,8 @@
         <strong id="outCal"></strong>
         <br>
     </div>
-    <form onkeypress="return iAdder.refToAdder(event)">
-        <select onchange="iSelectOpter.displayAllOpt()" id="Select1">
+    <form onkeypress="return InstanceOfAdderReferencer.ReferenceToAdder(event)">
+        <select onchange="InstanceOfSelect2Options.DisplayAllSelect2Options()"id="Select1">
             <option disabled selected></option>
             <option>Fruit</option>
             <option>Vegetable</option>
@@ -47,9 +55,9 @@
             <option>Pound (lb)</option>
             <option>Ounce (oz)</option>
         </select>
-        <input id="addIt" type="button" onclick="iAdder.addCurrentSelect()" value="+">
+        <input id="addIt" type="button" onclick="return InstanceOfAdderReferencer.ReferenceToAdder(event)" value="+">
         <br></br>
-        <input id="opt" type="button" onclick="iExpander.switchOpt()" value="List Options">
+        <input id="InterfaceExpander" type="button" onclick="InstanceOfExpander.Expand()" value="List Options">
     </form>
 </body>
 
