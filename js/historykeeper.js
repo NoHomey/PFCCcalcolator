@@ -10,6 +10,7 @@ function HistoryKeeper() {
 		var NewElement = document.createElement("input");
 		NewElement.value = result;
 		NewElement.type = "button"
+		NewElement.disabled = true;
 		var To = document.getElementById("test");
 		To.appendChild(NewElement);
 		var UpdateButton = document.createElement("input");
