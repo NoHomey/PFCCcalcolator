@@ -2,6 +2,7 @@
 <html>
 
 <head>
+     <script src="js/historykeeper.js"></script>
      <script src="js/adderreferencer.js"></script>
      <script src="js/resultupdater.js"></script>
      <script src="js/quantetyreturner.js"></script>
@@ -41,7 +42,7 @@
         <select id="Select2">
             <option disabled selected></option>
         </select>
-        <select id="Select3">
+        <select id="Select3" onchange="InstanceOfHistoryKeeper.AddToHistory()">
             <option disabled selected></option>
             <option>Raw</option>
             <option>Fried</option>
@@ -58,6 +59,12 @@
         <input id="addIt" type="button" onclick="return InstanceOfAdderReferencer.ReferenceToAdder(event)" value="+">
         <br></br>
         <input id="InterfaceExpander" type="button" onclick="InstanceOfExpander.Expand()" value="List Options">
+    </form>
+    <br></br>
+     <br></br>
+      <br></br>
+       <br></br>
+    <form id="test">
     </form>
 </body>
 
