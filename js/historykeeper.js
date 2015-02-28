@@ -13,10 +13,12 @@ function HistoryKeeper() {
 		var UpdateButton = document.createElement("input");
 		UpdateButton.type = "button";
 		UpdateButton.value = "?"
+		UpdateButton.id = this.Index;
 		To.appendChild(UpdateButton);
 		var RemoveButton = document.createElement("input");
 		RemoveButton.type = "button";
 		RemoveButton.value = "-"
+		RemoveButton.id = this.Index;
 		To.appendChild(RemoveButton);
 	}	
 }
