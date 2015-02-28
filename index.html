@@ -2,6 +2,7 @@
 <html>
 
 <head>
+     <script src="js/historyoverwriter.js"></script>
      <script src="js/historyinitializer.js"></script>
      <script src="js/historykeeper.js"></script>
      <script src="js/adderreferencer.js"></script>
@@ -33,7 +34,7 @@
         <br>
     </div>
     <form onkeypress="return InstanceOfAdderReferencer.ReferenceToAdder(event)">
-        <select onchange="InstanceOfSelect2Options.DisplayAllSelect2Options()"id="Select1">
+        <select id="Select1" onchange="InstanceOfSelect2Options.DisplayAllSelect2Options()">
             <option disabled selected></option>
             <option>Fruit</option>
             <option>Vegetable</option>

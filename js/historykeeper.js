@@ -14,6 +14,8 @@ function HistoryKeeper() {
 		UpdateButton.type = "button";
 		UpdateButton.value = "?"
 		UpdateButton.id = this.Index;
+		InstanceOfHistoryOverwriter = new HistoryOverwriter(this.Index);
+		UpdateButton.setAttribute("onclick", "InstanceOfHistoryOverwriter.Update()");
 		To.appendChild(UpdateButton);
 		var RemoveButton = document.createElement("input");
 		RemoveButton.type = "button";

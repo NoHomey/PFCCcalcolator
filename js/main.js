@@ -3,3 +3,4 @@ Protein = Fat = Calories = Carbs = 0;
 InstanceOfExpander = new Expander();
 InstanceOfSelect2Options = new Select2Options();
 InstanceOfAdderReferencer = new AdderReferencer();
+InstanceOfLocker = new Locker();
