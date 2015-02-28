@@ -1,16 +1,13 @@
 function HistoryKeeper() {
-	this.Keeper = [];
+	this.Index = 0;
+	this.InstanceOfHistoryIntializer = new HistoryIntializer();
 	this.AddToHistory = function() {
-		var element = document.getElementById("Select1");
-		var result = element.options[element.selectedIndex].text;
-		element = document.getElementById("Select2");
-		result = result + ' ' + element.options[element.selectedIndex].text;
-		element = document.getElementById("Select3");
-		result =  result + ' ' + element.options[element.selectedIndex].text;			
+		var result = this.InstanceOfHistoryIntializer.HistoryIntialize();			
 		var NewElement = document.createElement("input");
 		NewElement.value = result;
 		NewElement.type = "button"
 		NewElement.disabled = true;
+		NewElement.id = "Number" + ++this.Index;
 		var To = document.getElementById("test");
 		To.appendChild(NewElement);
 		var UpdateButton = document.createElement("input");
@@ -21,7 +18,5 @@ function HistoryKeeper() {
 		RemoveButton.type = "button";
 		RemoveButton.value = "-"
 		To.appendChild(RemoveButton);
-	}
-	
-	
+	}	
 }
