@@ -1,5 +1,5 @@
-var Protein, Fat, Calories, Carbs, WhichOne;
-Protein = Fat = Calories = Carbs = WhichOne = 0;
+var Protein, Fat, Calories, Carbs, WhichOne, OldQuantity;
+Protein = Fat = Calories = Carbs = WhichOne = OldQuantity = 0;
 InstanceOfExpander = new Expander();
 InstanceOfSelect2Options = new Select2Options();
 InstanceOfAdderReferencer = new AdderReferencer();

@@ -1,6 +1,10 @@
-function QuantetyReturner() {
-    this.ReturnQuantety = function() {
-        var Quantety = document.getElementById("Select4").value;
+function QuantityReturner() {
+    this.ReturnQuantity = function() {
+        var Quantity = document.getElementById("Select4").value;
+        if ((Quantity = Quantity - OldQuantity) === 0) {
+      	    Quantity = 1;
+      	}
+      	OldQuantity = 0; 
         var kg, oz, lb;
         kg = oz = lb = 1;
         var element = document.getElementById("Select5")
@@ -15,7 +19,7 @@ function QuantetyReturner() {
             oz = 0.035274;
             break;
         }
-        Quantety = Quantety * ((1 * kg) * (1 * oz) * (1 * lb));
-        return Quantety;
+        Quantity = Quantity * ((1 * kg) * (1 * oz) * (1 * lb));
+        return Quantity;
     }
 }
