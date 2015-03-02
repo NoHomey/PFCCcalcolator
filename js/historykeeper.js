@@ -14,13 +14,13 @@ function HistoryKeeper() {
 		UpdateButton.type = "button";
 		UpdateButton.value = "?"
 		UpdateButton.id = WhichOne = this.Index;
-		UpdateButton.setAttribute("onclick", "InstanceOfHistoryOverwriter.Update()");
+		UpdateButton.setAttribute("onclick", "InstanceOfHistoryOverwriter.Update(this.id)");
 		To.appendChild(UpdateButton);
 		var RemoveButton = document.createElement("input");
 		RemoveButton.type = "button";
 		RemoveButton.value = "-"
 		RemoveButton.id = WhichOne;
-		RemoveButton.setAttribute("onclick", "InstanceOfHistoryRemover.Remove()");
+		RemoveButton.setAttribute("onclick", "InstanceOfHistoryRemover.Remove(this.id)");
 		To.appendChild(RemoveButton);
 	}	
 }

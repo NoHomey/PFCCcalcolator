@@ -1,5 +1,5 @@
 function HistoryOverwriter() {
-	this.Update = function() {
+	this.Update = function(WhichOne) {
 		var HistoryElement = document.getElementById("Number" + WhichOne);
 		var ArrayOfValues = HistoryElement.value.split(' ');
 		for (var index in ArrayOfValues) {
@@ -21,6 +21,7 @@ function HistoryOverwriter() {
 		}
 		InstanceOfLocker.TurnOn();
 		InstanceOfOperatorSwitcher.SwitchIt("?");
+		WhichToRemove = WhichOne;
 	}
 }
 		

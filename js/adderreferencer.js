@@ -7,6 +7,10 @@ this.ReferenceToAdder = function (event) {
             }
             else {
                 this.InstanceOfAdder.AddCurrentSelect(false);
+                if (WhichToRemove > 0) {
+                	InstanceOfElementRemover.Remove(WhichToRemove);
+                	WhichToRemove = 0;
+                }
             }            
             InstanceOfOperatorSwitcher.SwitchIt("+");
             InstanceOfLocker.TurnOff();

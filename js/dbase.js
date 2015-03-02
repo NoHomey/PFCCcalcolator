@@ -1,9 +1,9 @@
 DataBase = {
     FruitAppleRaw: {
-        Protein: 37.2,
-        Fat: 4.3,
-        Carbs: 29.3,
-        Cals: 100
+        Protein: 0.2,
+        Fat: 0.01,
+        Carbs: 0.1,
+        Cals: 12.1
     },
     EggChickenFried: {
         Protein: 7.2,

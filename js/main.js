@@ -1,5 +1,5 @@
-var Protein, Fat, Calories, Carbs, WhichOne, OldQuantity;
-Protein = Fat = Calories = Carbs = WhichOne = OldQuantity = 0;
+var Protein, Fat, Calories, Carbs, WhichToRemove, OldQuantity;
+Protein = Fat = Calories = Carbs = WhichToRemove = OldQuantity = 0;
 InstanceOfExpander = new Expander();
 InstanceOfSelect2Options = new Select2Options();
 InstanceOfAdderReferencer = new AdderReferencer();
@@ -8,3 +8,4 @@ InstanceOfHistoryOverwriter = new HistoryOverwriter();
 InstanceOfOptionExister = new OptionExister();
 InstanceOfOperatorSwitcher = new OperatorSwitcher();
 InstanceOfHistoryRemover = new HistoryRemover();
+InstanceOfElementRemover = new ElementRemover();

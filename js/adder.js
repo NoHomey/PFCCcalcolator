@@ -6,6 +6,7 @@ function Adder() {
     this.AddCurrentSelect = function (Remove) {
         var Key = this.InstanceOfKeyGeter.GetKey();
         var Quantity = this.InstaneOfQuantityReturner.ReturnQuantity();
+        console.log(Quantity);
         Protein -= Quantity * (DataBase[Key].Protein / 100);
         Fat -= Quantity * (DataBase[Key].Fat / 100);
         Carbs -= Quantity * (DataBase[Key].Carbs / 100);
