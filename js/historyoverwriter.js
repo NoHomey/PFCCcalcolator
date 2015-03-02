@@ -20,6 +20,7 @@ function HistoryOverwriter() {
 			}
 		}
 		InstanceOfLocker.TurnOn();
+		InstanceOfOperatorSwitcher.SwitchIt("?");
 	}
 }
 		

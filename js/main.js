@@ -5,4 +5,5 @@ InstanceOfSelect2Options = new Select2Options();
 InstanceOfAdderReferencer = new AdderReferencer();
 InstanceOfLocker = new Locker();
 InstanceOfHistoryOverwriter = new HistoryOverwriter();
-InstanceOfOptionExister = new OptionExister;
+InstanceOfOptionExister = new OptionExister();
+InstanceOfOperatorSwitcher = new OperatorSwitcher();
