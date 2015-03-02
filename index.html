@@ -27,6 +27,32 @@
 </head>
 
 <body>
+
+<span id="myContainer"></span>
+<script src="https://www.paypalobjects.com/js/external/api.js"></script>
+<script>
+paypal.use( ["login"], function(login) {
+  login.render ({
+    "appid": "AcFjES1dF7SdnyXHdt5ukjv6IYJWnMNpGVGWck5KM6D-BYrmi77bJDEGD1d8SZOCvmWqnhFzBHuOu1uy",
+    "authend": "sandbox",
+    "scopes": "profile email address phone https://uri.paypal.com/services/paypalattributes",
+    "containerid": "myContainer",
+    "locale": "en-us",
+    "returnurl": "http://my.domain.here/return.php"
+  });
+});
+</script>
+
+<script async="async" src="https://www.paypalobjects.com/js/external/paypal-button.min.js?merchant=45X3CKDSWARZE" 
+    data-button="subscribe" 
+    data-name="PFCCcalcolator" 
+    data-amount="3.33" 
+    data-currency="USD" 
+    data-period="W" 
+    data-callback="http://calback.com" 
+    data-env="sandbox"
+></script>
+
     <div>
         <strong id="outP"></strong>
         <br>
