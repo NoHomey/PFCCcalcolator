@@ -6,7 +6,10 @@ function HistoryIntializer() {
 		result = result + ' ' + element.options[element.selectedIndex].text;
 		element = document.getElementById("Select3");
 		result =  result + ' ' + element.options[element.selectedIndex].text;
-		
+		element = document.getElementById("Select4");
+		result =  result + ' ' + element.value;
+		element = document.getElementById("Select5");
+		result =  result + ' ' + element.options[element.selectedIndex].text;
 		return result;
 	}
 }

@@ -1,18 +1,25 @@
-function HistoryOverwriter(WhichOne) {
-	this.HistoryElement = document.getElementById("Number" + WhichOne);
-	this.ArrayOfValues = this.HistoryElement.value.split(' ');
+function HistoryOverwriter() {
 	this.Update = function() {
-		for (var index in this.ArrayOfValues) {
-			InstanceOfLocker.TurnOn();
+		var HistoryElement = document.getElementById("Number" + WhichOne);
+		var ArrayOfValues = HistoryElement.value.split(' ');
+		for (var index in ArrayOfValues) {
 			var SelectNumber = ++index;
 			var Id = "Select" + (SelectNumber).toString();
 			var Select = document.getElementById(Id);
-			var value = this.ArrayOfValues[--index];
-			var newOption = document.createElement("option");
-			newOption.disabled = newOption.selected = true;
-			newOption.text = value;
-			Select.add(newOption);
+			var value = ArrayOfValues[--index];
+			if (Id !== "Select4") {
+				if (!InstanceOfOptionExister.OptionExist(Select, value)) {
+					var newOption = document.createElement("option");
+					newOption.disabled = newOption.selected = true;
+					newOption.text = value;
+					Select.add(newOption);
+				}
+			}
+			else {
+				Select.value = value;
+			}
 		}
+		InstanceOfLocker.TurnOn();
 	}
 }
 		
