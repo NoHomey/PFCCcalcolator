@@ -1,6 +1,5 @@
 function HistoryOverwriter() {
 	this.Update = function() {
-		OldQuantity = 0;
 		var HistoryElement = document.getElementById("Number" + WhichOne);
 		var ArrayOfValues = HistoryElement.value.split(' ');
 		for (var index in ArrayOfValues) {

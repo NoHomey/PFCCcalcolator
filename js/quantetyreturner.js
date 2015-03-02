@@ -1,9 +1,7 @@
 function QuantityReturner() {
     this.ReturnQuantity = function() {
         var Quantity = document.getElementById("Select4").value;
-        if ((Quantity = Quantity - OldQuantity) === 0) {
-      	    Quantity = 1;
-      	}
+        Quantity = Quantity - OldQuantity;
       	OldQuantity = 0; 
         var kg, oz, lb;
         kg = oz = lb = 1;
@@ -20,6 +18,7 @@ function QuantityReturner() {
             break;
         }
         Quantity = Quantity * ((1 * kg) * (1 * oz) * (1 * lb));
+        Quantity = Quantity * -1;
         return Quantity;
     }
 }
