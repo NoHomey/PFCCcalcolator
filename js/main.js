@@ -7,3 +7,4 @@ InstanceOfLocker = new Locker();
 InstanceOfHistoryOverwriter = new HistoryOverwriter();
 InstanceOfOptionExister = new OptionExister();
 InstanceOfOperatorSwitcher = new OperatorSwitcher();
+InstanceOfHistoryRemover = new HistoryRemover();

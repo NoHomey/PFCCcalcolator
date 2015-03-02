@@ -19,7 +19,8 @@ function HistoryKeeper() {
 		var RemoveButton = document.createElement("input");
 		RemoveButton.type = "button";
 		RemoveButton.value = "-"
-		RemoveButton.id = this.Index;
+		RemoveButton.id = WhichOne;
+		RemoveButton.setAttribute("onclick", "InstanceOfHistoryRemover.Remove()");
 		To.appendChild(RemoveButton);
 	}	
 }
