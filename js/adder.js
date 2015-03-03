@@ -11,7 +11,7 @@ function Adder() {
         Carbs -= Quantity * (DataBase[Key].Carbs / 100);
         Calories -= Quantity * (DataBase[Key].Cals / 100);
         this.InstanceOfResultUpdater.UpdateResult();
-        if (Remove === false) { 
+        if (Remove === false) {
             this.InstanceOfHistoryKeeper.AddToHistory();
         }
     }
