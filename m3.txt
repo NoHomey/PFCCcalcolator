@@ -1,0 +1,7 @@
+m3 stands for mile stone #3:
+
+    Futers to be implemented by 14.05.2015-23:59:59 are:
+    
+        f#1:    Cool Design.
+        f#2:    Full Data Base.
+        f#3:    Upgrade Option which support PayPal payment.
