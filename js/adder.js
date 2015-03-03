@@ -6,13 +6,18 @@ function Adder() {
     this.AddCurrentSelect = function (Remove) {
         var Key = this.InstanceOfKeyGeter.GetKey();
         var Quantity = this.InstaneOfQuantityReturner.ReturnQuantity();
-        Protein -= Quantity * (DataBase[Key].Protein / 100);
-        Fat -= Quantity * (DataBase[Key].Fat / 100);
-        Carbs -= Quantity * (DataBase[Key].Carbs / 100);
-        Calories -= Quantity * (DataBase[Key].Cals / 100);
-        this.InstanceOfResultUpdater.UpdateResult();
         if (Remove === false) {
-            this.InstanceOfHistoryKeeper.AddToHistory();
+        Protein += Quantity * (DataBase[Key].Protein / 100);
+        Fat += Quantity * (DataBase[Key].Fat / 100);
+        Carbs += Quantity * (DataBase[Key].Carbs / 100);
+        Calories += Quantity * (DataBase[Key].Cals / 100);
+        this.InstanceOfHistoryKeeper.AddToHistory();
+        }else {
+        	Protein -= Quantity * (DataBase[Key].Protein / 100);
+		Fat -= Quantity * (DataBase[Key].Fat / 100);
+		Carbs -= Quantity * (DataBase[Key].Carbs / 100);
+		Calories -= Quantity * (DataBase[Key].Cals / 100);
         }
+        this.InstanceOfResultUpdater.UpdateResult();
     }
 }

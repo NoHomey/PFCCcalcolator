@@ -1,29 +1,26 @@
 function QuantityReturner() {
-    this.ReturnQuantity = function() {
+    this.ReturnQuantity = function () {
         var Quantity = document.getElementById("Select4").value;
-        if (Quantity === OldQuantity) {
-            Quantity *= -1;
-        }
-        else {
-            Quantity = Quantity - OldQuantity;
-        }
-      	OldQuantity = 0; 
         var kg, oz, lb;
+        var Element = document.getElementById("Select5")
         kg = oz = lb = 1;
-        var element = document.getElementById("Select5")
-        switch (element.options[element.selectedIndex].text) {
-        case "Kilogram (kg)":
+        if (Update === 1) {
+            Quantity = Quantity - OldQuantity;
+            OldQuantity = 0;
+            Update = 0;
+        }
+        switch (Element.options[Element.selectedIndex].text) {
+        case "Kilogram(kg)":
             kg = 1000;
             break;
-        case "Pound (lb)":
+        case "Pound(lb)":
             lb = 0.0022046;
             break;
-        case "Ounce (oz)":
+        case "Ounce(oz)":
             oz = 0.035274;
             break;
         }
         Quantity = Quantity * ((1 * kg) * (1 * oz) * (1 * lb));
-        Quantity = Quantity * -1;
         return Quantity;
     }
 }

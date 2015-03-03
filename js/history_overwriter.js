@@ -21,5 +21,6 @@ function HistoryOverwriter() {
         InstanceOfLocker.TurnOn();
         InstanceOfOperatorSwitcher.SwitchIt("?");
         WhichToRemove = WhichOne;
+        Update = 1;
     }
 }
