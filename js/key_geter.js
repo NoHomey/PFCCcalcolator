@@ -1,11 +1,11 @@
 function KeyGeter() {
     this.GetKey = function () {
-        var element = document.getElementById("Select1");
-        var result = element.options[element.selectedIndex].text;
-        element = document.getElementById("Select2");
-        result = result + element.options[element.selectedIndex].text;
-        element = document.getElementById("Select3");
-        result = result + element.options[element.selectedIndex].text;
+        var ArrayOfIds = ["Select1", "Select2", "Select3"];
+        var result = "";
+        for (var Index in ArrayOfIds) {
+            var element = document.getElementById(ArrayOfIds[Index]);
+            result = result + element.options[element.selectedIndex].text;
+        }
         return result;
     }
- }
+}
