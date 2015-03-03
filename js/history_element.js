@@ -1,5 +1,6 @@
 function HistoryElement(Value, Id, Disabled, OnClickEvent) {
     var NewElement = document.createElement("input");
+    var To = document.getElementById("test");
     NewElement.value = Value;
     NewElement.type = "button"
     NewElement.disabled = Disabled;
@@ -7,6 +8,5 @@ function HistoryElement(Value, Id, Disabled, OnClickEvent) {
     if (OnClickEvent !== false) {
         NewElement.setAttribute("onclick", OnClickEvent);
     }
-    var To = document.getElementById("test");
     To.appendChild(NewElement);
 }
