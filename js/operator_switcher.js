@@ -1,6 +1,7 @@
 function OperatorSwitcher() {
     this.SwitchIt = function (value) {
-        Element = document.getElementById("Operator");
+        Id = "Operator";
+        Element = document.getElementById(Id);
         Element.value = value;
     }
 }

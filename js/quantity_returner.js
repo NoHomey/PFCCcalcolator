@@ -1,8 +1,10 @@
 function QuantityReturner() {
     this.ReturnQuantity = function () {
-        var Quantity = document.getElementById("Select4").value;
+        var Id = "Select4";
+        var Quantity = document.getElementById(Id).value;
         var kg, oz, lb;
-        var Element = document.getElementById("Select5")
+        Id = "Select5";
+        var Element = document.getElementById(Id)
         kg = oz = lb = 1;
         if (Update === 1) {
             Quantity = Quantity - OldQuantity;

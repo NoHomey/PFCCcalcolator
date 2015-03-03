@@ -1,6 +1,7 @@
 function ElementRemover() {
-    this.Remove = function (WhichOne) {
-        var HistoryElement = document.getElementById("Number" + WhichOne);
+    this.RemoveElement = function (WhichOne) {
+        var Difference = "Number";
+        var HistoryElement = document.getElementById(Difference + WhichOne);
         if (HistoryElement !== null) {
             HistoryElement.parentNode.removeChild(HistoryElement);
             for (var Repeat = 0; Repeat < 2; Repeat++) {

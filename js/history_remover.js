@@ -1,7 +1,8 @@
 function HistoryRemover() {
     this.Remove = function (WhichOne) {
-        OldQuantity = document.getElementById("Number" + WhichOne).value.split(' ')[3];
-        InstanceOfElementRemover.Remove(WhichOne);
+        var Difference = "Number";
+        OldQuantity = document.getElementById(Difference + WhichOne).value.split(' ')[3];
+        InstanceOfElementRemover.RemoveElement(WhichOne);
         InstanceOfAdderReferencer.ReferenceToAdder(-1);
     }
 }

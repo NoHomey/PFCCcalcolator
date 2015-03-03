@@ -7,7 +7,7 @@ function AdderReferencer() {
             } else {
                 this.InstanceOfAdder.AddCurrentSelect(false);
                 if (WhichToRemove > 0) {
-                    InstanceOfElementRemover.Remove(WhichToRemove);
+                    InstanceOfElementRemover.RemoveElement(WhichToRemove);
                     WhichToRemove = 0;
                 }
             }
