@@ -7,16 +7,16 @@ function Adder() {
         var Key = this.InstanceOfKeyGeter.GetKey();
         var Quantity = this.InstaneOfQuantityReturner.ReturnQuantity();
         if (Remove === false) {
-        Protein += Quantity * (DataBase[Key].Protein / 100);
-        Fat += Quantity * (DataBase[Key].Fat / 100);
-        Carbs += Quantity * (DataBase[Key].Carbs / 100);
-        Calories += Quantity * (DataBase[Key].Cals / 100);
+        InstanceOfIngredients.Protein += Quantity * (DataBase[Key].Protein / 100);
+        InstanceOfIngredients.Fat += Quantity * (DataBase[Key].Fat / 100);
+        InstanceOfIngredients.Carbs += Quantity * (DataBase[Key].Carbs / 100);
+        InstanceOfIngredients.Calories += Quantity * (DataBase[Key].Cals / 100);
         this.InstanceOfHistoryKeeper.AddToHistory();
         }else {
-        	Protein -= Quantity * (DataBase[Key].Protein / 100);
-		Fat -= Quantity * (DataBase[Key].Fat / 100);
-		Carbs -= Quantity * (DataBase[Key].Carbs / 100);
-		Calories -= Quantity * (DataBase[Key].Cals / 100);
+        	InstanceOfIngredients.Protein -= Quantity * (DataBase[Key].Protein / 100);
+		InstanceOfIngredients.Fat -= Quantity * (DataBase[Key].Fat / 100);
+		InstanceOfIngredients.Carbs -= Quantity * (DataBase[Key].Carbs / 100);
+		InstanceOfIngredients.Calories -= Quantity * (DataBase[Key].Cals / 100);
         }
         this.InstanceOfResultUpdater.UpdateResult();
     }

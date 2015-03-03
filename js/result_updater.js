@@ -1,12 +1,10 @@
 function ResultUpdater() {
     this.UpdateResult = function() {
-        var ProteinMessage = "Total Protein:	";
-        var FatMessage = "Total Fat:	";
-        var CaloriesMessage = "Total Carbs:	";
-        var CarbsMessage = "Total Calories:	";
-        document.getElementById("outP").innerHTML = ProteinMessage + Protein;
-        document.getElementById("outF").innerHTML = FatMessage + Fat;
-        document.getElementById("outC").innerHTML = CaloriesMessage + Calories;
-        document.getElementById("outCal").innerHTML = CarbsMessage + Carbs;
+        var ArrayOfIds = ["outP", "outF", "outC", "outCal"];
+        var ArrayOfMassages = ["Total Protein:	", "Total Fat:	", "Total Carbs:	", "Total Calories:	"];
+        var ArrayOfValues = ["Protein", "Fat", "Carbs", "Calories"];
+        for (var Index in ArrayOfIds) {
+        	document.getElementById(ArrayOfIds[Index]).innerHTML = ArrayOfMassages[Index] + InstanceOfIngredients[ArrayOfValues[Index]];
+        }
     }
 }

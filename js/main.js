@@ -1,5 +1,6 @@
-var Protein, Fat, Calories, Carbs, WhichToRemove, OldQuantity, Update;
-Protein = Fat = Calories = Carbs = WhichToRemove = OldQuantity = Update = 0;
+var WhichToRemove, OldQuantity, Update;
+WhichToRemove = OldQuantity = Update = 0;
+InstanceOfIngredients = new Ingredients(0, 0, 0, 0);
 InstanceOfExpander = new Expander();
 InstanceOfSelect2Options = new Select2Options();
 InstanceOfAdderReferencer = new AdderReferencer();
