@@ -4,4 +4,4 @@ m1 stands for mile stone #1:
     
         f#1:    sample user interface for choosing food and quantety.
         f#2:    sample result field.
-        f#3:    part of the foods and food's ingredient data base.
+        f#3:    part of the foods and food's ingredient data base for testing purpose only (final data base may vary).

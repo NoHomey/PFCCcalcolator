@@ -1,0 +1,7 @@
+m2 stands for mile stone #2:
+
+    Futers to be implemented by 14.04.2015-23:59:59 are:
+    
+        f#1:    History.
+        f#2:    History manipulation: quantity changer.
+        f#3:    History manipulation: elements remover.
