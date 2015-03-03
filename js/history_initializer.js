@@ -1,15 +1,18 @@
 function HistoryIntializer() {
-	this.HistoryIntialize = function() {
-		var element = document.getElementById("Select1");
-		var result = element.options[element.selectedIndex].text;
-		element = document.getElementById("Select2");
-		result = result + ' ' + element.options[element.selectedIndex].text;
-		element = document.getElementById("Select3");
-		result =  result + ' ' + element.options[element.selectedIndex].text;
-		element = document.getElementById("Select4");
-		result =  result + ' ' + element.value;
-		element = document.getElementById("Select5");
-		result =  result + ' ' + element.options[element.selectedIndex].text;
-		return result;
-	}
+    this.HistoryIntialize = function () {
+        var ArrayOfIds = ["Select1", "Select2", "Select3", "Select4", "Select5"];
+        for (var Index in ArrayOfIds) {
+            var Element = document.getElementById(ArrayOfIds[Index]);
+            if (Index == 0) {
+                var Result = Element.options[Element.selectedIndex].text;
+            } else {
+                if (Index == 3) {
+                    Result = Result + ' ' + Element.value;
+                } else {
+                    Result = Result + ' ' + Element.options[Element.selectedIndex].text;
+                }
+            }
+        }
+        return Result;
+    }
 }
