@@ -26,81 +26,56 @@
      <script src="js/select2_options.js"></script>
      <script src="js/adder.js"></script>
      <script src="js/main.js"></script>
+     <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 
 <body>
-
-<span id="myContainer"></span>
-<script src="https://www.paypalobjects.com/js/external/api.js"></script>
-<script>
-paypal.use( ["login"], function(login) {
-  login.render ({
-    "appid": "AcFjES1dF7SdnyXHdt5ukjv6IYJWnMNpGVGWck5KM6D-BYrmi77bJDEGD1d8SZOCvmWqnhFzBHuOu1uy",
-    "authend": "sandbox",
-    "scopes": "profile email address phone https://uri.paypal.com/services/paypalattributes",
-    "containerid": "myContainer",
-    "locale": "en-us",
-    "returnurl": "http://my.domain.here/return.php"
-  });
-});
-</script>
-
-<script async="async" src="https://www.paypalobjects.com/js/external/paypal-button.min.js?merchant=45X3CKDSWARZE" 
-    data-button="subscribe" 
-    data-name="PFCCcalcolator" 
-    data-amount="3.33" 
-    data-currency="USD" 
-    data-period="W" 
-    data-callback="http://calback.com" 
-    data-env="sandbox"
-></script>
-
-<!-- PayPal Logo --><table border="0" cellpadding="10" cellspacing="0" align="center"><tr><td align="center"></td></tr><tr><td align="center"><a href="https://www.paypal.com/webapps/mpp/paypal-popup" title="How PayPal Works" onclick="javascript:window.open('https://www.paypal.com/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img src="https://www.paypalobjects.com/webstatic/mktg/logo/bdg_now_accepting_pp_2line_w.png" border="0" alt="Now Accepting PayPal"></a><div style="text-align:center"><a href="https://www.paypal.com/webapps/mpp/how-paypal-works"><font size="2" face="Arial" color="#0079CD">How PayPal Works</font></a></div></td></tr></table><!-- PayPal Logo -->
-
-<img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/cc-badges-ppppcmcvdam.png" alt="Pay with PayPal, PayPal Credit or any major credit card" />
-
-    <div>
-        <strong id="outP"></strong>
-        <br>
-        <strong id="outF"></strong>
-        <br>
-        <strong id="outC"></strong>
-        <br>
-        <strong id="outCal"></strong>
-        <br>
-    </div>
-    <form onkeypress="return InstanceOfAdderReferencer.ReferenceToAdder(event)">
-        <select id="Select1" onchange="InstanceOfSelect2Options.DisplayAllSelect2Options()">
-            <option disabled selected></option>
-            <option>Fruit</option>
-            <option>Vegetable</option>
-            <option>Egg</option>
-            <option>Milk</option>
-        </select>
-        <select id="Select2">
-            <option disabled selected></option>
-        </select>
-        <select id="Select3">
-            <option disabled selected></option>
-            <option>Raw</option>
-            <option>Fried</option>
-            <option>Boiled</option>
-            <option>Baked</option>
-        </select>
-        <input id="Select4" type="number" min="1" value="0">
-        <select id="Select5">
-            <option selected>Gram(g)</option>
-            <option>Kilogram(kg)</option>
-            <option>Pound(lb)</option>
-            <option>Ounce(oz)</option>
-        </select>
-        <input id="Operator" type="button" onclick="return InstanceOfAdderReferencer.ReferenceToAdder(event)" value="+">
-        <br></br>
-        <input id="InterfaceExpander" type="button" onclick="InstanceOfExpander.Expand()" value="List Options">
-    </form>
-    <br></br>
-    <form id="History">
-    </form>
+	<div id="Result" class="Object">
+		<div id="OutPut" class="Out">
+			<strong id="outP">Total Protein:	0</strong>
+			<br>
+			<strong id="outF">Total Fat:	0</strong>
+			<br>
+			<strong id="outC">Total Carbs:	0</strong>
+			<br>
+			<strong id="outCal">Total Calories:	0</strong>
+			<br>
+		 </div>
+	</div>
+	<div id="MainObject" class="Object">
+	    <form onkeypress="return InstanceOfAdderReferencer.ReferenceToAdder(event)">
+		<select id="Select1" class="Select" onchange="InstanceOfSelect2Options.DisplayAllSelect2Options()">
+		    <option disabled selected></option>
+		    <option>Fruit</option>
+		    <option>Vegetable</option>
+		    <option>Egg</option>
+		    <option>Milk</option>
+		</select>
+		<select id="Select2" class="Select">
+		    <option disabled selected></option>
+		</select>
+		<select id="Select3" class="Select">
+		    <option disabled selected></option>
+		    <option>Raw</option>
+		    <option>Fried</option>
+		    <option>Boiled</option>
+		    <option>Baked</option>
+		</select>
+		<input id="Select4" class="Quantity" type="number" min="1" value="0">
+		<select id="Select5" class="Select">
+		    <option selected>Gram(g)</option>
+		    <option>Kilogram(kg)</option>
+		    <option>Pound(lb)</option>
+		    <option>Ounce(oz)</option>
+		</select>
+		<input id="Operator" class="Plus" type="button" onclick="return InstanceOfAdderReferencer.ReferenceToAdder(event)" value="+">
+		<br></br>
+		<input id="InterfaceExpander" class="List" type="button" onclick="InstanceOfExpander.Expand()" value="List Options">
+	    </form>
+	    <br></br>
+	    <form id="History">
+	    </form>
+	</div>
 </body>
 
 </html>

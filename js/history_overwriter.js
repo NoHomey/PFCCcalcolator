@@ -4,6 +4,7 @@ function HistoryOverwriter() {
         var DifferentFrom = "Select4";
         var Button = "?";
         var Type = "option";
+        var Class = "Update";
         var HistoryElement = document.getElementById(Difference + WhichOne);
         var ArrayOfValues = HistoryElement.value.split(' ');
         for (var Index in ArrayOfValues) {
@@ -23,7 +24,7 @@ function HistoryOverwriter() {
             }
         }
         InstanceOfLocker.TurnOn();
-        InstanceOfOperatorSwitcher.SwitchIt(Button);
+        InstanceOfOperatorSwitcher.SwitchIt(Button, Class);
         WhichToRemove = WhichOne;
         Update = 1;
     }
