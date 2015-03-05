@@ -4,6 +4,7 @@ WhichToRemove = OldQuantity = Update = 0;
 InstanceOfIngredients = new Ingredients(0, 0, 0, 0);
 InstanceOfExpander = new Expander();
 InstanceOfSelect2Options = new Select2Options();
+InstanceOfResultUpdater = new ResultUpdater();
 InstanceOfAdderReferencer = new AdderReferencer();
 InstanceOfLocker = new Locker();
 InstanceOfHistoryOverwriter = new HistoryOverwriter();
