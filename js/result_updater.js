@@ -20,7 +20,7 @@ function ResultUpdater() {
             break;
         }
         for (var Index in ArrayOfIds) {
-            document.getElementById(ArrayOfIds[Index]).innerHTML = ArrayOfMassages[Index] + InstanceOfIngredients[ArrayOfValues[Index]] + ' ' + CurrentValue;
+            document.getElementById(ArrayOfIds[Index]).innerHTML = ArrayOfMassages[Index] + InstanceOfIngredients[ArrayOfValues[Index]].toFixed(4) + ' ' + CurrentValue;
         }
     }
 }

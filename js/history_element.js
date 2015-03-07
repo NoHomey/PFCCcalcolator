@@ -15,6 +15,7 @@ function HistoryElement(Value, Id, Class, OnClickEvent) {
     To.appendChild(NewElement);
     if(Class === "Remove") {
         NewBr = document.createElement("br");
+        NewBr.id = Id;
         To.appendChild(NewBr);
     }
 }
