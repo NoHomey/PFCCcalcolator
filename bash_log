@@ -1,0 +1,217 @@
+sudo service apache2 restart
+sudo mkdir -p /var/www/example.com/public_html
+sudo nano /var/www/example.com/public_html/index.html
+DocumentRoot /var/www/example.com/public_html 
+sudo service apache2 restart
+sudo nano /etc/hosts 
+ifconfig
+sudo nano /etc/hosts 
+sudo service apache2 restart
+clear
+sudo mkdir -p /var/www/test.com/public_html
+sudo chown -R $USER:$USER /var/www/test.com/public_html
+sudo chmod -R 755 /var/www
+nano /var/www/test.com/public_html/index.html
+sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/example.com.conf
+sudo nano /etc/apache2/sites-available/example.com.conf
+sudo cp /etc/apache2/sites-available/example.com.conf /etc/apache2/sites-available/test.com.conf
+sudo nano /etc/apache2/sites-available/test.com.conf
+sudo a2ensite example.com.conf
+sudo a2ensite test.com.conf
+sudo service apache2 restart
+sudo nano /etc/hosts
+ифцонфиг
+ifconfig
+sudo nano /etc/hosts
+sudo service apache2 restart
+sudo nano /etc/hosts
+addr:192.168.122.1  Bcast:192.168.122.255  Mask:255.255.255.0
+wlan0     Link encap:Ethernet  HWaddr e8:94:f6:0b:8f:ef  
+ifconfig
+cd /etc/apache2
+ls -F
+gedit apache2.conf
+apache2 -l
+sudo mkdir -p /var/www/example.com/public_html
+sudo mkdir -p /var/www/test.com/public_html
+sudo chown -R $USER:$USER /var/www/example.com/public_html
+sudo chown -R $USER:$USER /var/www/test.com/public_html
+sudo chmod -R 755 /var/www
+nano /var/www/example.com/public_html/index.html
+cp /var/www/example.com/public_html/index.html /var/www/test.com/public_html/index.html
+nano /var/www/test.com/public_html/index.html
+sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/example.com.conf
+sudo nano /etc/apache2/sites-available/example.com.conf
+sudo cp /etc/apache2/sites-available/example.com.conf /etc/apache2/sites-available/test.com.conf
+sudo nano /etc/apache2/sites-available/test.com.conf
+sudo a2ensite example.com.conf
+sudo a2ensite test.com.conf
+sudo nano /etc/hosts
+sudo service apache2 restart
+sudo nano /etc/hosts
+sudo service apache2 start
+sudo service apache2 restart
+cd sites-avalible
+cd sites-available
+ls
+rm example.com.conf
+sudo rm example.com.conf
+cd ..
+cd sites-enabled
+sudo rm example.com.conf
+cd
+cd var/www
+cd /var
+cd ww
+cd www
+sudo rm example.com
+sudo rm -r example.com
+sudo nano /etc/hosts
+sudo service apache2 restart
+sudo nano /etc/hosts
+sudo service apache2 restart
+sudo nano /etc/hosts
+sudo service apache2 restart
+sudo nano /etc/hosts
+sudo service apache2 restart
+sudo nano /etc/hosts
+sudo service apache2 restart
+sudo mkdir -p /var/www/pfcccalcolator.com/public_html
+sudo chown -R $USER:$USER /var/www/pfcccalcolator.com/public_html
+sudo chmod -R 755 /var/www
+cp /etc/apache2/sites-available/test.com.conf /etc/apache2/sites-available/pfcccalcolator.com.conf
+sudo cp /etc/apache2/sites-available/test.com.conf /etc/apache2/sites-available/pfcccalcolator.com.conf
+sudo nano /etc/pache2/sites-available/pfcccalcolator.com.conf 
+sudo nano /etc/pache2/sites-available/pfcccalcolator.com.conf цд
+cd
+cd '/etc/apache2' 
+cd sites-available
+ls
+sudo nano  pfcccalcolator.com.conf
+sudo a2ensite pfcccalcolator.com.conf
+sudo nano /etc/hosts
+sudo service apache2 restart
+sudo service apache2 stop
+sudo service apache2 start
+sudo /opt/lampp/lampp start
+sudo ./manager-linux.run
+cd
+cd /opt/lampp
+sudo ./manager-linux.run
+sudo nano /etc/hosts
+ifconfig
+netstat
+netstat -l
+mysqladmin -u root -p password ivo123
+sudo nano /etc/hosts
+namp 192.168.122.1
+nmap 192.168.122.1
+sudo apt-get install nmap
+nmap 192.168.122.1
+netstat -l
+clear
+sudo nano '/etc/apache2/sites-enabled/000-default.conf' 
+sudo nano /etc/hosts
+sudo service apache2 restart
+sudo ./manager-linux.run
+sudo /opt/lampp/lampp start
+sudo service apache2 restart
+sudo service apache2 start
+sudo apt-get install php5 libapache2-mod-php5
+sudo /etc/init.d/apache2 restart
+sudo apt-get install mysql-server mysql-client
+sudo mysql_install_db
+/usr/bin/mysql_secure_installation
+sudo gedit /etc/mysql/my.cnf
+sudo /etc/init.d/apache2 restart
+sudo apt-get install libapache2-mod-auth-mysql php5-mysql phpmyadmin
+sudo /etc/init.d/apache2 restart
+sudo a2ensite pfcccalcolator.com
+sudo service apache2 restart
+sudo nano '/etc/apache2/apache2.conf' 
+sudo service apache2 restart
+sudo /opt/lampp/lampp start
+sudo service apache2 status
+sudo service apache2 stop
+sudo /opt/lampp/lampp start
+sudo /opt/lampp/manager-linux.run
+sudo opt/lampp/lampp stop
+sudo service apache2 stop
+sudo service mysql stop
+sudo opt/lampp/lampp start
+sudo /opt/lampp/lampp start
+sudo service apache2 stop
+sudo service apache2 state
+sudo service apache2 status
+sudo /opt/lampp/lampp start
+sudo /opt/lampp/manager-linux.run
+mysql -u
+mysql -u root
+sudo /opt/lampp/lampp start
+mysql -u root
+sudo mysql -u root
+sudo /opt/lampp/manager-linux.run
+ifconfig
+nano /etc/hosts
+sudo nano /etc/hosts
+sudo service apcahe2 start
+sudo service apache2 start
+sudo service mysql start
+sudo service mysql status
+sudo service apache2 status
+sudo nano'/etc/apache2/apache2.conf' 
+sudo nano '/etc/apache2/apache2.conf' 
+sudo netstat -tap | grep mysql
+sudo nano /etc/mysql/my.cnf
+sudo service mysql restart
+sudo netstat -tap | grep mysql
+sudo nano /etc/hosts
+sudo service mysql restart
+sudo netstat -tap | grep mysql
+sudo nano /etc/hosts
+sudo netstat -tap | grep mysql
+sudo dpkg-reconfigure mysql-server-5.5
+sudo apt-get install mysql-server mysql-client
+mysql -u root -p
+mysql -u root -h 'pfcccalcolator.com' -p
+mysql -u ivo -h 'pfcccalcolator.com' -p
+sudo service mysql stop
+sudo service apache2 stop
+sudo nano /opt/lampp/etc/httpd.conf
+sudo gedit /etc/mysql/my.cnf
+sudo nano /etc/mysql/my.cnf
+cd '/var/www/pfcccalcolator.com/public_html' 
+sudo gedit index.php
+sudo rm index.php
+gedit index.php
+sudo /opt/lampp/lampp start
+sudo service apache2 stop
+sudo service apache2 start
+sudo nano '/etc/apache2/apache2.conf' 
+sudo service apache2 start
+sudo service apache2 stop
+sudo nano '/etc/apache2/apache2.conf' 
+sudo service apache2 restart
+sudo service apache2 stop
+sudo service mysql stop
+sudo /opt/lampp/lampp start
+sudo service proftpd stop
+sudo service ProFTPD stop
+sudo /opt/lampp/lampp restart
+sudo /opt/lampp/lampp stop
+sudo /opt/lampp/lampp start
+sudo service mysql status
+sudo /opt/lampp/lampp status
+sudo service mysql status
+sudo service apache2 status
+sudo service apache2 start
+sudo service apache2 stop
+sudo service apache2 start
+sudo service apache2 status
+sudo /opt/lampp/lampp stop
+sudo service apache2 start
+sudo service mysql start
+sudo service mysql stop
+sudo service mysql start
+sudo /opt/lampp/lampp status
+sudo /opt/lampp/manager-linux.run
