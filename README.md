@@ -232,11 +232,12 @@ $dbuser = 'root'; | $dbuser = 'user';
 
 **Password:**
 
+> The password you set when you created the user 'user'
+
 **Click**
 
 > Go
 
-> The password you set when you created the user 'user'
 
 **Both should work!**
 
