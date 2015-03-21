@@ -8,7 +8,7 @@
 ### Project start date: 18.02.2015-10:36:01.
 
 #### Project is developed by Team Project.
-    > The rights for the code in this repository and for final & staged product are held by:
+    The rights for the code in this repository and for final & staged product are held by:
 
     Ivo Stratev:
         The creator of the idea for this project and this repository.
@@ -16,38 +16,39 @@
         
 # How to install and run locally:
 
-    sudo apt-get update
-    sudo apt-get upgrade
-    sudo apt-get install apache2
-    sudo apt-get install php5 libapache2-mod-php5
-    sudo apt-get install mysql-server mysql-client
-    sudo mysql_install_db
-    sudo /usr/bin/mysql_secure_installation
-    sudo apt-get install libapache2-mod-auth-mysql php5-mysql phpmyadmin
-    sudo dpkg-reconfigure mysql-server-5.5
-    mysql -u root -p
+        sudo apt-get update
+        sudo apt-get upgrade
+        sudo apt-get install apache2
+        sudo apt-get install php5 libapache2-mod-php5
+        sudo apt-get install mysql-server mysql-client
+        sudo mysql_install_db
+        sudo /usr/bin/mysql_secure_installation
+        sudo apt-get install libapache2-mod-auth-mysql php5-mysql phpmyadmin
+        sudo dpkg-reconfigure mysql-server-5.5
+        mysql -u root -p
     
 
-    Enter pswd
-            create new user at server_name and grant priveleges
+> Enter pswd
+> create new user at server_name and grant priveleges
             
             
-    mysql -u user -h 'server_name' -p   
+    
+        mysql -u user -h 'server_name' -p   
     
     
     
-    sudo apt-get install phpmyadmin
-    sudo dpkg-reconfigure phpmyadmin
-    sudo php5enmod mcrypt
-    sudo mkdir -p /var/www/server_name.com/public_htmlmkdir 
-    sudo chown -R $USER:$USER /var/www/server_name.com/public_html
-    sudo chmod -R 755 /var/www
-    rsudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/server_name.conf
-    sudo nano /etc/apache2/sites-available/server_name.conf
+        sudo apt-get install phpmyadmin
+        sudo dpkg-reconfigure phpmyadmin
+        sudo php5enmod mcrypt
+        sudo mkdir -p /var/www/server_name.com/public_htmlmkdir 
+        sudo chown -R $USER:$USER /var/www/server_name.com/public_html
+        sudo chmod -R 755 /var/www
+        sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/server_name.conf
+        sudo nano /etc/apache2/sites-available/server_name.conf
     
-       Write the following:
-            ServerAdmin admin@pfcccalcolator.com
-        	ServerName pfcccalcolator.com
+> Write the following:
+> ServerAdmin admin@pfcccalcolator.com
+> ServerName pfcccalcolator.com
         	ServerAlias www.pfcccalcolator.com
         	DocumentRoot /var/www/pfcccalcolator.com/public_html
         	ErrorLog ${APACHE_LOG_DIR}/error.log
