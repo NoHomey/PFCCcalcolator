@@ -1,4 +1,4 @@
-#Ivo Stratev, Borislav Stratev.
+# Ivo Stratev, Borislav Stratev.
 
 #Project is named PFCCcalcolator.
     PFCCcalcalcolator stands for Protein, Fat & Carbs. Calorie calcolator.
