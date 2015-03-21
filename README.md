@@ -237,9 +237,9 @@ $dbuser = 'phpmyadmin'; or $dbuser = 'root' | $dbuser = 'user';
     
 # How to run locally :   
     
-**Open Folder */var/www/ppfcccalcolator.com*** 
+**Navigate to */var/www/ppfcccalcolator.com/public_html* folder** 
 
-**Copy all the files from the repository folder *Project* in */var/www/ppfcccalcolator.com***
+**Copy all the files from the repository folder *Project* in */var/www/ppfcccalcolator.com/public_html** folder*
     
 **Open Borser and Type *pfcccalcolator.com* in adress field**
 
@@ -276,3 +276,4 @@ $dbuser = 'phpmyadmin'; or $dbuser = 'root' | $dbuser = 'user';
 
 > sudo apt-get autoremove
 
+**And now follow the *How to setup locally* section**
