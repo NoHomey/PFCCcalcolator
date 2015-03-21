@@ -224,10 +224,23 @@ $dbuser = 'root'; | $dbuser = 'user';
 
 **Do the same with *pfcccalcolator.com*/phpmyadmin**
 
+**Login with :**
+
+**Username:**
+
+> user
+
+**Password:**
+
+**Click**
+
+> Go
+
+> The password you set when you created the user 'user'
+
 **Both should work!**
 
 **If they dont work search the errors you get!!!**
-
 
 **Now import database using the *phpmyadmin* from browser**
 
