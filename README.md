@@ -26,6 +26,8 @@
 **Else :**
     
 **Run the following set of commands in order to install *LAMP (Linux, Apache, MySQL and PhpMyAdmin)* on your machine :**
+
+**Press *Y* everytime you are asked to install extra pakages***
     
 > sudo apt-get update
 
@@ -35,17 +37,31 @@
 
 > sudo apt-get install mysql-server mysql-client
 
+***Eneter new password for MySQL***
+
+***Repeat it***
+
 > sudo apt-get install phpmyadmin
 
+***Press <Enter> when asked:  Configure database for phpmyadmin with dbconfig-common?***
+
+***Enter the same password you used for MySQL***
+
+***Renter the same password***
+
+***Reneter it one more time***
+
+***Press <Enter> when asked:  Configure database for phpmyadmin with dbconfig-common?***
+    
 > sudo apt-get install php5 libapache2-mod-php5
 
 > sudo apt-get install libapache2-mod-auth-mysql php5-mysql phpmyadmin
 
 **Run the following set of commands in order to *Create new Virtual Host* on your machine :** 
 
-> sudo mkdir -p /var/www/server_name.com/public_htmlmkdir 
+> sudo mkdir -p /var/www/pfcccalcolator.com/public_htmл 
 
-> sudo chown -R $USER:$USER /var/www/server_name.com/public_html
+> sudo chown -R $USER:$USER /var/www/pfcccalcolator.com/public_html
 
 > sudo chmod -R 755 /var/www
 
@@ -67,7 +83,9 @@
 
 > CustomLog ${APACHE_LOG_DIR}/access.log combined
 
-**Press *Ctrl+o* to save it**
+**Press *Ctrl+o* to acces saving**
+
+**Press *Enter* to save it***
 
 **Press *Ctrl+x* to exit**
         
@@ -75,8 +93,7 @@
         
 > sudo a2ensite pfcccalcolator.com.conf
 
-> sudo cp /etc/apache2/sites-available/server_name.conf /etc/apache2/sites-available/000-default.conf
-
+> sudo cp /etc/apache2/sites-available/pfcccalcolator.com.conf /etc/apache2/sites-available/000-default.conf
 
 > sudo nano /etc/hosts
 
@@ -108,7 +125,7 @@
         
 **Run the following command in order to configure as global your *Virtual Host* on your *Apache2* server :**       
 
-> sudo nano /etc/apache2/apche2.conf
+> sudo nano /etc/apache2/apache2.conf
 
 **Add following lines on top of the file :**    
     
@@ -124,12 +141,6 @@
 
 **Run the following set of commands in order to secure, configure, create new priveleged  user & test if everything is OK with *MySQL* on your machine :**
 
-> sudo mysql_install_db
-
-> sudo /usr/bin/mysql_secure_installation
-
-> sudo dpkg-reconfigure mysql-server-5.5
-
 > mysql -u root -p
 
 ***Enter password***
@@ -142,7 +153,7 @@
 
 > WITH GRANT OPTION;
 
-> CREATE USER 'pfcccalcolator.com'@'%' IDENTIFIED BY '*HERE ENTER THE PASSWORD YOU WANT TO BE USED FOR THAT USER!!!*';
+> CREATE USER 'user'@'%' IDENTIFIED BY '*HERE ENTER THE PASSWORD YOU WANT TO BE USED FOR THAT USER!!!*';
 
 > GRANT ALL PRIVILEGES ON *.* TO 'user'@'%'
 
@@ -162,27 +173,21 @@
 
 >       ->     WITH GRANT OPTION;
 
-> mysql -u user -h 'pfcccalcolator.com' -p  
-
-***Enter password***
-
 **Press *Ctrl+c* to exit** 
         
 > sudo nano /etc/mysql/my.cnf
   
-**Change the line *bind-adress      = 'localhost'* :**
+**Change the line *bind-adress      = 127.0.0.1* :**
 
 Before: | After:
 ------------ | ---
-bind-adress      = 'localhost' | bind-adress      = your_ip_adress
+bind-adress      = 127.0.0.1 | bind-adress      = your_ip_adress
 
 **Press *Ctrl+o* to save it**
 
 **Press *Ctrl+x* to exit**
 
 **Run the following set of commands in order to secure &  configure *PhpMyAdmin* on your machine :**
-
-> sudo dpkg-reconfigure phpmyadmin
 
 > sudo php5enmod mcrypt
 
@@ -204,7 +209,7 @@ $dbserver = 'localhost'; | $dbserver = 'pfcccalcolator.com';
 
 Before: | After:
 ------------ | ---
-$dbuser = 'root'; | $dbuser = 'user';
+$dbuser = 'phpmyadmin'/'root'; | $dbuser = 'user';
 
 **Press *Ctrl+o* to save it**
 
@@ -215,6 +220,10 @@ $dbuser = 'root'; | $dbuser = 'user';
 > sudo service apache2 restart
 
 > sudo service mysql restart
+
+> mysql -u user -h 'pfcccalcolator.com' -p  
+
+***Enter password***
 
 **If any error ocure during the installaion or setup please search them and try to fix them if you can!**
     
