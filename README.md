@@ -15,46 +15,68 @@
         
         
 # How to install and run locally:
+    
+**Run the following set of commands in order to install *LAMP (Linux, Apache, MySQL and PHPmyAdmin)* on your machine :**
+    
+> sudo apt-get update
 
-        sudo apt-get update
-        sudo apt-get upgrade
-        sudo apt-get install apache2
-        sudo apt-get install php5 libapache2-mod-php5
-        sudo apt-get install mysql-server mysql-client
-        sudo mysql_install_db
-        sudo /usr/bin/mysql_secure_installation
-        sudo apt-get install libapache2-mod-auth-mysql php5-mysql phpmyadmin
-        sudo dpkg-reconfigure mysql-server-5.5
-        mysql -u root -p
-    
+> sudo apt-get upgrade
 
-> Enter pswd
-> create new user at server_name and grant priveleges
-            
-            
+> sudo apt-get install apache2
+
+> sudo apt-get install mysql-server mysql-client
+
+> sudo apt-get install phpmyadmin
+
+> sudo apt-get install php5 libapache2-mod-php5
+
+> sudo apt-get install libapache2-mod-auth-mysql php5-mysql phpmyadmin
+
+**Run the following set of commands in order to secure, configure, create new priveleged  user & test if everything is OK**
+
+> sudo mysql_install_db
+
+> sudo /usr/bin/mysql_secure_installation
+
+> mysql -u root -p
+
+> mysql -u user -h 'server_name' -p  
+
+**Press *Ctrl+c* to exit** 
+
+> sudo dpkg-reconfigure phpmyadmin
+
+> sudo php5enmod mcrypt
+
+> sudo dpkg-reconfigure mysql-server-5.5
+
+
     
-        mysql -u user -h 'server_name' -p   
-    
-    
-    
-        sudo apt-get install phpmyadmin
-        sudo dpkg-reconfigure phpmyadmin
-        sudo php5enmod mcrypt
+        
+
         sudo mkdir -p /var/www/server_name.com/public_htmlmkdir 
         sudo chown -R $USER:$USER /var/www/server_name.com/public_html
         sudo chmod -R 755 /var/www
         sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/server_name.conf
         sudo nano /etc/apache2/sites-available/server_name.conf
     
-> Write the following:
+**ReWrite the file to this:**
+
 > ServerAdmin admin@pfcccalcolator.com
+
 > ServerName pfcccalcolator.com
-        	ServerAlias www.pfcccalcolator.com
-        	DocumentRoot /var/www/pfcccalcolator.com/public_html
-        	ErrorLog ${APACHE_LOG_DIR}/error.log
-    	    CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+> ServerAlias www.pfcccalcolator.com
+
+> DocumentRoot /var/www/pfcccalcolator.com/public_html
+
+> ErrorLog ${APACHE_LOG_DIR}/error.log
+
+> CustomLog ${APACHE_LOG_DIR}/access.log combined
+
     	    
-        press Ctrl+o followed by Ctrl+x
+**Press *Ctrl+o* to save it**
+**Press *Ctrl+x* to exit**
         
         
         
