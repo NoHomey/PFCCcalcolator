@@ -2,9 +2,10 @@
 $db_servername = "pfcccalcolator.com";
 $db_username = "user";
 $db_password = "ivo123";
+$db_name = "Users";
 
 // Create connection
-$conn = new mysqli($db_servername, $db_username, $db_password);
+$conn = new mysqli($db_servername, $db_username, $db_password, $db_name);
 
 // Check connection
 if ($conn->connect_error) {
@@ -12,6 +13,10 @@ if ($conn->connect_error) {
     echo "Connected unsuccessfully";
 } 
 echo "Connected successfully";
+
+$stmt = $conn->prepare("INSERT INTO User (name, password) VALUES (?, ?)");
+$stmt->bind_param("ss", $t_name, $t_password);
+
 ?>
 
 <!DOCTYPE HTML> 
@@ -63,8 +68,11 @@ function add_user_to_db($user, $pass,$userErr, $passErr) {
 		echo "<br>";
 		echo $pass;
 		echo "<br>";
+		
+		return true;
 	}
-
+	
+	return false;
 }
 ?>
 
@@ -82,7 +90,13 @@ function add_user_to_db($user, $pass,$userErr, $passErr) {
 
 <?php
 echo "<h2>Your Input:</h2>";
-add_user_to_db($username, $password, $usernameErr, $passwordErr);
+if(add_user_to_db($username, $password, $usernameErr, $passwordErr) == true) {
+	$t_name = $username;
+	$t_password = $password;
+	$stmt->execute();
+}
+else {echo "Error";}
+
 ?>
 
 </body>
