@@ -1,22 +1,27 @@
-# Ivo Stratev, Borislav Stratev.
+**Ivo Stratev, Borislav Stratev.**
 
-## Project is named PFCCcalcolator.
-         PFCCcalcalcolator stands for Protein, Fat & Carbs. Calorie calcolator.
-    The Purpose of this project is to make calcolations based on:
-        Protein, Fat & Carbs. Calories for multiple foods.
+**Project is named PFCCcalcolator.**
 
-### Project start date: 18.02.2015-10:36:01.
+> PFCCcalcalcolator stands for Protein, Fat & Carbs. Calorie calcolator.
 
-#### Project is developed by Team Project.
-    The rights for the code in this repository and for final & staged product are held by:
+> The Purpose of this project is to make calcolations based on:
 
-    Ivo Stratev:
-        The creator of the idea for this project and this repository.
+> Protein, Fat & Carbs. Calories for multiple foods.
+
+**Project start date: 18.02.2015-10:36:01.**
+
+**Project is developed by Team Project.**
+
+> The rights for the code in this repository and for final & staged product are held by:
+
+> Ivo Stratev:
+
+>     The creator of the idea for this project and this repository.
         
         
 # How to install and run locally:
     
-**Run the following set of commands in order to install *LAMP (Linux, Apache, MySQL and PHPmyAdmin)* on your machine :**
+**Run the following set of commands in order to install *LAMP (Linux, Apache, MySQL and PhpMyAdmin)* on your machine :**
     
 > sudo apt-get update
 
@@ -32,33 +37,40 @@
 
 > sudo apt-get install libapache2-mod-auth-mysql php5-mysql phpmyadmin
 
-**Run the following set of commands in order to secure, configure, create new priveleged  user & test if everything is OK**
+**Run the following set of commands in order to secure, configure, create new priveleged  user & test if everything is OK with *MySQL* on your machine :**
 
 > sudo mysql_install_db
 
 > sudo /usr/bin/mysql_secure_installation
 
+> sudo dpkg-reconfigure mysql-server-5.5
+
 > mysql -u root -p
+
+***Enter password***
 
 > mysql -u user -h 'server_name' -p  
 
 **Press *Ctrl+c* to exit** 
 
+**Run the following set of commands in order to secure &  configure *PhpMyAdmin* on your machine :**
+
 > sudo dpkg-reconfigure phpmyadmin
 
 > sudo php5enmod mcrypt
 
-> sudo dpkg-reconfigure mysql-server-5.5
+**Run the following set of commands in order to *Create new Virtual Host* on your machine :** 
 
+> sudo mkdir -p /var/www/server_name.com/public_htmlmkdir 
 
-    
-        
+> sudo chown -R $USER:$USER /var/www/server_name.com/public_html
 
-        sudo mkdir -p /var/www/server_name.com/public_htmlmkdir 
-        sudo chown -R $USER:$USER /var/www/server_name.com/public_html
-        sudo chmod -R 755 /var/www
-        sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/server_name.conf
-        sudo nano /etc/apache2/sites-available/server_name.conf
+> sudo chmod -R 755 /var/www
+
+> sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/server_name.conf
+
+> sudo nano /etc/apache2/sites-available/server_name.conf
+
     
 **ReWrite the file to this:**
 
@@ -74,57 +86,50 @@
 
 > CustomLog ${APACHE_LOG_DIR}/access.log combined
 
-    	    
 **Press *Ctrl+o* to save it**
+
 **Press *Ctrl+x* to exit**
         
+**Run the following set of commands in order to allow the *Virtual Host* on your machine :**        
         
+> sudo a2ensite pfcccalcolator.com.conf
+
+> sudo cp /etc/apache2/sites-available/server_name.conf /etc/apache2/sites-available/000-default.conf
+
+> ifconfig
+
+> sudo nano /etc/hosts
+
+**Add the following line :**    
         
-    sudo a2ensite server_name.conf
-    ifconfig
-    sudo nano /etc/hosts
+> ip  pfcccalcolator.com
+
+**Press *Ctrl+o* to save it**
+
+**Press *Ctrl+x* to exit**
+        
+**Run the following command in order to configure as global your *Virtual Host* on your *Apache2* server :**       
+
+> sudo nano /etc/apache2/apche2.conf
+
+** Add following lines on top of the file :    
     
-    
-        Add:
-            ip  server_name
-            
-        press Ctrl+o followed by Ctrl+x
+> ServerName pfcccalcolator.com
+
+> DocumentRoot "/var/www/pfcccalcolator.com/public_html"
+
+> Include /etc/phpmyadmin/apache.conf
+
+**Press *Ctrl+o* to save it**
+
+**Press *Ctrl+x* to exit**
+
         
-        
-        
-    sudo nano /etc/mysql/my.cnf
+     sudo nano /etc/mysql/my.cnf
     
         Change: bind-adress      = 'localhost'
             To: bind-adress      = ip
         press Ctrl+o followed by Ctrl+x
-        
-        
-    sudo nano /etc/apache2/sites-enabled/000-default.conf
-    
-        Write the following:
-        
-        
-            ServerAdmin admin@pfcccalcolator.com
-        	ServerName pfcccalcolator.com
-        	ServerAlias www.pfcccalcolator.com
-        	DocumentRoot /var/www/pfcccalcolator.com/public_html
-        	ErrorLog ${APACHE_LOG_DIR}/error.log
-    	    CustomLog ${APACHE_LOG_DIR}/access.log combined
-    	    
-    	  press Ctrl+o followed by Ctrl+x
-    	  
-    	  
-    sudo nano /etc/apache2/apche2.conf
-    
-    
-        Add following lines:
-            ServerName pfcccalcolator.com
-            DocumentRoot "/var/www/pfcccalcolator.com/public_html"
-            Include /etc/phpmyadmin/apache.conf
-            
-            
-        press Ctrl+o followed by Ctrl+x
-        
         
     sudo nano /etc/phpmyadmin/config.inc.php
     
