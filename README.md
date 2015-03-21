@@ -215,10 +215,20 @@ $dbuser = 'root'; | $dbuser = 'user';
 > sudo service apache2 restart
 
 > sudo service mysql restart
+
+**If any error ocure during the installaion or setup please search them and try to fix them if you can!**
     
+# How to run locally :   
     
-    Open Borser and Type your ip in adress field
-    Do the same with ip/phpmyadmin
-    Both should work if not search the  errors you get!
-    Now import database using the phpmyadmin from browser
-    Now return to your ip and you are ready to go.
+**Open Borser and Type *pfcccalcolator.com* in adress field**
+
+**Do the same with *pfcccalcolator.com*/phpmyadmin**
+
+**Both should work!**
+
+**If they dont work search the errors you get!!!**
+
+
+**Now import database using the *phpmyadmin* from browser**
+
+**Now return to *pfcccalcolator.com* and you are ready to go**
