@@ -43,7 +43,7 @@
 
 > sudo apt-get install phpmyadmin
 
-***Press <Enter> when asked:  Configure database for phpmyadmin with dbconfig-common?***
+***Press Enter when asked:  Configure database for phpmyadmin with dbconfig-common?***
 
 ***Enter the same password you used for MySQL***
 
@@ -51,7 +51,7 @@
 
 ***Reneter it one more time***
 
-***Press <Enter> when asked:  Configure database for phpmyadmin with dbconfig-common?***
+***Press Enter when asked:  Configure database for phpmyadmin with dbconfig-common?***
     
 > sudo apt-get install php5 libapache2-mod-php5
 
@@ -119,7 +119,9 @@
 
 **Everytime you eccounter *your_ip_adress* write those: ***.***.*.*** !!!**
 
-**Press *Ctrl+o* to save it**
+**Press *Ctrl+o* to acces saving**
+
+**Press *Enter* to save it***
 
 **Press *Ctrl+x* to exit**
         
@@ -135,7 +137,9 @@
 
 > Include /etc/phpmyadmin/apache.conf
 
-**Press *Ctrl+o* to save it**
+**Press *Ctrl+o* to acces saving**
+
+**Press *Enter* to save it***
 
 **Press *Ctrl+x* to exit**
 
@@ -205,11 +209,11 @@ $dbserver = 'localhost'; | $dbserver = 'pfcccalcolator.com';
 
 > sudo nano /etc/phpmyadmin/config-db.php
 
-**Change the line $dbuser = 'root';* :**
+**Change the line $dbuser = 'phpmyadmin'; or $dbuser = 'root';* :**
 
 Before: | After:
 ------------ | ---
-$dbuser = 'phpmyadmin'/'root'; | $dbuser = 'user';
+$dbuser = 'phpmyadmin'; or $dbuser = 'root' | $dbuser = 'user';
 
 **Press *Ctrl+o* to save it**
 
@@ -225,9 +229,17 @@ $dbuser = 'phpmyadmin'/'root'; | $dbuser = 'user';
 
 ***Enter password***
 
+**Pres *Ctrl + c* to exit***
+
+**I my self *Ivo Stratev* reinstalled and reconfigured all following previus steps twice and i had no problem under *Ubuntu 14.04.02 LTS* OS**
+
 **If any error ocure during the installaion or setup please search them and try to fix them if you can!**
     
 # How to run locally :   
+    
+**Open Folder */var/www/ppfcccalcolator.com*** 
+
+**Copy all the files from the repository folder *Project* in */var/www/ppfcccalcolator.com***
     
 **Open Borser and Type *pfcccalcolator.com* in adress field**
 
@@ -255,3 +267,12 @@ $dbuser = 'phpmyadmin'/'root'; | $dbuser = 'user';
 **Now import database using the *phpmyadmin* from browser**
 
 **Now return to *pfcccalcolator.com* and you are ready to go**
+
+# How to reinstall locall setup of LAMP :
+
+**Run the following two commands :**
+
+> sudo apt-get purge apache2 php5-cli apache2-mpm-prefork apache2-utils apache2.2-common libapache2-mod-php5 libapr1 libaprutil1 libdbd-mysql-perl libdbi-perl libnet-daemon-perl libplrpc-perl libpq5 mysql-client mysql-common mysql-server php5-common php5-mysql phpmyadmin
+
+> sudo apt-get autoremove
+
