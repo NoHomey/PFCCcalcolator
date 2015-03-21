@@ -41,12 +41,6 @@
 
 > sudo apt-get install libapache2-mod-auth-mysql php5-mysql phpmyadmin
 
-**Run the following set of commands in order to secure &  configure *PhpMyAdmin* on your machine :**
-
-> sudo dpkg-reconfigure phpmyadmin
-
-> sudo php5enmod mcrypt
-
 **Run the following set of commands in order to *Create new Virtual Host* on your machine :** 
 
 > sudo mkdir -p /var/www/server_name.com/public_htmlmkdir 
@@ -57,10 +51,9 @@
 
 > sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/server_name.conf
 
-> sudo nano /etc/apache2/sites-available/server_name.conf
-
+> sudo nano /etc/apache2/sites-available/pfcccalcolator.com.conf
     
-**ReWrite the file to this:**
+**Write the following lines to the file:**
 
 > ServerAdmin admin@pfcccalcolator.com
 
@@ -139,27 +132,41 @@ bind-adress      = 'localhost' | bind-adress      = your_ip_adress
 **Press *Ctrl+o* to save it**
 
 **Press *Ctrl+x* to exit**
-        
-    sudo nano /etc/phpmyadmin/config.inc.php
+
+**Run the following set of commands in order to secure &  configure *PhpMyAdmin* on your machine :**
+
+> sudo dpkg-reconfigure phpmyadmin
+
+> sudo php5enmod mcrypt
+
+> sudo nano /etc/phpmyadmin/config.inc.php
+
+**Change the line *$dbserver = 'localhost';* :**
+
+Before: | After:
+------------ | ---
+$dbserver = 'localhost'; | $dbserver = 'pfcccalcolator.com';
+
+**Press *Ctrl+o* to save it**
+
+**Press *Ctrl+x* to exit**
+
+> sudo nano /etc/phpmyadmin/config-db.php
+
+**Change the line $dbuser = 'root';* :**
+
+Before: | After:
+------------ | ---
+$dbuser = 'root'; | $dbuser = 'user';
+
+**Press *Ctrl+o* to save it**
+
+**Press *Ctrl+x* to exit**
     
-        Change $dbserver = 'localhost';
-            To: $dbserver = 'pfcccalcolator.com';
-            
-        press Ctrl+o followed by Ctrl+x
+**Run the following set of commands to restart *MySQL* and *Apach2* servers :**
         
-        
-    sudo nano /etc/phpmyadmin/config-db.php
-    
-    
-        Change $dbuser = 'root';
-            To: $dbuser = 'user';
-            
-        press Ctrl+o followed by Ctrl+x
-        
-        
-    sudo service apache2 restart
-    sudo service mysql restart
-    
+> sudo service apache2 restart
+> sudo service mysql restart
     
     
     Open Borser and Type your ip in adress field
