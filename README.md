@@ -77,13 +77,30 @@
 
 > sudo cp /etc/apache2/sites-available/server_name.conf /etc/apache2/sites-available/000-default.conf
 
-> ifconfig
 
 > sudo nano /etc/hosts
 
 **Add the following line :**    
         
-> ip  pfcccalcolator.com
+> your_ip_adress  pfcccalcolator.com
+
+**If you dont know *your ip adress* Run the following command :**
+
+> ifconfig 
+
+**If you are on ethernet conection look for :**
+
+> eth0
+
+>  inet addr:***.***.*.***
+
+**Else look for :**
+
+> wlan0
+
+>  inet addr:***.***.*.***
+
+**Everytime you eccounter *your_ip_adress* write those: ***.***.*.*** !!!**
 
 **Press *Ctrl+o* to save it**
 
@@ -93,7 +110,7 @@
 
 > sudo nano /etc/apache2/apche2.conf
 
-** Add following lines on top of the file :    
+**Add following lines on top of the file :**    
     
 > ServerName pfcccalcolator.com
 
@@ -117,7 +134,37 @@
 
 ***Enter password***
 
-> mysql -u user_name -h 'pfcccalcolator.com' -p  
+***From here enter the following lines in your *mssql* console :**
+
+> CREATE USER 'user'@'pfcccalcolator.com' IDENTIFIED BY '*HERE ENTER THE PASSWORD YOU WANT TO BE USED FOR THAT USER!!!*';
+
+> GRANT ALL PRIVILEGES ON *.* TO 'user'@'pfcccalcolator.com'
+
+> WITH GRANT OPTION;
+
+> CREATE USER 'pfcccalcolator.com'@'%' IDENTIFIED BY '*HERE ENTER THE PASSWORD YOU WANT TO BE USED FOR THAT USER!!!*';
+
+> GRANT ALL PRIVILEGES ON *.* TO 'user'@'%'
+
+> WITH GRANT OPTION;
+
+**The Console log should look like this :**
+
+> mysql> CREATE USER 'user'@'pfcccalcolator.com' IDENTIFIED BY 'some_pass';
+
+> mysql> GRANT ALL PRIVILEGES ON *.* TO 'monty'@'pfcccalcolator.com'
+
+>       ->     WITH GRANT OPTION;
+
+> mysql> CREATE USER 'user'@'%' IDENTIFIED BY 'some_pass';
+
+> mysql> GRANT ALL PRIVILEGES ON *.* TO 'user'@'%'
+
+>       ->     WITH GRANT OPTION;
+
+> mysql -u user -h 'pfcccalcolator.com' -p  
+
+***Enter password***
 
 **Press *Ctrl+c* to exit** 
         
@@ -166,6 +213,7 @@ $dbuser = 'root'; | $dbuser = 'user';
 **Run the following set of commands to restart *MySQL* and *Apach2* servers :**
         
 > sudo service apache2 restart
+
 > sudo service mysql restart
     
     
