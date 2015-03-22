@@ -1,6 +1,6 @@
 
-.Plus, .Update, .Remove, .Select, .Quantity, .List, .Holder, .Out, .Object {
-	margin: 0 1px;
+.Plus, .Update, .Remove, .Select, .Quantity, .List, .Holder, .Out, .Object, .login_input{
+	margin: 1px 1px 1px 20px;
 	outline: none;
 	cursor: pointer;
 	text-align: center;
@@ -55,6 +55,7 @@
 }
 
 .Update {
+	margin: 0px 1px 0px 0px;
 	color: #e8f0de;
 	border: solid 1px #538312;
 	background: #64991e;
@@ -77,6 +78,7 @@
 }
 
 .Remove {
+	margin: 0px 1px 0px 0px;
 	color: #faddde;
 	border: solid 1px #980c10;
 	background: #d81b21;
