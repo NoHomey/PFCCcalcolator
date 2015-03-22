@@ -280,4 +280,4 @@ $dbuser = 'phpmyadmin'; or $dbuser = 'root' | $dbuser = 'user';
 
 # Login:
 
-**The login is a copy of *https://github.com/panique/php-login-minimal* distibuted under MIT LICENSE*
+**The login is a copy of *https://github.com/panique/php-login-minimal* distibuted under MIT LICENSE**
