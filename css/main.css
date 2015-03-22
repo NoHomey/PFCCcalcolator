@@ -163,4 +163,12 @@
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015');
 }
 
-
+#user {
+	width:140px;;
+	float:right;
+	}
+	
+#logout {
+	width:40px;;
+	float:right;	
+}
