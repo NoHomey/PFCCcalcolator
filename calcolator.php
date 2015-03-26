@@ -32,10 +32,10 @@ session_start();
 </head>
 
 <body>
-	<form id="user" class="Plus">
-			<span><?php echo $_SESSION['user_name']; ?></span>
+	<form id="user" class="Out">
+			<span class="User"><?php echo $_SESSION['user_name']; ?></span>
 			<a id="logout" class="Remove" href="index.php?logout">Logout</a>
-		</form>
+	</form>
 	<div id="MainObject" class="Holder">
 	    	<div id="OutPut" class="Out">
 			<strong id="outP">#1 Choose Metrics, refresh the page if you want to switch Metrics!</strong>
@@ -72,10 +72,10 @@ session_start();
 		    <option>Boiled</option>
 		    <option>Baked</option>
 		</select>
-		<input id="Select4" class="Quantity" type="number" min="1" value="0"/>
+		<input id="Select4" class="Select" type="number" min="1" value="0"/>
 		<input id="Operator" class="Plus" type="button" onclick="return InstanceOfAdderReferencer.ReferenceToAdder(event)" value="+"/>
 		<br></br>
-		<input id="InterfaceExpander" class="List" type="button" onclick="InstanceOfExpander.Expand()" value="List Options"/>
+		<input id="InterfaceExpander" class="Select" type="button" onclick="InstanceOfExpander.Expand()" value="List Options"/>
 	</div>
 	    </form >
 	    <br></br>
