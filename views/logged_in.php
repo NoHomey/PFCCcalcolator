@@ -70,7 +70,7 @@ session_start();
 		var Element = document.createElement(tag);
 		Element.id = "option";
 		Element.setAttribute("class", "input");
-		Element.name = "fileName";
+		Element.name = "file_name";
 		Element.type = "text";
 		parent.appendChild(Element);
 		var Element = document.createElement(tag);
