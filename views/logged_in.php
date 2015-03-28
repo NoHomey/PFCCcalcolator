@@ -1,21 +1,20 @@
 <!-- if you need user information, just put them into the $_SESSION variable and output them here -->
 <!-- because people were asking: "index.php?logout" is just my simplified form of "index.php?logout=true" -->
 <?php
-
 session_start();
 ?>
 <link rel="stylesheet" type="text/css" href="css/login.css">
-<div id="This">
-<form class="panel"
+<form class="panel">
 <span><?php echo $_SESSION['user_name']; ?></span>
 <a class="go_back" href="index.php?logout">Logout</a>
 </form>
 
-<form class="panel" id="choose" method="post" action="index.php" name="chooser">
-<input class="input" id="option" type="button" name="new" value="New Calcolation" onclick="new_cal()"/>
+<form class="panel" id="new_name" method="post" action="name.php" name="new_name">
+<input class="input" id="option" type="submit" name="new" value="New Calcolation"/>
+</form>
+<form>
 <input class="input" id="option" type="submit" name="old" value="Choose Calcolation" onclick=""/>
 </form>
-</div>
 <script>
 	function remove() {
 		for(var i = 0;i < 2;i++) {
@@ -61,30 +60,9 @@ session_start();
 		parent.appendChild(Element);
 	}
 	
-	function new_cal() {
-		
-		remove();
-		var parent = document.getElementById("choose");
-		parent.innerHTML = "Enter name of the new Calcolation";
-		var tag = "input";
-		var Element = document.createElement(tag);
-		Element.id = "option";
-		Element.setAttribute("class", "input");
-		Element.name = "file_name";
-		Element.type = "text";
-		parent.appendChild(Element);
-		var Element = document.createElement(tag);
-		Element.id = "option";
-		Element.setAttribute("class", "action");
-		Element.type = "submit";
-		Element.name = "save";
-		Element.value = "Save";
-		parent.appendChild(Element);
-		parent.action = "calcolator.php";
-		add_back();
-		
-	}
 </script>
 
-	
+	<?php
+	$calcadder = new Add_Calcolation(); //Crate table calcolations!!!!!!!1
+	?>
 	
