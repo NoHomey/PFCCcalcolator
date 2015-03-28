@@ -6,13 +6,14 @@ include("log_panel.php");
 ?>
 
 
-
-<form class="panel" id="new_name" method="post" action="name.php" name="new_name">
+<div class="panel">
+<form  id="new_name" method="post" action="name.php" name="new_name">
 <input class="input" id="option" type="submit" name="new" value="New Calcolation"/>
 </form>
-<form>
-<input class="input" id="option" type="submit" name="old" value="Choose Calcolation" onclick=""/>
+<form id="choose_name" method="post" action="choose.php" name="choose_name">
+<input class="input" id="option" type="submit" name="old" value="Choose Calcolation"/>
 </form>
+</div>
 <script>
 	function remove() {
 		for(var i = 0;i < 2;i++) {

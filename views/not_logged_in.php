@@ -15,10 +15,10 @@ if (isset($login)) {
     }
 }
 ?>
-<!-- login form box -->
+<link rel="stylesheet" type="text/css" href="css/login.css">
 <form class="panel" method="post" action="index.php" name="loginform">
 
-    <label for="login_input_username">Username</label>
+    <label for="login_input_username">Username or Email address</label>
     <input id="login_input_username" class="input" type="text" name="user_name" required />
 
     <label for="login_input_password">Password</label>

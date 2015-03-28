@@ -42,6 +42,5 @@ if ($login->isUserLoggedIn() == true) {
     include("views/not_logged_in.php");
 }
 ?>
-<link rel="stylesheet" type="text/css" href="css/login.css">
 
 
