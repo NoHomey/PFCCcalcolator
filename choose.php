@@ -1,9 +1,20 @@
-<form>
-<span><?php echo $_SESSION['user_name']; ?></span>
-<a href="index.php?logout">Logout</a>
-</form>
-<form method="post" action="index.html" name="loginform">
-<select id="file">
-	<option>AA<option>
-</select>
-</form>
+<?php 
+session_start();
+echo "Here";
+if (isset($add_calc)) {
+    if ($add_calc->errors) {
+        foreach ($add_calc->errors as $error) {
+            echo $error;
+        }
+    }
+    if ($add_calc->messages) {
+        foreach ($add_calc->messages as $message) {
+            echo $message;
+        }
+    }
+}
+echo $_SESSION['file_name']; 
+echo "There";
+include("log_panel.php");
+?>
+

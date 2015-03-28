@@ -2,12 +2,10 @@
 <!-- because people were asking: "index.php?logout" is just my simplified form of "index.php?logout=true" -->
 <?php
 session_start();
+include("log_panel.php");
 ?>
-<link rel="stylesheet" type="text/css" href="css/login.css">
-<form class="panel">
-<span><?php echo $_SESSION['user_name']; ?></span>
-<a class="go_back" href="index.php?logout">Logout</a>
-</form>
+
+
 
 <form class="panel" id="new_name" method="post" action="name.php" name="new_name">
 <input class="input" id="option" type="submit" name="new" value="New Calcolation"/>
