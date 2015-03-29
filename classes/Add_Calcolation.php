@@ -22,7 +22,6 @@ class Add_Calcolation
     	session_start();
      	 if (empty($_POST['file_name'])) {
             $this->errors[] = "Empty File name";
- 
         } elseif (strlen($_POST['file_name']) > 64 || strlen($_POST['file_name']) < 2) {
             $this->errors[] = "File name cannot be shorter than 2 or longer than 64 characters";
         } elseif (!preg_match('/^[a-z\d]{2,64}$/i', $_POST['file_name'])) {
@@ -54,7 +53,7 @@ class Add_Calcolation
                     $query_new_file_insert = $this->db_connection->query($sql);
 
                     if ($query_new_file_insert) {
-                        $this->messages[] = "Your File has been created successfully. You can now Proceed.";
+                        $this->messages[] = $_SESSION['file_name'] . "has been created successfully. You can now Proceed.";
                     } else {
                         $this->errors[] = "Sorry, your File creation failed. Please Go Back and try again.";
                     }
@@ -63,7 +62,7 @@ class Add_Calcolation
                 $this->errors[] = "Sorry, no database connection.";
             }
         } else {
-            $this->errors[] = "An unknown error occurred.";
+            $this->errors[] = "An unknown error occurred. Please Go Back and try again.";
         }
     }
 }

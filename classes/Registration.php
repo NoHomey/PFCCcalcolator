@@ -101,7 +101,7 @@ class Registration
 
                     // if user has been added successfully
                     if ($query_new_user_insert) {
-                        $this->messages[] = "Your account has been created successfully. You can now log in.";
+                        $this->messages[] = "Your account : " . $user_name . "has been created successfully. You can now log in.";
                     } else {
                         $this->errors[] = "Sorry, your registration failed. Please go back and try again.";
                     }
@@ -110,7 +110,7 @@ class Registration
                 $this->errors[] = "Sorry, no database connection.";
             }
         } else {
-            $this->errors[] = "An unknown error occurred.";
+            $this->errors[] = "An unknown error occurred. Please Go Back and try again.";
         }
     }
 }
