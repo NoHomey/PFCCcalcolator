@@ -1,6 +1,5 @@
 <?php
 
-
 class Choose_Calcolation
 {
     private $db_connection = null;
