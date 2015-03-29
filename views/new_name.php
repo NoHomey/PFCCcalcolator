@@ -21,6 +21,6 @@ if (isset($add_calc)) {
 
 </form>
 
-<a class="action" href="calcolator.php">Proceed</a>
+<a class="action" href="main.php">Proceed</a>
  Or 
 <a class="go_back" href="index.php?">Go Back</a>

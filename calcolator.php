@@ -55,9 +55,9 @@ session_start();
 	    </form >
 	   </div>
 	    <div id="calcolation_name" class="Out">Calcolation name  : <?php echo $_SESSION['file_name']; ?></div>
-	    <form id="History" method="post" name="file_content">
-	    	<input type="submit" name="file_save" value="Save current state of the Calcolation" class="Update">
-	    	<input type="submit" name="file_delete" value="Delete this Calcolation" class="Remove">
+	    <form id="History" method="post" name="file_content" action="main.php">
+	    	<input type="submit" name="file_save_it" value="Save current state of the Calcolation" class="Update" autocomplete="off"/>
+	    	<input type="submit" name="file_delete" value="Delete this Calcolation" class="Remove"autocomplete="off"/>
 	    	<br></br>
 	    </form>
 </body>
