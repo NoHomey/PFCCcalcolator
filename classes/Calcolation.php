@@ -45,7 +45,8 @@ class Calcolation
 
 	private function save_state() 
 	{
-		$text = "Ivo e golem";
+		session_start();
+		$text = $_SESSION['calc'];
 		fwrite($this->opened, $text);
 		$fds = fread($this->opened, filesize($this->file));
 		echo $fds;

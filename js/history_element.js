@@ -8,6 +8,7 @@ function HistoryElement(Value, Id, Class, OnClickEvent) {
     NewElement.value = Value;
     NewElement.type = SubType;
     NewElement.id = Id;
+    NewElement.name = Id;
     NewElement.setAttribute("class", Class);
     if (OnClickEvent !== false) {
         NewElement.setAttribute(Event, OnClickEvent);

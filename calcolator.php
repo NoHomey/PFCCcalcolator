@@ -1,5 +1,6 @@
 <?php
 session_start();
+echo $_SESSION['calc'];
 ?>
 <html>
 
@@ -55,11 +56,26 @@ session_start();
 	    </form >
 	   </div>
 	    <div id="calcolation_name" class="Out">Calcolation name  : <?php echo $_SESSION['file_name']; ?></div>
-	    <form id="History" method="post" name="file_content" action="main.php">
-	    	<input type="submit" name="file_save_it" value="Save current state of the Calcolation" class="Update" autocomplete="off"/>
+	    <form id="History" method="post" name="file_content" action="">
+	    	<input type="button" name="file_save_it" value="Save current state of the Calcolation" class="Update" onclick="ivo()"/>
 	    	<input type="submit" name="file_delete" value="Delete this Calcolation" class="Remove"autocomplete="off"/>
 	    	<br></br>
 	    </form>
 </body>
+
+<script>
+
+function ivo() {
+	var xmlhttp = new XMLHttpRequest();
+       var url = "test.php";
+    xmlhttp.open("POST",url);
+    xmlhttp.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+    var data=JSON.stringify({STiga : "we"});
+    xmlhttp.send(data);
+
+
+}	
+</script>
+
 
 </html>
