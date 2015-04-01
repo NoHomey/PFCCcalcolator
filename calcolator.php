@@ -1,6 +1,6 @@
 <?php
 session_start();
-echo $_SESSION['calc'];
+echo $_SESSION['raboti'];
 ?>
 <html>
 
@@ -56,9 +56,10 @@ echo $_SESSION['calc'];
 	    </form >
 	   </div>
 	    <div id="calcolation_name" class="Out">Calcolation name  : <?php echo $_SESSION['file_name']; ?></div>
-	    <form id="History" method="post" name="file_content" action="">
+	    <form id="History" method="post" name="file_content" action="main.php">
 	    	<input type="button" name="file_save_it" value="Save current state of the Calcolation" class="Update" onclick="ivo()"/>
 	    	<input type="submit" name="file_delete" value="Delete this Calcolation" class="Remove"autocomplete="off"/>
+	    	<input type="button" id="Number0" class="LastElement" value="end"/>
 	    	<br></br>
 	    </form>
 </body>
@@ -66,13 +67,32 @@ echo $_SESSION['calc'];
 <script>
 
 function ivo() {
-	var xmlhttp = new XMLHttpRequest();
-       var url = "test.php";
+    foods();
+    var xmlhttp = new XMLHttpRequest();
+    var url = "request.php";
     xmlhttp.open("POST",url);
     xmlhttp.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-    var data=JSON.stringify({STiga : "we"});
+    var calcolation = foods();
+    var data=JSON.stringify(calcolation);
     xmlhttp.send(data);
+}
 
+function foods() {
+	var data = new Object;
+	data.foods = new Array;
+	var food = "";
+	var flag = true;
+	var j = 0;
+	for (var i = 0;food !== "end";i++) {
+		Id = "Number" + i;
+		if (document.getElementById(Id) !== null) {
+			food = document.getElementById(Id).value;
+			if (food !== "end") {
+				data.foods.push(food);
+			}
+		}
+	}
+	return data;
 
 }	
 </script>

@@ -135,7 +135,6 @@
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015');
 }
 
-
 #user {
 	width:260px;
 	float:right;
@@ -143,4 +142,8 @@
 	
 #logout {
 	float:right;	
+}
+
+.LastElement {
+	display: none;
 }

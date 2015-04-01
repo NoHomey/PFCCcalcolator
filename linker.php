@@ -1,4 +1,5 @@
      <script src="js/ingredients.js"></script>
+     <script src="js/history_last_element.js"></script>
      <script src="js/history_element.js"></script>
      <script src="js/element_remover.js"></script>
      <script src="js/history_remover.js"></script>
