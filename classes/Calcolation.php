@@ -12,12 +12,24 @@ class Calcolation
 	
 	public $log = null;
 	
+	public $status = null;
+	
 	public function __construct()
 	{
 		session_start();
 		$this->log = new Log();
 		$this->file = "calcolations/" . $_SESSION['file_name'] . ".json";
-		$this->opened = fopen($this->file, "w+");
+		if (file_exists($this->file)) {
+			$this->status = 1;
+			$this->opened = fopen($this->file, "r+");
+			$text = "File exists, Please wait while procesing it!";
+			$this->log->addMessage($text);
+		} else {
+			$this->status = 0;
+			$this->opened = fopen($this->file, "w+");
+			$text = "File empty";
+			$this->log->addMessage($text);
+		}
 		if ($this->opened != false) {
 			 $this->log->addMessage($text);
 		} else {
@@ -35,11 +47,10 @@ class Calcolation
 
 
 	
-	private function loadFile() 
+	public function loadFile() 
 	{
-	
-	
-	
+		$res = [$this->file, $this->opened];
+		return $res;
 	}
 	
 	public function saveFile($content) {

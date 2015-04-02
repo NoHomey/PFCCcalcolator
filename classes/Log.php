@@ -24,7 +24,6 @@ class Log {
 	public function showLog(&$logs) {
 		foreach ($logs as $log) {
 			echo $log;
-			echo "<br>";
 		}
 	}
 	

@@ -1,7 +1,18 @@
 <?php
 session_start();
-echo $_SESSION['raboti'];
+if ($calc->status === 1) {
+	$files = $calc->loadFile();
+	$data = fread($files[1], filesize($files[0])); 
+}
 ?>
+
+<script>
+if ('<?php echo $calc->status ?>' === 1) {
+	var data = JSON.parse('<?php echo $data ?>');
+	console.log(data);
+}
+</script>
+
 <html>
 
 <head>
@@ -78,21 +89,22 @@ function ivo() {
 }
 
 function foods() {
-	var data = new Object;
-	data.foods = new Array;
+	var foods = new Array;
 	var food = "";
 	var flag = true;
 	var j = 0;
-	for (var i = 0;food !== "end";i++) {
+	for (var i = 0;flag;i++) {
 		Id = "Number" + i;
 		if (document.getElementById(Id) !== null) {
 			food = document.getElementById(Id).value;
 			if (food !== "end") {
-				data.foods.push(food);
+				foods.push(food);
+			} else {
+				flag = false;
 			}
 		}
 	}
-	return data;
+	return foods;
 
 }	
 </script>
