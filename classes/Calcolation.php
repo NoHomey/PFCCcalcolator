@@ -14,49 +14,46 @@ class Calcolation
 	
 	public $status = null;
 	
+	public $size = null;
+	
 	public function __construct()
 	{
 		session_start();
 		$this->log = new Log();
 		$this->file = "calcolations/" . $_SESSION['file_name'] . ".json";
-		if (file_exists($this->file)) {
+		$this->size = filesize($this->file);
+		if ((file_exists($this->file)) && ($this->size > 0)) {
 			$this->status = 1;
 			$this->opened = fopen($this->file, "r+");
-			$text = "File exists, Please wait while procesing it!";
-			$this->log->addMessage($text);
 		} else {
 			$this->status = 0;
 			$this->opened = fopen($this->file, "w+");
-			$text = "File empty";
-			$this->log->addMessage($text);
+			$text = "This Calcolation is Empty!";
+			$this->log->addMessage($text);	
 		}
-		if ($this->opened != false) {
-			 $this->log->addMessage($text);
-		} else {
+		if ($this->opened === false) {
 			$text = "File Can't be Created";
 			$this->log->addError($text);
 		}
-		/*if ($_SESSION['load_file']) {
-			$this->loadFile();
-		}*/
 		
 		if (isset($_POST["file_delete"])) {
 			$this->removeFile();
 		}
 	}
-
-
 	
 	public function loadFile() 
 	{
-		$res = [$this->file, $this->opened];
+		$res = [$this->size, $this->opened];
 		return $res;
 	}
 	
 	public function saveFile($content) {
-		fwrite($this->opened, $content);
-		$text = "Successfuly Saved";
-		$this->log->addMessage($text);
+		$text = "Successfuly Saved!";
+		$this->log->addMessage($text);	
+		if (fwrite($this->opened, $content) !== false) {
+			$text = "Successfuly Saved!";
+			$this->log->addMessage($text);	
+		}
 	}
 		
 	private function removeFile() 

@@ -13,6 +13,7 @@ function Adder() {
         InstanceOfIngredients.Carbs += (Quantity * InstanceOfResultUpdater.Multiplier) * (DataBase[Key].Carbs / 100);
         InstanceOfIngredients.Calories += (Quantity * InstanceOfResultUpdater.Multiplier) * (DataBase[Key].Cals / 100);
         InstanceOfResultUpdater.UpdateResult();
+        document.getElementById("checkmark").style.display = "none";
         if (Remove === false) {
             this.InstanceOfHistoryKeeper.AddToHistory();
         }

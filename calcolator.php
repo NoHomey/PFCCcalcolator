@@ -1,30 +1,21 @@
 <?php
 session_start();
-if ($calc->status === 1) {
+if ($calc->status == 1) {
 	$files = $calc->loadFile();
-	$data = fread($files[1], filesize($files[0])); 
+	$data = fread($files[1], $files[0]); 
 }
 ?>
-
-<script>
-if ('<?php echo $calc->status ?>' === 1) {
-	var data = JSON.parse('<?php echo $data ?>');
-	console.log(data);
-}
-</script>
-
-<html>
-
+<html> 
 <head>
     <?php include("linker.php");?>
 </head>
 
 <body>
-	<form id="user" class="Out">
+	<div id="MainObject" class="Holder">
+		<form id="user" class="Out">
 			<span class="User"><?php echo $_SESSION['user_name']; ?></span>
 			<a id="logout" class="Remove" href="index.php?logout">Logout</a>
-	</form>
-	<div id="MainObject" class="Holder">
+		</form>
 	    	<div id="OutPut" class="Out">
 			<strong id="outP">#1 Choose Metrics, refresh the page if you want to switch Metrics!</strong>
 			<br>
@@ -66,48 +57,25 @@ if ('<?php echo $calc->status ?>' === 1) {
 		<input id="InterfaceExpander" class="Select" type="button" onclick="InstanceOfExpander.Expand()" value="List Options"/>
 	    </form >
 	   </div>
+	   
 	    <div id="calcolation_name" class="Out">Calcolation name  : <?php echo $_SESSION['file_name']; ?></div>
+	    <span id="checkmark" class="checkmark">
+    		<div class="checkmark_stem"></div>
+   		 <div class="checkmark_kick"></div>
+	</span>
 	    <form id="History" method="post" name="file_content" action="main.php">
-	    	<input type="button" name="file_save_it" value="Save current state of the Calcolation" class="Update" onclick="ivo()"/>
+	    	<input type="button" name="file_save_it" value="Save current state of the Calcolation" class="Update" onclick="InstanceOfFileProceder.SendRequest()"/>
 	    	<input type="submit" name="file_delete" value="Delete this Calcolation" class="Remove"autocomplete="off"/>
 	    	<input type="button" id="Number0" class="LastElement" value="end"/>
 	    	<br></br>
 	    </form>
+	    <script>
+		if ('<?php echo $calc->status ?>' === '1') {
+			var data = JSON.parse('<?php echo $data ?>');
+			InstanceOfFileProceder.Proced(data);
+		}	
+	</script>
 </body>
-
-<script>
-
-function ivo() {
-    foods();
-    var xmlhttp = new XMLHttpRequest();
-    var url = "request.php";
-    xmlhttp.open("POST",url);
-    xmlhttp.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-    var calcolation = foods();
-    var data=JSON.stringify(calcolation);
-    xmlhttp.send(data);
-}
-
-function foods() {
-	var foods = new Array;
-	var food = "";
-	var flag = true;
-	var j = 0;
-	for (var i = 0;flag;i++) {
-		Id = "Number" + i;
-		if (document.getElementById(Id) !== null) {
-			food = document.getElementById(Id).value;
-			if (food !== "end") {
-				foods.push(food);
-			} else {
-				flag = false;
-			}
-		}
-	}
-	return foods;
-
-}	
-</script>
 
 
 </html>

@@ -1,35 +1,33 @@
 <?php
 class Log {
 
-	public $errors = array();
+	public $error = "";
     
-    	public $messages = array();
+    	public $message = "";
     	
 	public function __construct() {
 	
 	}
 
 	public function addLog(&$log, &$value) {
-		array_push($log, $value);
+		$log = $value;
 	}
 	
 	public function addError(&$value) {
-		$this->addLog($this->errors, $value);
+		$this->addLog($this->error, $value);
 	}
 	
 	public function addMessage(&$value) {
-		$this->addLog($this->messages, $value);
+		$this->addLog($this->message, $value);
 	}
 	
-	public function showLog(&$logs) {
-		foreach ($logs as $log) {
-			echo $log;
-		}
+	public function showLog(&$log) {
+		echo $log;
 	}
 	
 	public function showLogs() {
-		$this->showLog($this->errors);
-		$this->showLog($this->messages);
+		$this->showLog($this->error);
+		$this->showLog($this->message);
 	}
 }
 ?>

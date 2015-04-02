@@ -1,6 +1,6 @@
-function Ingredients(Protein, Fat, Calories, Carbs) {
-    this.Protein = Protein;
-    this.Fat = Fat;
-    this.Calories = Calories;
-    this.Carbs = Carbs;
+function Ingredients() {
+    this.Protein = 0;
+    this.Fat = 0;
+    this.Calories = 0;
+    this.Carbs = 0;
 }
