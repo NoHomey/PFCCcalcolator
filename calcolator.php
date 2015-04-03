@@ -64,7 +64,7 @@ if ($calc->status == 1) {
    		 <div class="checkmark_kick"></div>
 	</span>
 	    <form id="History" method="post" name="file_content" action="main.php">
-	    	<input type="button" name="file_save_it" value="Save current state of the Calcolation" class="Update" onclick="InstanceOfFileProceder.SendRequest()"/>
+	    	<input type="button" name="file_save_it" value="Save current state of the Calcolation" class="Update" onclick="InstanceOfRequester.SendRequest()"/>
 	    	<input type="submit" name="file_delete" value="Delete this Calcolation" class="Remove"autocomplete="off"/>
 	    	<input type="button" id="Number0" class="LastElement" value="end"/>
 	    	<br></br>
