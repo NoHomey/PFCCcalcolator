@@ -34,22 +34,17 @@ if ($calc->status == 1) {
 		    <option>Pound(lb)</option>
 		    <option>Ounce(oz)</option>
 		</select>
-		<select id="Select1" class="Select" onchange="InstanceOfSelect2Options.DisplayAllSelect2Options()">
-		    <option disabled selected>Type</option>
-		    <option>Fruit</option>
-		    <option>Vegetable</option>
-		    <option>Egg</option>
-		    <option>Milk</option>
+		<select id="Select1" class="Select" onchange="InstanceOfSelectOptions.DisplayAllSelectOptions('Select2')">
+		<script>
+			InstanceOfSelectOptions.DisplayAllSelectOptions('Select1');
+		</script>
 		</select>
-		<select id="Select2" class="Select">
+		<select id="Select2" class="Select" onchange="InstanceOfSelectOptions.DisplayAllSelectOptions('Select3')">
 		    <option disabled selected>SubType</option>
 		</select>
 		<select id="Select3" class="Select">
 		    <option disabled selected>Cooked?</option>
-		    <option>Raw</option>
-		    <option>Fried</option>
-		    <option>Boiled</option>
-		    <option>Baked</option>
+		   
 		</select>
 		<input id="Select4" class="Select" type="number" min="1" value="0"/>
 		<input id="Operator" class="Plus" type="button" onclick="return InstanceOfAdderReferencer.ReferenceToAdder(event)" value="+"/>
@@ -76,6 +71,5 @@ if ($calc->status == 1) {
 		}	
 	</script>
 </body>
-
 
 </html>

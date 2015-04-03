@@ -2,7 +2,7 @@ var WhichToRemove, OldQuantity, Update;
 WhichToRemove = OldQuantity = Update = 0;
 InstanceOfIngredients = new Ingredients();
 InstanceOfExpander = new Expander();
-InstanceOfSelect2Options = new Select2Options();
+InstanceOfSelectOptions = new SelectOptions();
 InstanceOfResultUpdater = new ResultUpdater();
 InstanceOfAdderReferencer = new AdderReferencer();
 InstanceOfLocker = new Locker();
@@ -13,3 +13,4 @@ InstanceOfHistoryRemover = new HistoryRemover();
 InstanceOfElementRemover = new ElementRemover();
 InstanceOfFileProceder = new FileProceder();
 InstanceOfRequester = new Requester();
+

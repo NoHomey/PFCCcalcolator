@@ -4,11 +4,11 @@ function FileProceder () {
 		for (var Index in Foods) {
 			var Values = Foods[Index].split(' ');
         		for (var Which in ArrayOfIds) {
+        			if (Which < 3) {
+					InstanceOfSelectOptions.DisplayAllSelectOptions(ArrayOfIds[Which]);
+				}
 				var Select = document.getElementById(ArrayOfIds[Which]);
 				Select.value = Values[Which];
-				if (ArrayOfIds[Which] === "Select1") {
-					InstanceOfSelect2Options.DisplayAllSelect2Options()
-				}
 			}
 			InstanceOfAdderReferencer.ReferenceToAdder(0);
 		}
