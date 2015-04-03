@@ -2,9 +2,9 @@
 
 require("calcolation.php");
 
-$calc->log->showLogs();
+$calcolation->log->showLogs();
 
-include("calcolator.php");
+require("calcolator.php");
 
 ?>
 

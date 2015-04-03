@@ -1,6 +1,6 @@
 function LockSwitcher() {
     this.Switcher = function (IsLock) {
-        var ArrayOfIds = ["Select1", "Select2", "Select3", "Select5"];
+        var ArrayOfIds = ["Select1", "Select2", "Select3"];
         var Id = "History"
         for (var Index in ArrayOfIds) {
             document.getElementById(ArrayOfIds[Index]).disabled = IsLock;
