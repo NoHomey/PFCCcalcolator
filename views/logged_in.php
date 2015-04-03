@@ -1,8 +1,7 @@
-<!-- if you need user information, just put them into the $_SESSION variable and output them here -->
-<!-- because people were asking: "index.php?logout" is just my simplified form of "index.php?logout=true" -->
+
 <?php
 session_start();
-include("log_panel.php");
+require("log_panel.php");
 ?>
 
 <div class="panel">

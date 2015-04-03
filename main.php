@@ -2,7 +2,7 @@
 
 require("calcolation.php");
 
-$calcolation->log->showLogs();
+$calcolation->showLogs();
 
 require("calcolator.php");
 
