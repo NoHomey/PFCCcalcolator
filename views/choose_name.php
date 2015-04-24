@@ -7,7 +7,6 @@ $choose_calcolation->showLogs();
 require("log_panel.php");
 
 if($_SESSION['file_found']) {
-
 	$choose_calcolation->buildForm();	
 }
 

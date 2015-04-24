@@ -9,7 +9,7 @@ if (version_compare(PHP_VERSION, '5.3.7', '<')) {
 
 require_once("config/db.php");
 
-require_once("classes/Registration.php");
+require_once("classes/php/Registration.php");
 
 $registration = new Registration();
 
