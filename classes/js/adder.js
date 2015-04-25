@@ -8,10 +8,10 @@ function Adder() {
         if (Remove === true) {
             Quantity = -Quantity;
         }
-        InstanceOfIngredients.Protein += (Quantity * InstanceOfResultUpdater.Multiplier)  * (Data[Keys[0]][Keys[1]][Keys[2]].Protein / 100);
-        InstanceOfIngredients.Fat += (Quantity * InstanceOfResultUpdater.Multiplier) * (Data[Keys[0]][Keys[1]][Keys[2]].Fat / 100);
-        InstanceOfIngredients.Carbs += (Quantity * InstanceOfResultUpdater.Multiplier) * (Data[Keys[0]][Keys[1]][Keys[2]].Carbs / 100);
-        InstanceOfIngredients.Calories += (Quantity * InstanceOfResultUpdater.Multiplier) * (Data[Keys[0]][Keys[1]][Keys[2]].Cals / 100);
+        InstanceOfIngredients.Protein += (Quantity * InstanceOfResultUpdater.Multiplier) * (Data[Keys[0]][Keys[1]][Keys[2]].Protein);
+        InstanceOfIngredients.Fat += (Quantity * InstanceOfResultUpdater.Multiplier) * (Data[Keys[0]][Keys[1]][Keys[2]].Fat);
+        InstanceOfIngredients.Carbs += (Quantity * InstanceOfResultUpdater.Multiplier) * (Data[Keys[0]][Keys[1]][Keys[2]].Carbs);
+        InstanceOfIngredients.Calories += (Quantity * InstanceOfResultUpdater.Multiplier) * (Data[Keys[0]][Keys[1]][Keys[2]].Cals);
         InstanceOfResultUpdater.UpdateResult();
         document.getElementById("checkmark").style.display = "none";
         if (Remove === false) {

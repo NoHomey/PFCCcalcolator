@@ -8,7 +8,6 @@ html {
 	text-decoration: none;
 	text-shadow: 0 1px 1px rgba(0,0,0,.3);
 }
-
 .panel, .input, .go_back, .action{
 	margin:10px 10px 10px 10px;
 	font-size: 23px;
@@ -30,17 +29,13 @@ html {
 	background: -moz-linear-gradient(top,  #fff,  #dcdcdc);
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dcdcdc');
 }
-
-
 .go_back:hover{
 	text-decoration: none;
 }
-
 .go_back:active{
 	position: relative;
 	top: 1px;
 }
-
 .panel{
 	color: #d9eef7;
 	border: solid 1px #0076a3;
@@ -49,7 +44,6 @@ html {
 	background: -moz-linear-gradient(top,  #00adee,  #0078a5);
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#00adee', endColorstr='#0078a5');
 }
-
 .action {
 	width:160px;
 	color: #fef4e9;
@@ -71,7 +65,6 @@ html {
 	background: -moz-linear-gradient(top,  #f47a20,  #faa51a);
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
 }
-
 .go_back {
 	margin-left:30px;
 	color: #faddde;
@@ -93,7 +86,6 @@ html {
 	background: -moz-linear-gradient(top,  #aa1317,  #ed1c24);
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#aa1317', endColorstr='#ed1c24');
 }
-
 .panel {
 	color: #d9eef7;
 	border: solid 1px #0076a3;
