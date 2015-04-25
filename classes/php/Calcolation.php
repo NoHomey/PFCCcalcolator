@@ -10,6 +10,10 @@ class Calcolation extends Log
     public function __construct()
     {
         session_start();
+        $this->db_connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+        if (!$this->db_connection->set_charset("utf8")) {
+               $this->addError($this->db_connection->error);
+        }
         $this->file = "calcolations/" . $_SESSION['file_name'] . ".json";
         $this->size = filesize($this->file);
         if ((file_exists($this->file)) && ($this->size > 0)) {
@@ -36,8 +40,7 @@ class Calcolation extends Log
     }
     public function saveFile($content)
     {
-        $text = "Successfuly Saved!";
-        $this->addMessage($text);
+    	$this->opened = fopen($this->file, "w+");
         if (fwrite($this->opened, $content) !== false) {
             $text = "Successfuly Saved!";
             $this->addMessage($text);
@@ -47,10 +50,6 @@ class Calcolation extends Log
     {
         if (fclose($this->opened)) {
             if (unlink($this->file)) {
-                $this->db_connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-                if (!$this->db_connection->set_charset("utf8")) {
-                    $this->addError($this->db_connection->error);
-                }
                 if (!$this->db_connection->connect_errno) {
                     $sql = "DELETE FROM files WHERE file_name = '" . $_SESSION['file_name'] . "';";
                     if ($this->db_connection->query($sql)) {
@@ -72,8 +71,8 @@ class Calcolation extends Log
     }
     public function __destruct()
     {
+    	fclose($this->opened);
         $this->db_connection->close();
-        fclose($this->opened);
     }
 }
 ?>
