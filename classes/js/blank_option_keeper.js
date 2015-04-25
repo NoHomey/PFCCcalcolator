@@ -2,16 +2,16 @@ function BlankOptionKeeper() {
     this.KeepBlankOption = function (Id) {
         var Type = "option";
         var Text = "";
-         switch (Id) {
-        	case "Select1":
-        		Text = "Type";
-        	break;
-        	case "Select2":
-        		Text = "SubType";
-        	break;
-		case "Select3":
-        		Text = "Cooked?";
-        	break;
+        switch (Id) {
+        case "Select1":
+            Text = "Choose Type";
+            break;
+        case "Select2":
+            Text = "Choose SubType";
+            break;
+        case "Select3":
+            Text = "Is it Cooked?";
+            break;
         }
         var NewOption = document.createElement(Type);
         var AtacheToElement = document.getElementById(Id);
@@ -20,3 +20,4 @@ function BlankOptionKeeper() {
         AtacheToElement.add(NewOption);
     }
 }
+

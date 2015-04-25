@@ -21,11 +21,11 @@
         </script>
     </select> <select class="Select" id="Select2" onchange="InstanceOfSelectOptions.DisplayAllSelectOptions('Select3')">
         <option disabled selected>
-            SubType
+            Choose SubType
         </option>
     </select> <select class="Select" id="Select3">
         <option disabled selected>
-            Cooked?
+            Is it Cooked?
         </option>
     </select> <input class="Select" id="Select4" min="1" type="number" value="0"> <input class="Plus" id="Operator" onclick="return InstanceOfAdderReferencer.ReferenceToAdder(event)" type="button" value="+"><br>
     <br>
