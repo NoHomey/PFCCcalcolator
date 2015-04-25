@@ -51,7 +51,7 @@
        <br></br>
        Use: <input class="Select" type="button" value="List Options"> to check All avalible options**. 
        <br></br>
-       Use: <input class="Select" id="Select4" min="1" type="number" value="0"> to choose food's quantity.
+       Use: <input class="Select" type="number" value="0"> to choose food's quantity.
        <br></br>
        Press: <input class="Plus" id="Operator" type="button" value="+"> to add the currently selected food to the calcolation.
        <br></br>
