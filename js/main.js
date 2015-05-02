@@ -13,4 +13,5 @@ InstanceOfHistoryRemover = new HistoryRemover();
 InstanceOfElementRemover = new ElementRemover();
 InstanceOfFileProceder = new FileProceder();
 InstanceOfRequester = new Requester();
+InstanceOfTips = new Tips();
 

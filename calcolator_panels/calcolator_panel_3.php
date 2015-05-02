@@ -6,7 +6,6 @@
 <div class="checkmark" id="checkmark">
     <div class="checkmark_stem">
     </div>
-
     <div class="checkmark_kick">
     </div>
 </div>

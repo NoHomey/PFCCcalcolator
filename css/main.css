@@ -116,7 +116,7 @@
 .Out {
 	margin:20px 20px 20px 20px;
 	padding:20px 30px 20px 20px;
-	width:550px;
+	width:400px;
 	font-size: 25px;
 	color: #fef4e9;
 	border: solid 1px #da7c0c;
@@ -125,9 +125,11 @@
 	background: -moz-linear-gradient(top,  #f88e11,  #f06015);
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015');
 }
-#Select4 { width:260px; }
-#user {
+#Select4 {
 	width:260px;
+}
+#user {
+	width:190px;
 	float:right;
 }	
 #logout{
@@ -135,6 +137,9 @@
 }
 .LastElement {
 	display: none;
+}
+#tick {
+	display:inline-block;
 }
 .checkmark {
     display:none;
@@ -153,10 +158,27 @@
     top:36px;
 }
 .checkmark_kick {
-    position: absolute;
+    position: relative;
     width:18px;
     height:18px;
     background-color:#0F0;
     left:48px;
     top:72px;
+}
+
+#hide {
+	font-size:30px; 
+	font-weight: bold;
+	float:right;
+	margin:0px 0px 0px 0px;
+}
+#Tips {
+	position: fixed;
+  	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+	width:1200px;
+	height:800px;
+	overflow:auto;
+
 }

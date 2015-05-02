@@ -2,6 +2,7 @@
 <script src="js/data.js"></script>
 <script src="classes/js/file_proceder.js"></script>
 <script src="classes/js/requester.js"></script>
+<script src="classes/js/tips.js"></script>
 <script src="classes/js/history_last_element.js"></script>
 <script src="classes/js/history_element.js"></script>
 <script src="classes/js/element_remover.js"></script>

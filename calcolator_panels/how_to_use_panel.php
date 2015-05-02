@@ -1,4 +1,7 @@
+<input class="Update" value="Show Tips" id="HowTo" type="button" onclick="InstanceOfTips.Show()">
 <div class="Holder" id="Tips">
+	<input class="Remove" value="OK" id="hide" type="button" onclick="InstanceOfTips.Hide()">
+	<br></br>
 	First Choose Metric*:
 	  <select required class="Select">
         <option disabled selected>
@@ -65,13 +68,17 @@
        <br></br>
        Use: <input autocomplete="off" class="Remove" type="button" value="Delete this Calcolation"> to remove the current calcolation from your account.
        <br></br> 
+       While you are seeing the checkmark: <div class="checkmark" id="tick"><div class="checkmark_stem"></div><div class="checkmark_kick"></div></div> this means that all changes you've made are saved.
+       <br></br>
+       <br></br>
        Use: <a class="Remove">Go Back</a> to Go Back.
        <br></br>
        <br></br> 
        Press: <a class="Remove">Logout</a> to Logout.
-       <br></br>  
+       <br></br> 
        * ~ The Choice is only for your own comfort and you can't rechoose different metric in calcolation with already chosen one!
         <br></br>
+        <input class="Remove" value="OK" id="hide" type="button" onclick="InstanceOfTips.Hide()">
         ** ~ All options displayed are bassed on the foods category bassed on all other chooices you've made. 
          <br></br>
 </div>
