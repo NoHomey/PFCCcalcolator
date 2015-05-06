@@ -3,12 +3,13 @@ from multiprocessing import Process
 import urllib2
 import urllib
 import socket
+import operator
 def f(n):
-	res = urllib2.urlopen("http://46.10.124.81:8080/api/sector/%d/objects" % n)
+	res = urllib2.urlopen("http://172.16.24.129:8080/api/sector/%d/objects" % n)
 	edges = []
 	for line in res.readlines():
 		edges.append(line.strip().split(' '))
-	res = urllib2.urlopen("http://46.10.124.81:8080/api/sector/%d/roots" % n)
+	res = urllib2.urlopen("http://172.16.24.129:8080/api/sector/%d/roots" % n)
 	roots = []
 	for line in res.readlines():
 		roots.append(line.strip())	
@@ -64,17 +65,14 @@ def f(n):
 		if i in founds: founds.remove(i)
 	for node in nodes:
 		if node not in founds : founds.append(node)
-	for traject in trace: urllib2.urlopen(urllib2.Request("http://46.10.124.81:8080/api/sector/%d/company/Ivo/trajectory" % n, urllib.urlencode({'trajectory': traject})))
-	for left in founds: urllib2.urlopen(urllib2.Request("http://46.10.124.81:8080/api/sector/%d/company/Ivo/trajectory" % n, urllib.urlencode({'trajectory': left})))
-	return
-def bug(no):
-	try: urllib2.urlopen("http://46.10.124.81:8080/api/sector/1/objects", timeout = 10)
-	except socket.timeout: urllib2.urlopen("http://46.10.124.81:8080/api/sector/1/objects")
-	thrs = []
-	for i in range(1, 11): thrs.append(Thread(target=f, args=(i, )))
-	for t in thrs: t.start()
-	for t in thrs: t.join()
-a = 0
-p = Process(target=bug, args=(a, ))
-p.start()
-p.join()
+	hm = {}
+	for traject in trace: hm[traject] = len(traject)
+	for k, v in sorted(hm.iteritems(), key=operator.itemgetter(1), reverse=True):
+		print urllib2.urlopen(urllib2.Request("http://172.16.24.129:8080/api/sector/%d/company/Ivo/trajectory" % n, urllib.urlencode({'trajectory': k}))).read()	
+	for left in founds: print urllib2.urlopen(urllib2.Request("http://172.16.24.129:8080/api/sector/%d/company/Ivo/trajectory" % n, urllib.urlencode({'trajectory': left}))).read()
+try: urllib2.urlopen("http://172.16.24.129:8080/api/sector/1/objects", timeout = 10)
+except socket.timeout: urllib2.urlopen("http://172.16.24.129:8080/api/sector/1/objects")
+thrs = []
+for i in range(1, 11): thrs.append(Thread(target=f, args=(i, )))
+for t in thrs: t.start()
+for t in thrs: t.join()
