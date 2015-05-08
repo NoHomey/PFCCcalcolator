@@ -31,6 +31,20 @@ inline bool compare(char* ptr1, char* ptr2) {
   return ((ptr1[0] == ptr2[0]) && (ptr1[1] == ptr2[1]) && (ptr1[2] == ptr2[2]) && (ptr1[3] == ptr2[3]));
 }
 
+inline void init (char* tar) {
+  tar[0] = 't';
+  tar[1] = 'r';
+  tar[2] = 'a';
+  tar[3] = 'j';
+  tar[4] = 'e';
+  tar[5] = 'c';
+  tar[6] = 't';
+  tar[7] = 'o';
+  tar[8] = 'r';
+  tar[9] = 'y';
+  tar[10] = '=';
+}
+
 int main(void) {
   CURL *curl_handle;
   CURLcode result;
@@ -56,12 +70,18 @@ int main(void) {
   int fs_len = 0;
   int ce_len = 0;
   int ns_len = 0;
+  int ts_len = 0;
+  unsigned char len = 0;
   bool cmp_res;
-  char* perent = calloc(4, 4);
+  bool cmp_res1;
+  bool cmp_res2;
+  char* perent = calloc(1, 4);
+  char* traject = calloc(1000, 4);
   char** roots = calloc(1000, 4);
   char** cycle = calloc(1000, 4);
   char** nodes = calloc(1000, 4);
   char*** edges = calloc(2000, 4);
+  char*** trajecs = calloc(800, 4);
   for(i = 0;i<1000;i++) {
     roots[i] = calloc(4, 4);
     cycle[i] = calloc(4, 4);
@@ -71,6 +91,11 @@ int main(void) {
      edges[i] = calloc(2, 4);
      edges[i][0] = calloc(4, 4); 
      edges[i][1] = calloc(4, 4);
+   }
+   for(i = 0;i<800;i++) {
+     trajecs[i] = calloc(2, 4);
+     trajecs[i][0] = calloc(1000, 4); 
+     trajecs[i][1] = calloc(1, 4);
    }
   i = k = 0;
   while(i < get_rs.size) {
@@ -150,18 +175,57 @@ int main(void) {
   while(flag) {
     flag = 0;
     for(i = 0;i < es_len;i++) {
-      
+       cmp_res1 = cmp_res2 = 0;
+       for(k = 0; k < ce_len;k++) cmp_res1 = compare(edges[i][0], cycle[k]);
+       for(k = 0; k < ce_len;k++) cmp_res2 = compare(edges[i][1], cycle[k]);
+       if((!compare(edges[i][0], edges[i][1])) && (!cmp_res1) && (cmp_res1 == cmp_res2)) {
+         my_cpy(perent, edges[i][1]);
+         init(traject);
+         my_cpy(traject + 11,edges[i][0]);
+         for(l = 12; l < 16; l++) {
+           if(traject[l] == '\0') break;
+         }
+         traject[l] = ' ';
+         my_cpy(traject + ++l,perent);
+         my_cpy(cycle[ce_len], edges[i][0]);
+         ce_len++;
+         my_cpy(cycle[ce_len], perent);
+         ce_len++;
+         fs_len = 0;
+         founds[fs_len++] = i;
+         len = 1;
+         flag = 1;
+         printf("\n%s\n", traject);
+         break;
+       }
+    }
+    while(flag) {
+      flag = 0;
+      for(i = 0;i < es_len;i++) {
+        cmp_res = 0;
+        for(k = 0; k < ce_len;k++) cmp_res = compare(edges[i][1], cycle[k]);
+        if((compare(perent,edges[i][0])) && (!compare(edges[i][0],edges[i][1])) && (!cmp_res)) {
+          my_cpy(perent, edges[i][1]);
+          flag = 1;
+          my_cpy(cycle[ce_len], perent);
+          ce_len++;
+          founds[fs_len++] = i;
 
+
+
+
+        }
+      }
 
     }
- 
+    
 
 
   }
 
 
 
-  for(i = 0;i<es_len;i++) printf("s%d: %s %s\n",i, edges[i][0], edges[i][1]);
+  //for(i = 0;i<es_len;i++) printf("s%d: %s %s\n",i, edges[i][0], edges[i][1]);
   curl_easy_cleanup(curl_handle);
   curl_global_cleanup();
   free(get_rs.memory);
