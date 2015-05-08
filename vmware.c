@@ -43,6 +43,12 @@ inline size_t WriteMemoryCallback(void *contents, size_t size, size_t nmemb, voi
   return realsize;
 }
 
+inline void remove_edge(char** tar) {
+  tar[0][0] = tar[1][0] = '\0';
+  tar[0][1] = tar[1][1] = '\0';
+  tar[0][2] = tar[1][2] = '\0';
+  tar[0][3] = tar[1][4] = '\0';
+}
 inline bool equal(char* ptr1, char* ptr2) {
   return ((ptr1[0] == ptr2[0]) && (ptr1[1] == ptr2[1]) && (ptr1[2] == ptr2[2]) && (ptr1[3] == ptr2[3]));
 }
@@ -50,10 +56,10 @@ inline bool equal(char* ptr1, char* ptr2) {
 inline bool not_in(char* search, char** where, size_t len) {
   size_t i;
   for(i = 0; i < len; i++) {
-    if(equal(search, where[i]) == false) return true;
+    if(equal(search, where[i])) return false;
   }
   if(i == 0) return true;
-  else return false;
+  else return true;
 }
 
 inline size_t init (char* tar, char* chil, char* per) {
@@ -87,7 +93,7 @@ int main(void) {
   get_es.size = 0;  
   curl_global_init(CURL_GLOBAL_ALL);
   curl_handle = curl_easy_init();
-  curl_easy_setopt(curl_handle, CURLOPT_URL, "http://83.143.146.64:8080/api/sector/9/objects");
+  curl_easy_setopt(curl_handle, CURLOPT_URL, "http://83.143.146.64:8080/api/sector/4/objects");
   curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, WriteMemoryCallback);
   curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)&get_es);
   curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, "libcurl-agent/1.0");
@@ -95,7 +101,7 @@ int main(void) {
   struct MemoryStruct get_rs; 
   get_rs.memory = malloc(1);  
   get_rs.size = 0; 
-  curl_easy_setopt(curl_handle, CURLOPT_URL, "http://83.143.146.64:8080/api/sector/9/roots");
+  curl_easy_setopt(curl_handle, CURLOPT_URL, "http://83.143.146.64:8080/api/sector/4/roots");
   curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)&get_rs);
   result = curl_easy_perform(curl_handle);
   int i;
@@ -109,7 +115,7 @@ int main(void) {
   int ns_len = 0;
   int ts_len = 0;
   int founds[2000];
-  int lens[2000];
+  int lens[800];
   char* perent = calloc(1, 4);
   char* traject = calloc(1500, 4);
   char** roots = calloc(1000, 4);
@@ -158,22 +164,23 @@ int main(void) {
   rs_len++;
   es_len++;
   /*for(i = 0;i<es_len;i++) printf("s%d: %s %s\n",i, edges[i][0], edges[i][1]);
-  sleep(10);
+  10);
   for(i = 0;i<rs_len;i++) printf("r%d: %s\n",i, roots[i]);
-     sleep(10);*/
+     10);*/
   memcpy(cycle,roots, rs_len);
   ce_len = rs_len;
   fs_len = 1;
-  while(fs_len > 0) {
+  while(1) {
     fs_len = 0;
     for(i = 0; i < es_len;i++) {
       for(k = 0; k < ce_len;k++) {
-        if(equal(edges[i][0], cycle[k])) {
+        if((equal(edges[i][0], cycle[k])) && (l != i)) {
+          l = i;
           founds[fs_len++] = i;
-          break;
         }
       }
     }
+    if(fs_len == 0) break;
     ce_len = 0;
     for(i=0; i < fs_len;i++) {
        my_cpy(cycle[ce_len], edges[founds[i]][1]);
@@ -182,9 +189,13 @@ int main(void) {
          my_cpy(roots[rs_len], edges[founds[i]][1]);
          rs_len++;
        }
-       edges[founds[i]][0][0] = edges[founds[i]][1][0] = '\0';
+       remove_edge(edges[founds[i]]);
     }
   }
+  k = 0;
+  for(i = 0;i<es_len;i++) if(edges[i][0][0] != '\0') k++;
+  printf("%d\n", k);
+  sleep(3);
   //for(i = 0;i<rs_len;i++) printf("r%d: %s\n",i, roots[i]);
 //Purviqt etap RDY!
   for(i = 0;i<es_len;i++) {
@@ -199,12 +210,14 @@ int main(void) {
        }   
     }
   }
-  for(i = 0;i < fs_len;i++) edges[founds[i]][0][0] = edges[founds[i]][1][0] = '\0';
+  for(i = 0;i < fs_len;i++) remove_edge(edges[founds[i]]);
   ce_len = 0;
   while(1) {
     flag = 0;
+    for(i = 0;i<ce_len;i++) printf("  %s ", cycle[i]);
+    printf("\n");
     for(i = 0;i < es_len;i++) {
-       if((!equal(edges[i][0], edges[i][1])) && (not_in(edges[i][0], cycle, ce_len)) && (not_in(edges[i][1], cycle, ce_len)) && (edges[i][0][0] != '\0')) {
+       if((!equal(edges[i][0], edges[i][1])) && (not_in(edges[i][0], cycle, ce_len)) && (not_in(edges[i][1], cycle, ce_len))) {
          my_cpy(perent, edges[i][1]);
          l = init(traject, edges[i][0], perent);
          my_cpy(cycle[ce_len], edges[i][0]);
@@ -234,21 +247,18 @@ int main(void) {
       }
     if(!flag) break;
     }
-    printf("\n %d %s\n",ts_len, traject);
-    printf("\n %d %d\n", l, strlen(traject));
-    sleep(1);
+    printf("%d %s\n",ts_len, traject);
     p_cpy(trajecs[ts_len], traject, l);
+    lens[ts_len++] = l;
     free(traject);
     char* traject = calloc(1500, 4); 
-    lens[ts_len++] = l;
-    for(i = 0;i < fs_len;i++) edges[founds[i]][0][0] = edges[founds[i]][1][0] = '\0';
-    }
-
-
+    for(i = 0;i < fs_len;i++) remove_edge(edges[founds[i]]);
+  }
 
   //for(i = 0;i<es_len;i++) printf("s%d: %s %s\n",i, edges[i][0], edges[i][1]);
   curl_easy_cleanup(curl_handle);
   curl_global_cleanup();
-  //free(get_rs.memory);
+  free(get_rs.memory);
+  free(get_es.memory);
   return 0;
 }
