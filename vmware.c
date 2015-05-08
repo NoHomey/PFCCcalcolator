@@ -33,11 +33,11 @@ inline size_t str_cpy(char* dst, char* src) {
 inline size_t WriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp) {
   size_t realsize = size * nmemb;
   struct MemoryStruct *mem = (struct MemoryStruct *)userp;
-  mem->memory = realloc(mem->memory, mem->size + realsize + 1);
+  mem->memory = (char*)realloc(mem->memory, mem->size + realsize + 1);
   if(mem->memory == NULL) {
     return 0;
   }
-  p_cpy(&(mem->memory[mem->size]), contents, realsize);
+  p_cpy(&(mem->memory[mem->size]), (char*)contents, realsize);
   mem->size += realsize;
   mem->memory[mem->size] = 0;
   return realsize;
@@ -89,7 +89,7 @@ int main(void) {
   CURL *curl_handle;
   CURLcode result;
   struct MemoryStruct get_es;
-  get_es.memory = malloc(1);  
+  get_es.memory = (char*)malloc(1);  
   get_es.size = 0;  
   curl_global_init(CURL_GLOBAL_ALL);
   curl_handle = curl_easy_init();
@@ -99,7 +99,7 @@ int main(void) {
   curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, "libcurl-agent/1.0");
   result = curl_easy_perform(curl_handle);
   struct MemoryStruct get_rs; 
-  get_rs.memory = malloc(1);  
+  get_rs.memory = (char*)malloc(1);  
   get_rs.size = 0; 
   curl_easy_setopt(curl_handle, CURLOPT_URL, "http://83.143.146.64:8080/api/sector/4/roots");
   curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)&get_rs);
@@ -116,24 +116,24 @@ int main(void) {
   int ts_len = 0;
   int founds[2000];
   int lens[800];
-  char* perent = calloc(1, 4);
-  char* traject = calloc(1500, 4);
-  char** roots = calloc(1000, 4);
-  char** cycle = calloc(1000, 4);
-  char** nodes = calloc(1000, 4);
-  char*** edges = calloc(2000, 4);
-  char** trajecs = calloc(800, 4);
+  char* perent = (char*)calloc(1, 4);
+  char* traject = (char*)calloc(1500, 4);
+  char** roots = (char**)calloc(1000, 4);
+  char** cycle = (char**)calloc(1000, 4);
+  char** nodes = (char**)calloc(1000, 4);
+  char*** edges = (char***)calloc(2000, 4);
+  char** trajecs = (char**)calloc(800, 4);
   for(i = 0;i<1000;i++) {
-    roots[i] = calloc(4, 4);
-    cycle[i] = calloc(4, 4);
-    nodes[i] = calloc(4, 4);
+    roots[i] = (char*)calloc(4, 4);
+    cycle[i] = (char*)calloc(4, 4);
+    nodes[i] = (char*)calloc(4, 4);
    }
    for(i = 0;i<2000;i++) {
-     edges[i] = calloc(2, 4);
-     edges[i][0] = calloc(4, 4); 
-     edges[i][1] = calloc(4, 4);
+     edges[i] = (char**)calloc(2, 4);
+     edges[i][0] = (char*)calloc(4, 4); 
+     edges[i][1] = (char*)calloc(4, 4);
    }
-   for(i = 0;i<800;i++) trajecs[i] = calloc(1500, 4); 
+   for(i = 0;i<800;i++) trajecs[i] = (char*)calloc(1500, 4); 
    i = k = 0;
   while(i < get_rs.size - 1) {
    if(get_rs.memory[i] == '\n') {
@@ -195,7 +195,6 @@ int main(void) {
   k = 0;
   for(i = 0;i<es_len;i++) if(edges[i][0][0] != '\0') k++;
   printf("%d\n", k);
-  sleep(3);
   //for(i = 0;i<rs_len;i++) printf("r%d: %s\n",i, roots[i]);
 //Purviqt etap RDY!
   for(i = 0;i<es_len;i++) {
@@ -251,7 +250,7 @@ int main(void) {
     p_cpy(trajecs[ts_len], traject, l);
     lens[ts_len++] = l;
     free(traject);
-    char* traject = calloc(1500, 4); 
+    char* traject = (char*)calloc(1500, 4); 
     for(i = 0;i < fs_len;i++) remove_edge(edges[founds[i]]);
   }
 
