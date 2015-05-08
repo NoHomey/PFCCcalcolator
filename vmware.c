@@ -39,27 +39,17 @@ int main(void) {
   get_es.size = 0;    
   curl_global_init(CURL_GLOBAL_ALL);
   curl_handle = curl_easy_init();
-  curl_easy_setopt(curl_handle, CURLOPT_URL, "http://83.143.146.64:8080/api/sector/1/objects");
+  curl_easy_setopt(curl_handle, CURLOPT_URL, "http://83.143.146.64:8080/api/sector/9/objects");
   curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, WriteMemoryCallback);
   curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)&get_es);
   curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, "libcurl-agent/1.0");
   result = curl_easy_perform(curl_handle);
-  if(result != CURLE_OK) {
-    return 0;
-  }
   struct MemoryStruct get_rs;
   get_rs.memory = malloc(1);  
   get_rs.size = 0;    
-  curl_global_init(CURL_GLOBAL_ALL);
-  curl_handle = curl_easy_init();
-  curl_easy_setopt(curl_handle, CURLOPT_URL, "http://83.143.146.64:8080/api/sector/1/roots");
-  curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, WriteMemoryCallback);
+  curl_easy_setopt(curl_handle, CURLOPT_URL, "http://83.143.146.64:8080/api/sector/9/roots");
   curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)&get_rs);
-  curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, "libcurl-agent/1.0");
   result = curl_easy_perform(curl_handle);
-  if(result != CURLE_OK) {
-    return 0;
-  }
   char** roots = calloc(1000, sizeof(char**));
   char** cycle = calloc(1000, sizeof(char**));
   char** nodes = calloc(1000, sizeof(char**));
@@ -72,13 +62,11 @@ int main(void) {
   int es_len = 0;
   int fs_len = 0;
   int ce_len = 0;
-  int ns_len = 1;
+  int ns_len = 0;
   bool cmp_res;
   for(i = 0;i<1000;i++) {
     roots[i] = calloc(4, sizeof(char*));
     cycle[i] = calloc(4, sizeof(char*));
-   }
-   for(i = 0;i<1000;i++) {
     nodes[i] = calloc(4, sizeof(char*));
    }
    for(i = 0;i<2000;i++) {
@@ -95,7 +83,7 @@ int main(void) {
      roots[rs_len][k] = get_rs.memory[i];
      k++;
    } 
-    i++;	
+    i++;  
   }
   i = k = l = 0;
   while(i < (get_es.size - 1)) {
@@ -111,11 +99,11 @@ int main(void) {
        l++;
      }
    } 
-    i++;	
+    i++;  
   }
   rs_len++;
   es_len++;
-  for(i = 0;i<es_len;i++) printf("s%d: %s %s\n",i, edges[i][0], edges[i][1]);
+  //for(i = 0;i<es_len;i++) printf("s%d: %s %s\n",i, edges[i][0], edges[i][1]);
   //for(i = 0;i<rs_len;i++) printf("r%d: %s\n",i, roots[i]);
 // PARSING RESPONSES AND GETING ROOTS AND edges AS ARRAYS!!!!!!!!!!!!!!!
   memcpy(cycle, roots, rs_len);
@@ -133,26 +121,37 @@ int main(void) {
     }
     ce_len = 0;
     for(i=0; i < fs_len;i++) {
+       my_cpy(cycle[ce_len], edges[founds[i]][1], 4);
+       ce_len++;
        for(l = 0; l < rs_len;l++) cmp_res = compare(roots[l], edges[founds[i]][1]);
        if (!cmp_res) {
-         my_cpy(cycle[ce_len], edges[founds[i]][1], 4);
-         ce_len++;
+         my_cpy(roots[rs_len], edges[founds[i]][1], 4);
+         rs_len++;
        }
        edges[founds[i]][0][0] = edges[founds[i]][1][0] = '\0';
     }
   }
+  //for(i = 0;i<rs_len;i++) printf("r%d: %s\n",i, roots[i]);
 // Purviqt etap RDY!
   for(i = 0;i<es_len;i++) {
     for(k = 0; k < rs_len; k++) {
-      if (edges[i][1][0] != '\0')
-        //printf("%s\n",edges[i][1]); 
-        break;
+       if(compare(edges[i][1], roots[k])) {
+          cmp_res = 0;
+          for(l =0; l < ns_len;l++) cmp_res = compare(edges[i][0], nodes[l]);
+          if(!cmp_res) {
+            my_cpy(nodes[ns_len], edges[i][0], 4);
+            ns_len++;
+            founds[fs_len++] = i;
+            break;  
+          }
+       }   
     }
   }
-  //for(i = 0;i<es_len;i++) printf("s%d: %s %s\n",i, edges[i][0], edges[i][1]);
+  for(i = 0;i < fs_len;i++) edges[founds[i]][0][0] = edges[founds[i]][1][0] = '\0';
+
+  for(i = 0;i<es_len;i++) printf("s%d: %s %s\n",i, edges[i][0], edges[i][1]);
   curl_easy_cleanup(curl_handle);
   curl_global_cleanup();
   free(get_rs.memory);
   return 0;
 }
-
