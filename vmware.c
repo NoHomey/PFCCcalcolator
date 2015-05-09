@@ -371,7 +371,6 @@ inline void* thread(void* n) {
   return NULL;
 }
 int main(void) {
-  pthread_mutex_init(&lock,NULL);
   CURL* curl_handle;
   CURLcode res;
   curl_global_init(CURL_GLOBAL_ALL);
@@ -381,16 +380,17 @@ int main(void) {
   curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, "libcurl-agent/1.0");
   res = curl_easy_perform(curl_handle);
   curl_easy_setopt(curl_handle, CURLOPT_TIMEOUT, 0);
-  while(res == 28) res = curl_easy_perform(curl_handle);
+  while(res == 28) { res = curl_easy_perform(curl_handle); }
   size_t i;
   pthread_t ids[10]; 
   void* arg;
-  while(1) {
+  for(i = 0; i < 10; i++) {
     arg = &i;
     pthread_create(&ids[i], NULL, thread, arg);
-    i++;
-    if(i == 10) break;
+    usleep(1000000);
   }
-  for(i = 0; i < 10; i++) pthread_join(ids[i], NULL);
+  for(i = 0; i < 10; i++) {
+    pthread_join(ids[i], NULL);
+  }
   return 0;
 }
