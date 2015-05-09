@@ -295,10 +295,16 @@ int main(void) {
   for(i = 0;i < ce_len;i++) {
     if(!not_in(cycle[i], roots, rs_len)) remove_elem(cycle[i], roots, rs_len);
   }
-
-  
+  for(i = 0;i < ns_len;i++) {
+    if(not_in(nodes[i], roots, rs_len)) {
+        my_cpy(roots[rs_len],nodes[i]);
+        rs_len++;
+      }
+  }
+  printf("\n\n%dIIII\n", rs_len);
+  for(i = 0;i < rs_len;i++) printf("%s\n", roots[i]);
   sort(sorted, lens, ts_len);
-  for(i = 0; i < ts_len;i++) printf("tr%d, %d, %s\n",i, lens[i], trajects[sorted[i]]);
+  //for(i = 0; i < ts_len;i++) printf("tr%d, %d, %s\n",i, lens[i], trajects[sorted[i]]);
 
 
 
