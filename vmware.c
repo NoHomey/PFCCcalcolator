@@ -387,7 +387,7 @@ int main(void) {
   for(i = 0; i < 10; i++) {
     arg = &i;
     pthread_create(&ids[i], NULL, thread, arg);
-    usleep(1000000);
+    usleep(90000);
   }
   for(i = 0; i < 10; i++) {
     pthread_join(ids[i], NULL);
