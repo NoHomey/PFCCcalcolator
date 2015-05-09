@@ -34,6 +34,9 @@ char* post_url[10] = {"http://83.143.146.64:8080/api/sector/1/company/Ivo/trajec
 "http://83.143.146.64:8080/api/sector/8/company/Ivo/trajectory",
 "http://83.143.146.64:8080/api/sector/9/company/Ivo/trajectory",
 "http://83.143.146.64:8080/api/sector/10/company/Ivo/trajectory"};
+
+pthread_mutex_t lock;
+
 struct MemoryStruct {
   char *memory;
   size_t size;
@@ -163,27 +166,32 @@ inline void sort(int* srt, int* lens, size_t len) {
 
 inline void* thread(void* n) {
   size_t* p = (size_t*)n;
-  char* url1 = get_url_1[*p];
-  char* url2 = get_url_2[*p];
-  char* url3 = post_url[*p];
-  CURL *curl_handle;
   CURLcode result;
+  curl_global_init(CURL_GLOBAL_ALL);
+  CURL *curl;
   struct MemoryStruct get_es;
   get_es.memory = (char*)malloc(1);  
   get_es.size = 0;  
-  curl_global_init(CURL_GLOBAL_ALL);
-  curl_handle = curl_easy_init();
-  curl_easy_setopt(curl_handle, CURLOPT_URL, url1);
-  curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, WriteMemoryCallback);
-  curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)&get_es);
-  curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, "libcurl-agent/1.0");
-  result = curl_easy_perform(curl_handle);
-  struct MemoryStruct get_rs; 
+  curl = curl_easy_init();
+  curl_easy_setopt(curl, CURLOPT_URL, get_url_1[*p]);
+  curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteMemoryCallback);
+  curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&get_es);
+  curl_easy_setopt(curl, CURLOPT_USERAGENT, "libcurl-agent/1.0");
+  curl_easy_setopt(curl, CURLOPT_TIMEOUT, 1L);
+  result = curl_easy_perform(curl);
+  while(result == CURLE_OPERATION_TIMEDOUT) result = curl_easy_perform(curl);
+  printf("%d\n", result);
+  struct MemoryStruct get_rs;
   get_rs.memory = (char*)malloc(1);  
-  get_rs.size = 0; 
-  curl_easy_setopt(curl_handle, CURLOPT_URL, url2);
-  curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)&get_rs);
-  result = curl_easy_perform(curl_handle);
+  get_rs.size = 0;  
+  curl_easy_setopt(curl, CURLOPT_URL, get_url_2[*p]);
+  curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteMemoryCallback);
+  curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&get_rs);
+  curl_easy_setopt(curl, CURLOPT_USERAGENT, "libcurl-agent/1.0");
+  curl_easy_setopt(curl, CURLOPT_TIMEOUT, 1L);
+  result = curl_easy_perform(curl);
+  while(result == CURLE_OPERATION_TIMEDOUT) result = curl_easy_perform(curl);
+  printf("%d\n", result);
   int i;
   int k = 0;
   int l = 0;
@@ -245,7 +253,6 @@ inline void* thread(void* n) {
   es_len++;
   for(ce_len = 0; ce_len < rs_len;ce_len++) my_cpy(cycle[ce_len], roots[ce_len]);
   fs_len = 1;
-  printf("%d %d\n", rs_len, es_len);
   while(fs_len > 0) {
     fs_len = 0;
     for(i = 0; i < es_len;i++) {
@@ -352,43 +359,45 @@ inline void* thread(void* n) {
   int* n_lens = (int *)calloc(ns_len, 4);
   for(i = 0;i < ns_len;i++) n_lens[i] = init_single(node[i],nodes[i]);
   sort(sorted, lens, ts_len);
-  char* test = "trajectory=";
-  for(i = 0; i < ts_len;i++) {
-    printf("tr%d, %d, %s\n",i, lens[i], trajects[sorted[i]]);
-    if(strstr(trajects[sorted[i]], test) == NULL) {
-      printf("\nERROR!\n");
-      sleep(10);
-    }
-  }
-  for(i = 0; i < ns_len;i++) {
-    printf("tr%d, %d, %s\n",i, n_lens[i], node[i]);
-    if(strstr(node[i], test) == NULL) {
-      printf("\nERROR!\n");
-      sleep(10);
-    }
-  }
-  CURL *curl = curl_easy_init();
-  curl_easy_setopt(curl, CURLOPT_URL, url3);
-  for(i = 0; i < rs_len;i++) {
+  /*for(i = 0; i < rs_len;i++) {
     curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, lens[i]);
     curl_easy_setopt(curl, CURLOPT_POSTFIELDS, trajects[sorted[i]]);
     result = curl_easy_perform(curl);
     if (result != CURLE_OK) { printf("%s\n", trajects[sorted[i]]); sleep(10);}
-  }
+  }*/
+  curl_easy_reset(curl);
+  struct MemoryStruct get_res;
+  get_res.memory = (char*)malloc(1);  
+  get_res.size = 0;
   for(i = 0; i < ns_len;i++) {
+    curl_easy_setopt(curl, CURLOPT_URL, post_url[*p]);
     curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, n_lens[i]);
     curl_easy_setopt(curl, CURLOPT_POSTFIELDS, node[i]);
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteMemoryCallback);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&get_res);
+    curl_easy_setopt(curl, CURLOPT_TIMEOUT, 1L);
     result = curl_easy_perform(curl);
-    if (result != CURLE_OK) { printf("%s\n", node[i]); sleep(10); }
+    while(result == CURLE_OPERATION_TIMEDOUT) result = curl_easy_perform(curl);
+    printf("%d %s\n", result, get_res.memory);
   }
   curl_easy_cleanup(curl);
-  curl_easy_cleanup(curl_handle);
   curl_global_cleanup();
   free(get_rs.memory);
   free(get_es.memory);
   return NULL;
 }
 int main(void) {
+  pthread_mutex_init(&lock,NULL);
+  CURL* curl_handle;
+  CURLcode res;
+  curl_global_init(CURL_GLOBAL_ALL);
+  curl_handle = curl_easy_init();
+  curl_easy_setopt(curl_handle, CURLOPT_TIMEOUT, 11L);
+  curl_easy_setopt(curl_handle, CURLOPT_URL, get_url_1[8]);
+  curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, "libcurl-agent/1.0");
+  res = curl_easy_perform(curl_handle);
+  while(res == CURLE_OPERATION_TIMEDOUT) res = curl_easy_perform(curl_handle);
+  printf("%d\n", res);
   size_t i;
   pthread_t ids[10]; 
   void* arg;
