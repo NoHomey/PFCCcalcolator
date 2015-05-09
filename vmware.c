@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
+
 struct MemoryStruct {
   char *memory;
   size_t size;
@@ -43,14 +44,28 @@ inline size_t WriteMemoryCallback(void *contents, size_t size, size_t nmemb, voi
   return realsize;
 }
 
+inline bool equal(char* ptr1, char* ptr2) {
+  return ((*ptr1 == *ptr2) && (*(ptr1 + 1) == *(ptr2 + 1)) && (*(ptr1 + 2) == *(ptr2 + 2)) && (*(ptr1 + 3) == *(ptr2 + 3)));
+}
+
 inline void remove_edge(char** tar) {
   tar[0][0] = tar[1][0] = '\0';
   tar[0][1] = tar[1][1] = '\0';
   tar[0][2] = tar[1][2] = '\0';
   tar[0][3] = tar[1][4] = '\0';
 }
-inline bool equal(char* ptr1, char* ptr2) {
-  return ((ptr1[0] == ptr2[0]) && (ptr1[1] == ptr2[1]) && (ptr1[2] == ptr2[2]) && (ptr1[3] == ptr2[3]));
+
+inline void remove_elem(char* tar, char** from, size_t len) {
+  size_t i;
+  for(i = 0; i < len; i++) {
+    if(equal(tar, from[i])) {
+      from[i][0] = '\0';
+      from[i][1] = '\0';
+      from[i][2] = '\0';
+      from[i][3] = '\0';
+      return;
+    }
+  }
 }
 
 inline bool not_in(char* search, char** where, size_t len) {
@@ -58,8 +73,7 @@ inline bool not_in(char* search, char** where, size_t len) {
   for(i = 0; i < len; i++) {
     if(equal(search, where[i])) return false;
   }
-  if(i == 0) return true;
-  else return true;
+  return true;
 }
 
 inline size_t init (char* tar, char* chil, char* per) {
@@ -83,6 +97,23 @@ inline size_t init (char* tar, char* chil, char* per) {
 inline size_t inc_traject(char* tar, char* node, size_t pos) {
   tar[pos++] = ' ';
   return pos + str_cpy(tar + pos, node);
+}
+
+inline void sort(int* srt, int* lens, size_t len) {
+   size_t i, k;
+   int len_h, index_h;
+   for(i = 0; i < len; i++) {
+     for(k = 0; k < len - 1; k++) {
+       if(lens[k] < lens[k+1]) {
+         len_h = lens[k+1];
+         lens[k+1] = lens[k];
+         lens[k] = len_h; 
+         index_h = srt[k+1];
+         srt[k+1] = srt[k];
+         srt[k] = index_h;
+       }
+     }
+   }
 }
 
 int main(void) {
@@ -115,14 +146,14 @@ int main(void) {
   int ns_len = 0;
   int ts_len = 0;
   int founds[2000];
-  int lens[800];
+  int* lens = (int*)calloc(800, 4);
+  int* sorted = (int*)calloc(800, 4);
   char* perent = (char*)calloc(1, 4);
-  char* traject = (char*)calloc(1500, 4);
   char** roots = (char**)calloc(1000, 4);
   char** cycle = (char**)calloc(1000, 4);
   char** nodes = (char**)calloc(1000, 4);
   char*** edges = (char***)calloc(2000, 4);
-  char** trajecs = (char**)calloc(800, 4);
+  char** trajects = (char**)calloc(800, 4);
   for(i = 0;i<1000;i++) {
     roots[i] = (char*)calloc(4, 4);
     cycle[i] = (char*)calloc(4, 4);
@@ -133,7 +164,7 @@ int main(void) {
      edges[i][0] = (char*)calloc(4, 4); 
      edges[i][1] = (char*)calloc(4, 4);
    }
-   for(i = 0;i<800;i++) trajecs[i] = (char*)calloc(1500, 4); 
+   for(i = 0;i<800;i++) trajects[i] = (char*)calloc(1500, 4); 
    i = k = 0;
   while(i < get_rs.size - 1) {
    if(get_rs.memory[i] == '\n') {
@@ -163,28 +194,27 @@ int main(void) {
   }
   rs_len++;
   es_len++;
-  /*for(i = 0;i<es_len;i++) printf("s%d: %s %s\n",i, edges[i][0], edges[i][1]);
-  10);
-  for(i = 0;i<rs_len;i++) printf("r%d: %s\n",i, roots[i]);
-     10);*/
-  memcpy(cycle,roots, rs_len);
-  ce_len = rs_len;
+  //for(i = 0;i<es_len;i++) printf("s%d: %s %s\n",i, edges[i][0], edges[i][1]);
+  //for(i = 0;i<rs_len;i++) printf("r%d: %s\n",i, roots[i]);
+  for(ce_len = 0; ce_len < rs_len;ce_len++) my_cpy(cycle[ce_len], roots[ce_len]);
   fs_len = 1;
-  while(1) {
+  printf("%d %d\n", rs_len, es_len);
+  while(fs_len > 0) {
     fs_len = 0;
     for(i = 0; i < es_len;i++) {
       for(k = 0; k < ce_len;k++) {
-        if((equal(edges[i][0], cycle[k])) && (l != i)) {
-          l = i;
+        if((equal(edges[i][0], cycle[k]))){
           founds[fs_len++] = i;
+          break;
         }
       }
     }
-    if(fs_len == 0) break;
     ce_len = 0;
     for(i=0; i < fs_len;i++) {
-       my_cpy(cycle[ce_len], edges[founds[i]][1]);
-       ce_len++;
+       if (not_in(edges[founds[i]][1], cycle, ce_len)) {
+         my_cpy(cycle[ce_len], edges[founds[i]][1]);
+         ce_len++;
+       }
        if (not_in(edges[founds[i]][1], roots, rs_len)) {
          my_cpy(roots[rs_len], edges[founds[i]][1]);
          rs_len++;
@@ -192,33 +222,32 @@ int main(void) {
        remove_edge(edges[founds[i]]);
     }
   }
+  printf("\n\n");
   k = 0;
-  for(i = 0;i<es_len;i++) if(edges[i][0][0] != '\0') k++;
+  for(i = 0;i<es_len;i++) if(edges[i][1][0] != '\0') k++;
   printf("%d\n", k);
-  //for(i = 0;i<rs_len;i++) printf("r%d: %s\n",i, roots[i]);
 //Purviqt etap RDY!
+  fs_len = 0;
   for(i = 0;i<es_len;i++) {
-    for(k = 0; k < rs_len; k++) {
-       if(equal(edges[i][1], roots[k])) {
-          if(not_in(edges[i][0], nodes, ns_len)) {
-            my_cpy(nodes[ns_len], edges[i][0]);
-            ns_len++;
-            founds[fs_len++] = i;
-            break;  
-          }
-       }   
+    if(!not_in(edges[i][1], roots, rs_len)) {
+      founds[fs_len++] = i;
+      if(not_in(edges[i][0], nodes, ns_len)) {
+        my_cpy(nodes[ns_len],edges[i][0]);
+        ns_len++;
+      }
     }
   }
   for(i = 0;i < fs_len;i++) remove_edge(edges[founds[i]]);
+    k = 0;
+  for(i = 0;i<es_len;i++) if(edges[i][1][0] != '\0') k++;
+  printf("%d\n", k);
   ce_len = 0;
   while(1) {
     flag = 0;
-    for(i = 0;i<ce_len;i++) printf("  %s ", cycle[i]);
-    printf("\n");
     for(i = 0;i < es_len;i++) {
        if((!equal(edges[i][0], edges[i][1])) && (not_in(edges[i][0], cycle, ce_len)) && (not_in(edges[i][1], cycle, ce_len))) {
          my_cpy(perent, edges[i][1]);
-         l = init(traject, edges[i][0], perent);
+         l = init(trajects[ts_len], edges[i][0], perent);
          my_cpy(cycle[ce_len], edges[i][0]);
          ce_len++;
          my_cpy(cycle[ce_len], perent);
@@ -235,7 +264,7 @@ int main(void) {
       for(i = 0;i < es_len;i++) {
         if((equal(perent,edges[i][0])) && (!equal(edges[i][0],edges[i][1])) && (not_in(edges[i][1], cycle, ce_len))) {
           my_cpy(perent, edges[i][1]);
-          k = inc_traject(traject, perent, l);
+          k = inc_traject(trajects[ts_len], perent, l);
           l = k;
           my_cpy(cycle[ce_len], perent);
           ce_len++;
@@ -246,15 +275,33 @@ int main(void) {
       }
     if(!flag) break;
     }
-    printf("%d %s\n",ts_len, traject);
-    p_cpy(trajecs[ts_len], traject, l);
+    sorted[ts_len] = ts_len;
     lens[ts_len++] = l;
-    free(traject);
-    char* traject = (char*)calloc(1500, 4); 
     for(i = 0;i < fs_len;i++) remove_edge(edges[founds[i]]);
   }
+  rs_len = 0;
+  for(i = 0;i < es_len;i++) {
+    if(!equal(edges[i][0], edges[i][1])) {
+      if(not_in(edges[i][0], roots, rs_len)) {
+        my_cpy(roots[rs_len], edges[i][0]);
+        rs_len++;
+      }
+      if(not_in(edges[i][1], roots, rs_len)) {
+        my_cpy(roots[rs_len], edges[i][1]);
+        rs_len++;
+      }
+    }
+  }
+  for(i = 0;i < ce_len;i++) {
+    if(!not_in(cycle[i], roots, rs_len)) remove_elem(cycle[i], roots, rs_len);
+  }
 
-  //for(i = 0;i<es_len;i++) printf("s%d: %s %s\n",i, edges[i][0], edges[i][1]);
+  
+  sort(sorted, lens, ts_len);
+  for(i = 0; i < ts_len;i++) printf("tr%d, %d, %s\n",i, lens[i], trajects[sorted[i]]);
+
+
+
   curl_easy_cleanup(curl_handle);
   curl_global_cleanup();
   free(get_rs.memory);
