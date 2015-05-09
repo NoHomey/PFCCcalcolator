@@ -3,7 +3,37 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
-
+#include <pthread.h>
+char* get_url_1[10] = {"http://83.143.146.64:8080/api/sector/1/objects", 
+"http://83.143.146.64:8080/api/sector/2/objects",
+"http://83.143.146.64:8080/api/sector/3/objects",
+"http://83.143.146.64:8080/api/sector/4/objects",
+"http://83.143.146.64:8080/api/sector/5/objects",
+"http://83.143.146.64:8080/api/sector/6/objects",
+"http://83.143.146.64:8080/api/sector/7/objects",
+"http://83.143.146.64:8080/api/sector/8/objects",
+"http://83.143.146.64:8080/api/sector/9/objects",
+"http://83.143.146.64:8080/api/sector/10/objects"};
+char* get_url_2[10] = {"http://83.143.146.64:8080/api/sector/1/roots", 
+"http://83.143.146.64:8080/api/sector/2/roots",
+"http://83.143.146.64:8080/api/sector/3/roots",
+"http://83.143.146.64:8080/api/sector/4/roots",
+"http://83.143.146.64:8080/api/sector/5/roots",
+"http://83.143.146.64:8080/api/sector/6/roots",
+"http://83.143.146.64:8080/api/sector/7/roots",
+"http://83.143.146.64:8080/api/sector/8/roots",
+"http://83.143.146.64:8080/api/sector/9/roots",
+"http://83.143.146.64:8080/api/sector/10/roots"};
+char* post_url[10] = {"http://83.143.146.64:8080/api/sector/1/company/Ivo/trajectory",
+"http://83.143.146.64:8080/api/sector/2/company/Ivo/trajectory",
+"http://83.143.146.64:8080/api/sector/3/company/Ivo/trajectory",
+"http://83.143.146.64:8080/api/sector/4/company/Ivo/trajectory",
+"http://83.143.146.64:8080/api/sector/5/company/Ivo/trajectory",
+"http://83.143.146.64:8080/api/sector/6/company/Ivo/trajectory",
+"http://83.143.146.64:8080/api/sector/7/company/Ivo/trajectory",
+"http://83.143.146.64:8080/api/sector/8/company/Ivo/trajectory",
+"http://83.143.146.64:8080/api/sector/9/company/Ivo/trajectory",
+"http://83.143.146.64:8080/api/sector/10/company/Ivo/trajectory"};
 struct MemoryStruct {
   char *memory;
   size_t size;
@@ -131,8 +161,11 @@ inline void sort(int* srt, int* lens, size_t len) {
    }
 }
 
-
-int main(void) {
+inline void* thread(void* n) {
+  size_t* p = (size_t*)n;
+  char* url1 = get_url_1[*p];
+  char* url2 = get_url_2[*p];
+  char* url3 = post_url[*p];
   CURL *curl_handle;
   CURLcode result;
   struct MemoryStruct get_es;
@@ -140,7 +173,7 @@ int main(void) {
   get_es.size = 0;  
   curl_global_init(CURL_GLOBAL_ALL);
   curl_handle = curl_easy_init();
-  curl_easy_setopt(curl_handle, CURLOPT_URL, "http://83.143.146.64:8080/api/sector/7/objects");
+  curl_easy_setopt(curl_handle, CURLOPT_URL, url1);
   curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, WriteMemoryCallback);
   curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)&get_es);
   curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, "libcurl-agent/1.0");
@@ -148,7 +181,7 @@ int main(void) {
   struct MemoryStruct get_rs; 
   get_rs.memory = (char*)malloc(1);  
   get_rs.size = 0; 
-  curl_easy_setopt(curl_handle, CURLOPT_URL, "http://83.143.146.64:8080/api/sector/7/roots");
+  curl_easy_setopt(curl_handle, CURLOPT_URL, url2);
   curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)&get_rs);
   result = curl_easy_perform(curl_handle);
   int i;
@@ -210,8 +243,6 @@ int main(void) {
   }
   rs_len++;
   es_len++;
-  //for(i = 0;i<es_len;i++) printf("s%d: %s %s\n",i, edges[i][0], edges[i][1]);
-  //for(i = 0;i<rs_len;i++) printf("r%d: %s\n",i, roots[i]);
   for(ce_len = 0; ce_len < rs_len;ce_len++) my_cpy(cycle[ce_len], roots[ce_len]);
   fs_len = 1;
   printf("%d %d\n", rs_len, es_len);
@@ -238,11 +269,6 @@ int main(void) {
        remove_edge(edges[founds[i]]);
     }
   }
-  printf("\n\n");
-  k = 0;
-  for(i = 0;i<es_len;i++) if(edges[i][1][0] != '\0') k++;
-  printf("%d\n", k);
-//Purviqt etap RDY!
   fs_len = 0;
   for(i = 0;i<es_len;i++) {
     if(!not_in(edges[i][1], roots, rs_len)) {
@@ -254,9 +280,6 @@ int main(void) {
     }
   }
   for(i = 0;i < fs_len;i++) remove_edge(edges[founds[i]]);
-    k = 0;
-  for(i = 0;i<es_len;i++) if(edges[i][1][0] != '\0') k++;
-  printf("%d\n", k);
   ce_len = 0;
   while(1) {
     flag = 0;
@@ -291,7 +314,6 @@ int main(void) {
       }
     if(!flag) break;
     }
-    printf("%s\n", trajects[ts_len]);
     sorted[ts_len] = ts_len;
     lens[ts_len++] = l;
     for(i = 0;i < fs_len;i++) remove_edge(edges[founds[i]]);
@@ -330,13 +352,23 @@ int main(void) {
   int* n_lens = (int *)calloc(ns_len, 4);
   for(i = 0;i < ns_len;i++) n_lens[i] = init_single(node[i],nodes[i]);
   sort(sorted, lens, ts_len);
-  
-  for(i = 0; i < ts_len;i++) printf("tr%d, %d, %s\n",i, lens[i], trajects[sorted[i]]);
-  for(i = 0; i < ns_len;i++) printf("tr%d, %d, %s\n",i, n_lens[i], node[i]);
-
-  sleep(10);
+  char* test = "trajectory=";
+  for(i = 0; i < ts_len;i++) {
+    printf("tr%d, %d, %s\n",i, lens[i], trajects[sorted[i]]);
+    if(strstr(trajects[sorted[i]], test) == NULL) {
+      printf("\nERROR!\n");
+      sleep(10);
+    }
+  }
+  for(i = 0; i < ns_len;i++) {
+    printf("tr%d, %d, %s\n",i, n_lens[i], node[i]);
+    if(strstr(node[i], test) == NULL) {
+      printf("\nERROR!\n");
+      sleep(10);
+    }
+  }
   CURL *curl = curl_easy_init();
-  curl_easy_setopt(curl, CURLOPT_URL, "http://83.143.146.64:8080/api/sector/7/company/Ivo/trajectory");
+  curl_easy_setopt(curl, CURLOPT_URL, url3);
   for(i = 0; i < rs_len;i++) {
     curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, lens[i]);
     curl_easy_setopt(curl, CURLOPT_POSTFIELDS, trajects[sorted[i]]);
@@ -354,5 +386,18 @@ int main(void) {
   curl_global_cleanup();
   free(get_rs.memory);
   free(get_es.memory);
+  return NULL;
+}
+int main(void) {
+  size_t i;
+  pthread_t ids[10]; 
+  void* arg;
+  for(i = 0; i < 10; i++) {
+    arg = &i;
+    pthread_create(&ids[i], NULL, thread, arg);
+  }
+  for(i = 0; i < 10; i++) {
+    pthread_join(ids[i], NULL);
+  }
   return 0;
 }
