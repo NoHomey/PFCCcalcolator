@@ -77,7 +77,7 @@ inline size_t WriteMemoryCallback(void *contents, size_t size, size_t nmemb, voi
 }
 
 inline bool equal(char* ptr1, char* ptr2) {
-  return ((*ptr1 == *ptr2) && (*(ptr1 + 1) == *(ptr2 + 1)) && (*(ptr1 + 2) == *(ptr2 + 2)) && (*(ptr1 + 3) == *(ptr2 + 3)));
+  return ((ptr1[0] == ptr2[0]) && (ptr1[1] == ptr2[1]) && (ptr1[2] == ptr2[2]) && (ptr1[3] == ptr2[3]));
 }
 
 inline void remove_edge(char** tar) {
@@ -146,9 +146,9 @@ inline size_t init_single (char* tar, char* node) {
   return 11 + str_cpy(tar + 11, node);
 }
 
-inline void sort(int* srt, int* lens, size_t len) {
+inline void sort(size_t* srt, size_t* lens, size_t len) {
    size_t i, k;
-   int len_h, index_h;
+   size_t len_h, index_h;
    for(i = 0; i < len; i++) {
      for(k = 0; k < len - 1; k++) {
        if(lens[k] < lens[k+1]) {
@@ -184,36 +184,38 @@ inline void* thread(void* n) {
   curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteMemoryCallback);
   curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&get_rs);
   result = curl_easy_perform(curl);
-  int i;
-  int k = 0;
-  int l = 0;
-  int flag;
-  int rs_len = 0;
-  int es_len = 0;
-  int fs_len = 0;
-  int ce_len = 0;
-  int ns_len = 0;
-  int ts_len = 0;
-  int founds[2000];
-  int* lens = (int*)calloc(800, 4);
-  int* sorted = (int*)calloc(800, 4);
-  char* perent = (char*)calloc(1, 4);
-  char** roots = (char**)calloc(1000, 4);
-  char** cycle = (char**)calloc(1000, 4);
-  char** nodes = (char**)calloc(1000, 4);
-  char*** edges = (char***)calloc(2000, 4);
-  char** trajects = (char**)calloc(800, 4);
+  size_t i;
+  size_t k = 0;
+  size_t l = 0;
+  size_t flag;
+  size_t rs_len = 0;
+  size_t es_len = 0;
+  size_t fs_len = 0;
+  size_t ce_len = 0;
+  size_t ns_len = 0;
+  size_t ts_len = 0;
+  size_t scharp = sizeof(char*);
+  size_t ssizet = sizeof(size_t);
+  size_t founds[2000];
+  size_t* lens = (size_t*)calloc(800, ssizet);
+  size_t* sorted = (size_t*)calloc(800, ssizet);
+  char* perent = (char*)calloc(1, 1);
+  char** roots = (char**)calloc(1000, scharp);
+  char** cycle = (char**)calloc(1000, scharp);
+  char** nodes = (char**)calloc(1000, scharp);
+  char*** edges = (char***)calloc(2000, sizeof(char**));
+  char** trajects = (char**)calloc(800, scharp);
   for(i = 0;i<1000;i++) {
-    roots[i] = (char*)calloc(4, 4);
-    cycle[i] = (char*)calloc(4, 4);
-    nodes[i] = (char*)calloc(4, 4);
+    roots[i] = (char*)calloc(4, 1);
+    cycle[i] = (char*)calloc(4, 1);
+    nodes[i] = (char*)calloc(4, 1);
    }
    for(i = 0;i<2000;i++) {
-     edges[i] = (char**)calloc(2, 4);
-     edges[i][0] = (char*)calloc(4, 4); 
-     edges[i][1] = (char*)calloc(4, 4);
+     edges[i] = (char**)calloc(2, scharp);
+     edges[i][0] = (char*)calloc(4, 1); 
+     edges[i][1] = (char*)calloc(4, 1);
    }
-   for(i = 0;i<800;i++) trajects[i] = (char*)calloc(1500, 4); 
+   for(i = 0;i<800;i++) trajects[i] = (char*)calloc(1500, 1); 
    i = k = 0;
   while(i < get_rs.size - 1) {
    if(get_rs.memory[i] == '\n') {
@@ -348,7 +350,7 @@ inline void* thread(void* n) {
   }
   char** node = (char **)calloc(ns_len, 4);
   for(i = 0; i < ns_len;i++) node[i] = (char *)calloc(15, 4);
-  int* n_lens = (int *)calloc(ns_len, 4);
+  size_t* n_lens = (size_t *)calloc(ns_len, 4);
   for(i = 0;i < ns_len;i++) n_lens[i] = init_single(node[i],nodes[i]);
   sort(sorted, lens, ts_len);
   curl_easy_reset(curl);
@@ -368,6 +370,19 @@ inline void* thread(void* n) {
   curl_global_cleanup();
   free(get_rs.memory);
   free(get_es.memory);
+  free(lens);
+  free(sorted);
+  for(i = 0;i<1000;i++) {
+    free(roots[i]);
+    free(cycle[i]);
+    free(nodes[i]);
+  }
+  for(i = 0;i<2000;i++) {
+     free(edges[i][0]); 
+     free(edges[i][1]);
+     free(edges[i]);
+  }
+  for(i = 0;i<800;i++) free(trajects[i]); 
   return NULL;
 }
 int main(void) {
@@ -387,7 +402,7 @@ int main(void) {
   for(i = 0; i < 10; i++) {
     arg = &i;
     pthread_create(&ids[i], NULL, thread, arg);
-    usleep(90000);
+    usleep(100000);
   }
   for(i = 0; i < 10; i++) {
     pthread_join(ids[i], NULL);
