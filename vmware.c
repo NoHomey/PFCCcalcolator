@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <curl/curl.h>
-#include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <pthread.h>
@@ -141,6 +140,26 @@ inline void sort(size_t* srt, size_t* lens, size_t len) {
        }
      }
    }
+}
+
+struct PostStruct {
+  char *memory;
+  size_t size;
+  char* url;
+};
+
+
+inline void* make_post(void* struc) {
+  CURLcode result;
+  CURL *curl;
+  struct PostStruct* info = (struct PostStruct*)struc;
+  curl = curl_easy_init();
+  curl_easy_setopt(curl, CURLOPT_URL, info->url);
+  curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, info->size);
+  curl_easy_setopt(curl, CURLOPT_POSTFIELDS, info->memory);
+  result = curl_easy_perform(curl);
+  curl_easy_cleanup(curl);
+  return NULL;
 }
 
 inline void* thread(void* n) {
@@ -314,23 +333,27 @@ inline void* thread(void* n) {
   size_t* n_lens = (size_t *)calloc(ns_len, 4);
   for(i = 0;i < ns_len;i++) n_lens[i] = init_single(node[i],nodes[i]);
   sort(sorted, lens, ts_len);
-  CURLcode result;
-  CURL *curl;
-  curl = curl_easy_init();
-  curl_easy_setopt(curl, CURLOPT_URL, post_url[*p]);
-  curl_easy_setopt(curl, CURLOPT_USERAGENT, "libcurl-agent/1.0");
+  struct PostStruct post_mul[ts_len];
+  struct PostStruct post_sing[ns_len];
+  pthread_t id_mul[ts_len];
+  pthread_t id_sing[ns_len];
+  k = ts_len/2;
   for(i = 0; i < ts_len;i++) {
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, lens[i]);
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, trajects[sorted[i]]);
-    result = curl_easy_perform(curl);
+    post_mul[i].size = lens[i];
+    post_mul[i].memory = trajects[sorted[i]];
+    post_mul[i].url = post_url[*p];
+    pthread_create(&id_mul[i], NULL, make_post, (void *)&(post_mul[i]));
+    usleep(990000);
   }
   for(i = 0; i < ns_len;i++) {
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, n_lens[i]);
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, node[i]);
-    result = curl_easy_perform(curl);
+    post_sing[i].size = n_lens[i];
+    post_sing[i].memory = node[i];
+    post_sing[i].url = post_url[*p];
+    pthread_create(&id_sing[i], NULL, make_post, (void *)&(post_sing[i]));
+    usleep(990000);
   }
-  curl_easy_cleanup(curl);
-  curl_global_cleanup();
+  for(i = 0; i < ts_len; i++) pthread_join(id_mul[i], NULL);
+  for(i = 0; i < ns_len; i++) pthread_join(id_sing[i], NULL);
   free(get_rs[*p].memory);
   free(get_es[*p].memory);
   free(lens);
@@ -354,7 +377,6 @@ int main(void) {
   CURLcode res;
   curl_handle = curl_easy_init();
   pthread_t ids[10]; 
-  void* arg;
   char* get_url1[10] = {"http://172.16.24.129:8080/api/sector/1/objects", 
   "http://172.16.24.129:8080/api/sector/2/objects",
   "http://172.16.24.129:8080/api/sector/3/objects",
@@ -397,9 +419,10 @@ int main(void) {
     curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)&(get_rs[i]));
     res = curl_easy_perform(curl_handle);
     index[i] = i;
-    arg = &(index[i]);
-    pthread_create(&ids[i], NULL, thread, arg);
+    pthread_create(&ids[i], NULL, thread, (void *)&(index[i]));
   }
   for(i = 0; i < 10; i++) pthread_join(ids[i], NULL);
+  curl_easy_cleanup(curl_handle);
+  curl_global_cleanup();
   return 0;
 }
