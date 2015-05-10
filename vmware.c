@@ -5,26 +5,6 @@
 #include <stdbool.h>
 #include <pthread.h>
 #include <time.h>
-char* get_url1[10] = {"http://172.16.24.129:8080/api/sector/1/objects", 
-"http://172.16.24.129:8080/api/sector/2/objects",
-"http://172.16.24.129:8080/api/sector/3/objects",
-"http://172.16.24.129:8080/api/sector/4/objects",
-"http://172.16.24.129:8080/api/sector/5/objects",
-"http://172.16.24.129:8080/api/sector/6/objects",
-"http://172.16.24.129:8080/api/sector/7/objects",
-"http://172.16.24.129:8080/api/sector/8/objects",
-"http://172.16.24.129:8080/api/sector/9/objects",
-"http://172.16.24.129:8080/api/sector/10/objects"};
-char* get_url2[10] = {"http://172.16.24.129:8080/api/sector/1/roots", 
-"http://172.16.24.129:8080/api/sector/2/roots",
-"http://172.16.24.129:8080/api/sector/3/roots",
-"http://172.16.24.129:8080/api/sector/4/roots",
-"http://172.16.24.129:8080/api/sector/5/roots",
-"http://172.16.24.129:8080/api/sector/6/roots",
-"http://172.16.24.129:8080/api/sector/7/roots",
-"http://172.16.24.129:8080/api/sector/8/roots",
-"http://172.16.24.129:8080/api/sector/9/roots",
-"http://172.16.24.129:8080/api/sector/10/roots"};
 char* post_url[10] = {"http://172.16.24.129:8080/api/sector/1/company/Ivo/trajectory",
 "http://172.16.24.129:8080/api/sector/2/company/Ivo/trajectory",
 "http://172.16.24.129:8080/api/sector/3/company/Ivo/trajectory",
@@ -40,7 +20,10 @@ struct MemoryStruct {
   char *memory;
   size_t size;
 };
- 
+
+struct MemoryStruct get_es[10];
+struct MemoryStruct get_rs[10];
+
 inline void p_cpy(char* dst, char* src, size_t len) {
   size_t i;
   for (i=0; i<len; i++) dst[i] = src[i];
@@ -67,9 +50,6 @@ inline size_t WriteMemoryCallback(void *contents, size_t size, size_t nmemb, voi
   size_t realsize = size * nmemb;
   struct MemoryStruct *mem = (struct MemoryStruct *)userp;
   mem->memory = (char*)realloc(mem->memory, mem->size + realsize + 1);
-  if(mem->memory == NULL) {
-    return 0;
-  }
   p_cpy(&(mem->memory[mem->size]), (char*)contents, realsize);
   mem->size += realsize;
   mem->memory[mem->size] = 0;
@@ -165,25 +145,6 @@ inline void sort(size_t* srt, size_t* lens, size_t len) {
 
 inline void* thread(void* n) {
   size_t* p = (size_t*)n;
-  CURLcode result;
-  curl_global_init(CURL_GLOBAL_ALL);
-  CURL *curl;
-  struct MemoryStruct get_es;
-  get_es.memory = (char*)malloc(1);  
-  get_es.size = 0;  
-  curl = curl_easy_init();
-  curl_easy_setopt(curl, CURLOPT_URL, get_url1[*p]);
-  curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteMemoryCallback);
-  curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&get_es);
-  curl_easy_setopt(curl, CURLOPT_USERAGENT, "libcurl-agent/1.0");
-  result = curl_easy_perform(curl);
-  struct MemoryStruct get_rs;
-  get_rs.memory = (char*)malloc(1);  
-  get_rs.size = 0;  
-  curl_easy_setopt(curl, CURLOPT_URL, get_url2[*p]);
-  curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteMemoryCallback);
-  curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&get_rs);
-  result = curl_easy_perform(curl);
   size_t i;
   size_t k = 0;
   size_t l = 0;
@@ -217,27 +178,27 @@ inline void* thread(void* n) {
    }
    for(i = 0;i<800;i++) trajects[i] = (char*)calloc(1500, 1); 
    i = k = 0;
-  while(i < get_rs.size - 1) {
-   if(get_rs.memory[i] == '\n') {
+  while(i < get_rs[*p].size - 1) {
+   if(get_rs[*p].memory[i] == '\n') {
       k = 0;
       rs_len++;
    } else {
-     roots[rs_len][k] = get_rs.memory[i];
+     roots[rs_len][k] = get_rs[*p].memory[i];
      k++;
    } 
     i++;  
   }
   i = k = l = 0;
-  while(i < get_es.size - 1) {
-   if(get_es.memory[i] == '\n') {
+  while(i < get_es[*p].size - 1) {
+   if(get_es[*p].memory[i] == '\n') {
       k = l = 0;
       es_len++;
    } else {
-     if(get_es.memory[i] == ' ') {
+     if(get_es[*p].memory[i] == ' ') {
        k = 1;
        l = 0;
      } else {
-       edges[es_len][k][l] = get_es.memory[i];
+       edges[es_len][k][l] = get_es[*p].memory[i];
        l++;
      }
    } 
@@ -353,7 +314,9 @@ inline void* thread(void* n) {
   size_t* n_lens = (size_t *)calloc(ns_len, 4);
   for(i = 0;i < ns_len;i++) n_lens[i] = init_single(node[i],nodes[i]);
   sort(sorted, lens, ts_len);
-  curl_easy_reset(curl);
+  CURLcode result;
+  CURL *curl;
+  curl = curl_easy_init();
   curl_easy_setopt(curl, CURLOPT_URL, post_url[*p]);
   curl_easy_setopt(curl, CURLOPT_USERAGENT, "libcurl-agent/1.0");
   for(i = 0; i < ts_len;i++) {
@@ -368,8 +331,8 @@ inline void* thread(void* n) {
   }
   curl_easy_cleanup(curl);
   curl_global_cleanup();
-  free(get_rs.memory);
-  free(get_es.memory);
+  free(get_rs[*p].memory);
+  free(get_es[*p].memory);
   free(lens);
   free(sorted);
   for(i = 0;i<1000;i++) {
@@ -386,10 +349,32 @@ inline void* thread(void* n) {
   return NULL;
 }
 int main(void) {
+  curl_global_init(CURL_GLOBAL_ALL);
   CURL* curl_handle;
   CURLcode res;
-  curl_global_init(CURL_GLOBAL_ALL);
   curl_handle = curl_easy_init();
+  pthread_t ids[10]; 
+  void* arg;
+  char* get_url1[10] = {"http://172.16.24.129:8080/api/sector/1/objects", 
+  "http://172.16.24.129:8080/api/sector/2/objects",
+  "http://172.16.24.129:8080/api/sector/3/objects",
+  "http://172.16.24.129:8080/api/sector/4/objects",
+  "http://172.16.24.129:8080/api/sector/5/objects",
+  "http://172.16.24.129:8080/api/sector/6/objects",
+  "http://172.16.24.129:8080/api/sector/7/objects",
+  "http://172.16.24.129:8080/api/sector/8/objects",
+  "http://172.16.24.129:8080/api/sector/9/objects",
+  "http://172.16.24.129:8080/api/sector/10/objects"};
+  char* get_url2[10] = {"http://172.16.24.129:8080/api/sector/1/roots", 
+  "http://172.16.24.129:8080/api/sector/2/roots",
+  "http://172.16.24.129:8080/api/sector/3/roots",
+  "http://172.16.24.129:8080/api/sector/4/roots",
+  "http://172.16.24.129:8080/api/sector/5/roots",
+  "http://172.16.24.129:8080/api/sector/6/roots",
+  "http://172.16.24.129:8080/api/sector/7/roots",
+  "http://172.16.24.129:8080/api/sector/8/roots",
+  "http://172.16.24.129:8080/api/sector/9/roots",
+  "http://172.16.24.129:8080/api/sector/10/roots"};
   curl_easy_setopt(curl_handle, CURLOPT_TIMEOUT, 10L);
   curl_easy_setopt(curl_handle, CURLOPT_URL, get_url1[8]);
   curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, "libcurl-agent/1.0");
@@ -397,15 +382,24 @@ int main(void) {
   curl_easy_setopt(curl_handle, CURLOPT_TIMEOUT, 0);
   while(res == 28) { res = curl_easy_perform(curl_handle); }
   size_t i;
-  pthread_t ids[10]; 
-  void* arg;
-  for(i = 0; i < 10; i++) {
-    arg = &i;
+  curl_easy_reset(curl_handle);
+  curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, WriteMemoryCallback);
+  size_t index[10];
+  for(i = 0;i < 10;i++) {
+    get_es[i].memory = (char*)malloc(1);  
+    get_es[i].size = 0; 
+    get_rs[i].memory = (char*)malloc(1);  
+    get_rs[i].size = 0; 
+    curl_easy_setopt(curl_handle, CURLOPT_URL, get_url1[i]);
+    curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)&(get_es[i]));
+    res = curl_easy_perform(curl_handle);
+    curl_easy_setopt(curl_handle, CURLOPT_URL, get_url2[i]);
+    curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)&(get_rs[i]));
+    res = curl_easy_perform(curl_handle);
+    index[i] = i;
+    arg = &(index[i]);
     pthread_create(&ids[i], NULL, thread, arg);
-    usleep(100000);
   }
-  for(i = 0; i < 10; i++) {
-    pthread_join(ids[i], NULL);
-  }
+  for(i = 0; i < 10; i++) pthread_join(ids[i], NULL);
   return 0;
 }
