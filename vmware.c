@@ -171,13 +171,13 @@ inline void* thread(void* n) {
     cycle[i] = (char*)calloc(4, 1);
     nodes[i] = (char*)calloc(4, 1);
    }
-   for(i = 0;i<2000;i++) {
-     edges[i] = (char**)calloc(2, scharp);
-     edges[i][0] = (char*)calloc(4, 1); 
-     edges[i][1] = (char*)calloc(4, 1);
-   }
-   for(i = 0;i<800;i++) trajects[i] = (char*)calloc(1500, 1); 
-   i = k = 0;
+  for(i = 0;i<2000;i++) {
+    edges[i] = (char**)calloc(2, scharp);
+    edges[i][0] = (char*)calloc(4, 1); 
+    edges[i][1] = (char*)calloc(4, 1);
+  }
+  for(i = 0;i<800;i++) trajects[i] = (char*)calloc(1500, 1); 
+  i = k = 0;
   while(i < get_rs[*p].size - 1) {
    if(get_rs[*p].memory[i] == '\n') {
       k = 0;
