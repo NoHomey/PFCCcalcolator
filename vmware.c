@@ -1,19 +1,20 @@
 #include <stdio.h>
 #include <curl/curl.h>
+#include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <pthread.h>
 #include <time.h>
-char* post_url[10] = {"http://172.16.24.129:8080/api/sector/1/company/Ivo/trajectory",
-"http://172.16.24.129:8080/api/sector/2/company/Ivo/trajectory",
-"http://172.16.24.129:8080/api/sector/3/company/Ivo/trajectory",
-"http://172.16.24.129:8080/api/sector/4/company/Ivo/trajectory",
-"http://172.16.24.129:8080/api/sector/5/company/Ivo/trajectory",
-"http://172.16.24.129:8080/api/sector/6/company/Ivo/trajectory",
-"http://172.16.24.129:8080/api/sector/7/company/Ivo/trajectory",
-"http://172.16.24.129:8080/api/sector/8/company/Ivo/trajectory",
-"http://172.16.24.129:8080/api/sector/9/company/Ivo/trajectory",
-"http://172.16.24.129:8080/api/sector/10/company/Ivo/trajectory"};
+char* post_url[10] = {"http://172.16.24.129:8080/api/sector/1/company/I<2wining/trajectory",
+"http://172.16.24.129:8080/api/sector/2/company/I<2wining/trajectory",
+"http://172.16.24.129:8080/api/sector/3/company/I<2wining/trajectory",
+"http://172.16.24.129:8080/api/sector/4/company/I<2wining/trajectory",
+"http://172.16.24.129:8080/api/sector/5/company/I<2wining/trajectory",
+"http://172.16.24.129:8080/api/sector/6/company/I<2wining/trajectory",
+"http://172.16.24.129:8080/api/sector/7/company/I<2wining/trajectory",
+"http://172.16.24.129:8080/api/sector/8/company/I<2wining/trajectory",
+"http://172.16.24.129:8080/api/sector/9/company/I<2wining/trajectory",
+"http://172.16.24.129:8080/api/sector/10/company/I<2wining/trajectory"};
 
 struct MemoryStruct {
   char *memory;
@@ -140,26 +141,6 @@ inline void sort(size_t* srt, size_t* lens, size_t len) {
        }
      }
    }
-}
-
-struct PostStruct {
-  char *memory;
-  size_t size;
-  char* url;
-};
-
-
-inline void* make_post(void* struc) {
-  CURLcode result;
-  CURL *curl;
-  struct PostStruct* info = (struct PostStruct*)struc;
-  curl = curl_easy_init();
-  curl_easy_setopt(curl, CURLOPT_URL, info->url);
-  curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, info->size);
-  curl_easy_setopt(curl, CURLOPT_POSTFIELDS, info->memory);
-  result = curl_easy_perform(curl);
-  curl_easy_cleanup(curl);
-  return NULL;
 }
 
 inline void* thread(void* n) {
@@ -333,27 +314,22 @@ inline void* thread(void* n) {
   size_t* n_lens = (size_t *)calloc(ns_len, 4);
   for(i = 0;i < ns_len;i++) n_lens[i] = init_single(node[i],nodes[i]);
   sort(sorted, lens, ts_len);
-  struct PostStruct post_mul[ts_len];
-  struct PostStruct post_sing[ns_len];
-  pthread_t id_mul[ts_len];
-  pthread_t id_sing[ns_len];
-  k = ts_len/2;
+  CURLcode result;
+  CURL *curl;
+  curl = curl_easy_init();
+  curl_easy_setopt(curl, CURLOPT_URL, post_url[*p]);
   for(i = 0; i < ts_len;i++) {
-    post_mul[i].size = lens[i];
-    post_mul[i].memory = trajects[sorted[i]];
-    post_mul[i].url = post_url[*p];
-    pthread_create(&id_mul[i], NULL, make_post, (void *)&(post_mul[i]));
-    usleep(990000);
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, lens[i]);
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, trajects[sorted[i]]);
+    result = curl_easy_perform(curl);
   }
   for(i = 0; i < ns_len;i++) {
-    post_sing[i].size = n_lens[i];
-    post_sing[i].memory = node[i];
-    post_sing[i].url = post_url[*p];
-    pthread_create(&id_sing[i], NULL, make_post, (void *)&(post_sing[i]));
-    usleep(990000);
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, n_lens[i]);
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, node[i]);
+    result = curl_easy_perform(curl);
   }
-  for(i = 0; i < ts_len; i++) pthread_join(id_mul[i], NULL);
-  for(i = 0; i < ns_len; i++) pthread_join(id_sing[i], NULL);
+  curl_easy_cleanup(curl);
+  curl_global_cleanup();
   free(get_rs[*p].memory);
   free(get_es[*p].memory);
   free(lens);
@@ -371,6 +347,7 @@ inline void* thread(void* n) {
   for(i = 0;i<800;i++) free(trajects[i]); 
   return NULL;
 }
+
 int main(void) {
   curl_global_init(CURL_GLOBAL_ALL);
   CURL* curl_handle;
@@ -397,24 +374,26 @@ int main(void) {
   "http://172.16.24.129:8080/api/sector/8/roots",
   "http://172.16.24.129:8080/api/sector/9/roots",
   "http://172.16.24.129:8080/api/sector/10/roots"};
-  curl_easy_setopt(curl_handle, CURLOPT_TIMEOUT, 10L);
-  curl_easy_setopt(curl_handle, CURLOPT_URL, get_url1[8]);
-  curl_easy_setopt(curl_handle, CURLOPT_USERAGENT, "libcurl-agent/1.0");
-  res = curl_easy_perform(curl_handle);
-  curl_easy_setopt(curl_handle, CURLOPT_TIMEOUT, 0);
-  while(res == 28) { res = curl_easy_perform(curl_handle); }
   size_t i;
-  curl_easy_reset(curl_handle);
-  curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, WriteMemoryCallback);
   size_t index[10];
   for(i = 0;i < 10;i++) {
     get_es[i].memory = (char*)malloc(1);  
     get_es[i].size = 0; 
     get_rs[i].memory = (char*)malloc(1);  
     get_rs[i].size = 0; 
-    curl_easy_setopt(curl_handle, CURLOPT_URL, get_url1[i]);
-    curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)&(get_es[i]));
-    res = curl_easy_perform(curl_handle);
+    if(i == 0) {
+      curl_easy_setopt(curl_handle, CURLOPT_TIMEOUT, 10L);
+      curl_easy_setopt(curl_handle, CURLOPT_URL, get_url1[0]);
+      curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, WriteMemoryCallback);
+      curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)&(get_es[0]));
+      res = curl_easy_perform(curl_handle);
+      curl_easy_setopt(curl_handle, CURLOPT_TIMEOUT, 0);
+      while(res == 28) { res = curl_easy_perform(curl_handle); }
+    } else {
+      curl_easy_setopt(curl_handle, CURLOPT_URL, get_url1[i]);
+      curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)&(get_es[i]));
+      res = curl_easy_perform(curl_handle);
+    }
     curl_easy_setopt(curl_handle, CURLOPT_URL, get_url2[i]);
     curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)&(get_rs[i]));
     res = curl_easy_perform(curl_handle);
