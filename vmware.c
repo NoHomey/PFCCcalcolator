@@ -143,6 +143,32 @@ inline void sort(size_t* srt, size_t* lens, size_t len) {
    }
 }
 
+struct PostStruct {
+  char* memory;
+  size_t size;
+  size_t url;
+};
+
+
+inline void* make_post(void* struc) {
+  CURLcode result;
+  CURL *curl;
+  long status;
+  struct PostStruct* info = (struct PostStruct*)struc;
+  curl = curl_easy_init();
+  curl_easy_setopt(curl, CURLOPT_URL, post_url[info->url]);
+  curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, info->size);
+  curl_easy_setopt(curl, CURLOPT_POSTFIELDS, info->memory);
+  result = curl_easy_perform(curl);
+  result = curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &status);
+  while( (status == 429) || (status == 500)){
+    result = curl_easy_perform(curl);
+    result = curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &status);
+  }
+  curl_easy_cleanup(curl);
+  return NULL;
+}
+
 inline void* thread(void* n) {
   size_t* p = (size_t*)n;
   size_t i;
@@ -158,14 +184,14 @@ inline void* thread(void* n) {
   size_t scharp = sizeof(char*);
   size_t ssizet = sizeof(size_t);
   size_t founds[2000];
-  size_t* lens = (size_t*)calloc(800, ssizet);
-  size_t* sorted = (size_t*)calloc(800, ssizet);
-  char* perent = (char*)calloc(1, 1);
+  size_t* lens = (size_t*)calloc(600, ssizet);
+  size_t* sorted = (size_t*)calloc(600, ssizet);
+  char* perent = (char*)calloc(4, 1);
   char** roots = (char**)calloc(1000, scharp);
   char** cycle = (char**)calloc(1000, scharp);
   char** nodes = (char**)calloc(1000, scharp);
   char*** edges = (char***)calloc(2000, sizeof(char**));
-  char** trajects = (char**)calloc(800, scharp);
+  char** trajects = (char**)calloc(600, scharp);
   for(i = 0;i<1000;i++) {
     roots[i] = (char*)calloc(4, 1);
     cycle[i] = (char*)calloc(4, 1);
@@ -176,7 +202,7 @@ inline void* thread(void* n) {
     edges[i][0] = (char*)calloc(4, 1); 
     edges[i][1] = (char*)calloc(4, 1);
   }
-  for(i = 0;i<800;i++) trajects[i] = (char*)calloc(1500, 1); 
+  for(i = 0;i<600;i++) trajects[i] = (char*)calloc(1500, 1); 
   i = k = 0;
   while(i < get_rs[*p].size - 1) {
    if(get_rs[*p].memory[i] == '\n') {
@@ -314,22 +340,26 @@ inline void* thread(void* n) {
   size_t* n_lens = (size_t *)calloc(ns_len, 4);
   for(i = 0;i < ns_len;i++) n_lens[i] = init_single(node[i],nodes[i]);
   sort(sorted, lens, ts_len);
-  CURLcode result;
-  CURL *curl;
-  curl = curl_easy_init();
-  curl_easy_setopt(curl, CURLOPT_URL, post_url[*p]);
+  struct PostStruct post_mul[ts_len];
+  struct PostStruct post_sing[ns_len];
+  pthread_t id_mul[ts_len];
+  pthread_t id_sing[ns_len];
   for(i = 0; i < ts_len;i++) {
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, lens[i]);
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, trajects[sorted[i]]);
-    result = curl_easy_perform(curl);
+    post_mul[i].size = lens[i];
+    post_mul[i].memory = trajects[sorted[i]];
+    post_mul[i].url = *p;
+    pthread_create(&id_mul[i], NULL, make_post, (void *)&(post_mul[i]));
+    usleep(45000);
   }
   for(i = 0; i < ns_len;i++) {
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, n_lens[i]);
-    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, node[i]);
-    result = curl_easy_perform(curl);
+    post_sing[i].size = n_lens[i];
+    post_sing[i].memory = node[i];
+    post_sing[i].url = *p;
+    pthread_create(&id_sing[i], NULL, make_post, (void *)&(post_sing[i]));
+    usleep(45000);
   }
-  curl_easy_cleanup(curl);
-  curl_global_cleanup();
+  for(i = 0; i < ts_len; i++) pthread_join(id_mul[i], NULL);
+  for(i = 0; i < ns_len; i++) pthread_join(id_sing[i], NULL);
   free(get_rs[*p].memory);
   free(get_es[*p].memory);
   free(lens);
@@ -344,7 +374,7 @@ inline void* thread(void* n) {
      free(edges[i][1]);
      free(edges[i]);
   }
-  for(i = 0;i<800;i++) free(trajects[i]); 
+  for(i = 0;i<600;i++) free(trajects[i]); 
   return NULL;
 }
 
@@ -389,6 +419,7 @@ int main(void) {
       res = curl_easy_perform(curl_handle);
       curl_easy_setopt(curl_handle, CURLOPT_TIMEOUT, 0);
       while(res == 28) { res = curl_easy_perform(curl_handle); }
+
     } else {
       curl_easy_setopt(curl_handle, CURLOPT_URL, get_url1[i]);
       curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)&(get_es[i]));
