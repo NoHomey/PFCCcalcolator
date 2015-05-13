@@ -184,14 +184,21 @@ inline void* thread(void* n) {
   size_t scharp = sizeof(char*);
   size_t ssizet = sizeof(size_t);
   size_t founds[2000];
+  struct PostStruct post_mul[600];
+  struct PostStruct post_sing[500];
+  pthread_t id_mul[600];
+  pthread_t id_sing[500];
   size_t* lens = (size_t*)calloc(600, ssizet);
   size_t* sorted = (size_t*)calloc(600, ssizet);
+  size_t* n_lens = (size_t *)calloc(500, ssizet);
   char* perent = (char*)calloc(4, 1);
   char** roots = (char**)calloc(1000, scharp);
   char** cycle = (char**)calloc(1000, scharp);
   char** nodes = (char**)calloc(1000, scharp);
   char*** edges = (char***)calloc(2000, sizeof(char**));
   char** trajects = (char**)calloc(600, scharp);
+  char** node = (char **)calloc(500, scharp);
+  for(i = 0; i < 500;i++) node[i] = (char *)calloc(16, 1);
   for(i = 0;i<1000;i++) {
     roots[i] = (char*)calloc(4, 1);
     cycle[i] = (char*)calloc(4, 1);
@@ -335,28 +342,21 @@ inline void* thread(void* n) {
       ns_len++;
     }
   }
-  char** node = (char **)calloc(ns_len, 4);
-  for(i = 0; i < ns_len;i++) node[i] = (char *)calloc(15, 4);
-  size_t* n_lens = (size_t *)calloc(ns_len, 4);
   for(i = 0;i < ns_len;i++) n_lens[i] = init_single(node[i],nodes[i]);
   sort(sorted, lens, ts_len);
-  struct PostStruct post_mul[ts_len];
-  struct PostStruct post_sing[ns_len];
-  pthread_t id_mul[ts_len];
-  pthread_t id_sing[ns_len];
   for(i = 0; i < ts_len;i++) {
     post_mul[i].size = lens[i];
     post_mul[i].memory = trajects[sorted[i]];
     post_mul[i].url = *p;
     pthread_create(&id_mul[i], NULL, make_post, (void *)&(post_mul[i]));
-    usleep(45000);
+    usleep(50000);
   }
   for(i = 0; i < ns_len;i++) {
     post_sing[i].size = n_lens[i];
     post_sing[i].memory = node[i];
     post_sing[i].url = *p;
     pthread_create(&id_sing[i], NULL, make_post, (void *)&(post_sing[i]));
-    usleep(45000);
+    usleep(50000);
   }
   for(i = 0; i < ts_len; i++) pthread_join(id_mul[i], NULL);
   for(i = 0; i < ns_len; i++) pthread_join(id_sing[i], NULL);
@@ -364,17 +364,26 @@ inline void* thread(void* n) {
   free(get_es[*p].memory);
   free(lens);
   free(sorted);
+  free(n_lens);
+  free(perent);
   for(i = 0;i<1000;i++) {
     free(roots[i]);
     free(cycle[i]);
     free(nodes[i]);
   }
+  free(roots);
+  free(cycle);
+  free(nodes);
   for(i = 0;i<2000;i++) {
      free(edges[i][0]); 
      free(edges[i][1]);
      free(edges[i]);
   }
+  free(edges);
   for(i = 0;i<600;i++) free(trajects[i]); 
+  for(i = 0;i<500;i++) free(node[i]); 
+  free(trajects);
+  free(node);
   return NULL;
 }
 
@@ -404,14 +413,15 @@ int main(void) {
   "http://172.16.24.129:8080/api/sector/8/roots",
   "http://172.16.24.129:8080/api/sector/9/roots",
   "http://172.16.24.129:8080/api/sector/10/roots"};
-  size_t i;
+  size_t i,count;
   size_t index[10];
+  for(count = 0; count < 4;count++) {
   for(i = 0;i < 10;i++) {
     get_es[i].memory = (char*)malloc(1);  
     get_es[i].size = 0; 
     get_rs[i].memory = (char*)malloc(1);  
     get_rs[i].size = 0; 
-    if(i == 0) {
+    if((i == 0) && (count == 0)) {
       curl_easy_setopt(curl_handle, CURLOPT_TIMEOUT, 10L);
       curl_easy_setopt(curl_handle, CURLOPT_URL, get_url1[0]);
       curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, WriteMemoryCallback);
@@ -432,6 +442,7 @@ int main(void) {
     pthread_create(&ids[i], NULL, thread, (void *)&(index[i]));
   }
   for(i = 0; i < 10; i++) pthread_join(ids[i], NULL);
+  }
   curl_easy_cleanup(curl_handle);
   curl_global_cleanup();
   return 0;
