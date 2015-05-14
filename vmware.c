@@ -32,7 +32,7 @@ struct Args {
   size_t index_;
 };
 
-struct Args args[60];
+struct Args args[70];
 struct MemoryStruct get_rs[10];
 
 inline void p_cpy(char* dst, char* src, size_t len) {
@@ -352,19 +352,20 @@ inline void* thread(void* arg) {
     post_mul[i].memory = trajects[sorted[i]];
     post_mul[i].url = this->index_;
     pthread_create(&id_mul[i], NULL, make_post, (void *)&(post_mul[i]));
-    usleep(45000);
+    usleep(100000);
   }
+  usleep(100000);
   for(i = 0; i < ns_len;i++) {
     post_sing[i].size = n_lens[i];
     post_sing[i].memory = node[i];
     post_sing[i].url = this->index_;
     pthread_create(&id_sing[i], NULL, make_post, (void *)&(post_sing[i]));
-    usleep(45000);
+    usleep(100000);
   }
   for(i = 0; i < ts_len; i++) pthread_join(id_mul[i], NULL);
   for(i = 0; i < ns_len; i++) pthread_join(id_sing[i], NULL);
   free(lens);
-  free(sorted);
+  free(sorted); 
   free(n_lens);
   free(perent);
   for(i = 0;i<1000;i++) {
@@ -415,7 +416,7 @@ int main(void) {
   "http://172.16.24.129:8080/api/sector/10/roots"};
   size_t i;
   size_t index[10];
-  pthread_t ids[60]; 
+  pthread_t ids[70]; 
   for(i = 0;i < 10;i++) {
     args[i].get_es.memory = (char*)malloc(1);  
     args[i].get_es.size = 0; 
@@ -487,7 +488,16 @@ int main(void) {
     args[i].index_ = index[i - 50];
     pthread_create(&ids[i], NULL, thread, (void *)&(args[i]));
   }
-  for(i = 0; i < 60; i++) {
+  for(i = 60; i < 70; i++) {
+    args[i].get_es.memory = (char*)malloc(1);  
+    args[i].get_es.size = 0; 
+    curl_easy_setopt(curl_handle, CURLOPT_URL, get_url1[i - 60]);
+    curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, (void *)&(args[i].get_es));
+    res = curl_easy_perform(curl_handle);
+    args[i].index_ = index[i - 60];
+    pthread_create(&ids[i], NULL, thread, (void *)&(args[i]));
+  }
+  for(i = 0; i < 70; i++) {
     pthread_join(ids[i], NULL);
     free(args[i].get_es.memory);
   }
