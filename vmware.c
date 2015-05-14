@@ -352,14 +352,14 @@ inline void* thread(void* arg) {
     post_mul[i].memory = trajects[sorted[i]];
     post_mul[i].url = this->index_;
     pthread_create(&id_mul[i], NULL, make_post, (void *)&(post_mul[i]));
-    usleep(25000);
+    usleep(45000);
   }
   for(i = 0; i < ns_len;i++) {
     post_sing[i].size = n_lens[i];
     post_sing[i].memory = node[i];
     post_sing[i].url = this->index_;
     pthread_create(&id_sing[i], NULL, make_post, (void *)&(post_sing[i]));
-    usleep(25000);
+    usleep(45000);
   }
   for(i = 0; i < ts_len; i++) pthread_join(id_mul[i], NULL);
   for(i = 0; i < ns_len; i++) pthread_join(id_sing[i], NULL);
