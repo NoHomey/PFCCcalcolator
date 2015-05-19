@@ -278,6 +278,62 @@ $dbuser = 'phpmyadmin'; or $dbuser = 'root' | $dbuser = 'user';
 
 **And now follow the *How to setup locally* section**
 
+# How to reconfig if the ip of he machine has been change :
+
+** You need to change 3 files (*/etc/hosts*, project_foldere*/config/db.php* & /etc/mysql/my.cnf)
+
+> sudo nano /etc/hosts
+
+**Add the following line :**    
+        
+> your_ip_adress  pfcccalcolator.com
+
+**If you dont know *your ip adress* Run the following command :**
+
+> ifconfig 
+
+**If you are on ethernet conection look for :**
+
+> eth0
+
+>  inet addr:***.***.*.***
+
+**Else look for :**
+
+> wlan0
+
+>  inet addr:***.***.*.***
+
+**Everytime you eccounter *your_ip_adress* write those: ***.***.*.*** !!!**
+
+**Press *Ctrl+o* to acces saving**
+
+**Press *Enter* to save it***
+
+**Press *Ctrl+x* to exit**
+
+> sudo nano path to /config/db.php
+
+**Change the line define("DB_HOST", "XXX.XXX.X.XXX"); to : define("DB_HOST", "your_ip_adress")**
+
+**Press *Ctrl+o* to acces saving**
+
+**Press *Enter* to save it***
+
+**Press *Ctrl+x* to exit**
+
+> sudo nano /etc/mysql/my.cnf
+  
+**Change the line *bind-adress      = XXX.XXX.XX.XXX :**
+
+Before: | After:
+------------ | ---
+bind-adress      = XXX.XXX.XX.XXX | bind-adress      = your_ip_adress
+
+**Press *Ctrl+o* to save it**
+
+**Press *Ctrl+x* to exit**
+
 # Login:
 
 **The login is a copy of *https://github.com/panique/php-login-minimal* distibuted under MIT LICENSE**
