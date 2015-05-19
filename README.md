@@ -264,7 +264,7 @@ $dbuser = 'phpmyadmin'; or $dbuser = 'root' | $dbuser = 'user';
 
 **If they dont work search the errors you get!!!**
 
-**Now import database using the *phpmyadmin* from browser**
+**Now import database using the *phpmyadmin* from browser by executing the file content loacated at path_to_repo/_instalation/, one by one: files to be executed are (01-create-database.sql, 02-create-and-fill-users-table.sql & o3-create-and-fill-files-table.sql)**
 
 **Now return to *pfcccalcolator.com* and you are ready to go**
 
@@ -333,6 +333,11 @@ bind-adress      = XXX.XXX.XX.XXX | bind-adress      = your_ip_adress
 **Press *Ctrl+o* to save it**
 
 **Press *Ctrl+x* to exit**
+
+***Restart both apche2 and mysql: ***
+
+> sudo service apache2 restart  
+> sudo service mysql restart
 
 # Login:
 
