@@ -36,5 +36,6 @@
     <br>
     <br>
     <input class="Select" id="InterfaceExpander" onclick="InstanceOfExpander.Expand()" type="button" value="List Options">
+    <input class="Info" id="Info" type="button"> 
 </form>
-
+<script>InstanceOfCounter.Count()</script>

@@ -1,3 +1,4 @@
+<script src="classes/js/counter.js"></script>
 <script src="classes/js/ingredients.js"></script>
 <script src="js/data.js"></script>
 <script src="classes/js/file_proceder.js"></script>
