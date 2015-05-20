@@ -264,7 +264,7 @@ $dbuser = 'phpmyadmin'; or $dbuser = 'root' | $dbuser = 'user';
 
 **If they dont work search the errors you get!!!**
 
-**Now import database using the *phpmyadmin* from browser**
+**Now import database using the *phpmyadmin* from browser by executing the file content loacated at path_to_repo/_instalation/, one by one: files to be executed are (01-create-database.sql, 02-create-and-fill-users-table.sql & o3-create-and-fill-files-table.sql)**
 
 **Now return to *pfcccalcolator.com* and you are ready to go**
 
@@ -277,6 +277,67 @@ $dbuser = 'phpmyadmin'; or $dbuser = 'root' | $dbuser = 'user';
 > sudo apt-get autoremove
 
 **And now follow the *How to setup locally* section**
+
+# How to reconfig if the ip of he machine has been change :
+
+** You need to change 3 files (*/etc/hosts*, project_foldere*/config/db.php* & /etc/mysql/my.cnf)
+
+> sudo nano /etc/hosts
+
+**Add the following line :**    
+        
+> your_ip_adress  pfcccalcolator.com
+
+**If you dont know *your ip adress* Run the following command :**
+
+> ifconfig 
+
+**If you are on ethernet conection look for :**
+
+> eth0
+
+>  inet addr:***.***.*.***
+
+**Else look for :**
+
+> wlan0
+
+>  inet addr:***.***.*.***
+
+**Everytime you eccounter *your_ip_adress* write those: ***.***.*.*** !!!**
+
+**Press *Ctrl+o* to acces saving**
+
+**Press *Enter* to save it***
+
+**Press *Ctrl+x* to exit**
+
+> sudo nano path to /config/db.php
+
+**Change the line define("DB_HOST", "XXX.XXX.X.XXX"); to : define("DB_HOST", "your_ip_adress")**
+
+**Press *Ctrl+o* to acces saving**
+
+**Press *Enter* to save it***
+
+**Press *Ctrl+x* to exit**
+
+> sudo nano /etc/mysql/my.cnf
+  
+**Change the line *bind-adress      = XXX.XXX.XX.XXX :**
+
+Before: | After:
+------------ | ---
+bind-adress      = XXX.XXX.XX.XXX | bind-adress      = your_ip_adress
+
+**Press *Ctrl+o* to save it**
+
+**Press *Ctrl+x* to exit**
+
+***Restart both apche2 and mysql: ***
+
+> sudo service apache2 restart  
+> sudo service mysql restart
 
 # Login:
 
