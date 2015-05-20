@@ -1,0 +1,152 @@
+Data = {
+	"Fruits": {
+		"Apicot": {
+			"Raw": {
+				"Cals": 0.48, "Protein": 0.014, "Carbs": 0.1112, "Fat": 0.0039
+			}
+			, "Dried": {
+					"Cals": 3.2, "Protein": 0.049, "Carbs": 0.83, "Fat": 0.006
+			}
+		}
+		, "Apple": {
+			"Raw": {
+				"Cals": 0.52, "Protein": 0.0026, "Carbs": 0.1382, "Fat": 0.0017
+			}
+			, "Dried": {
+				"Cals": 2.45, "Protein": 0.00976, "Carbs": 0.6544, "Fat": 0.0032
+			}
+		}
+		,"Banana": {
+			"Raw": {
+				"Cals": 0.89, "Protein": 0.0109, "Carbs": 0.2284, "Fat": 0.0033
+			}
+			, "Dried": {
+				"Cals": 3.46, "Protein": 0.0389, "Carbs": 0.8828, "Fat": 0.0181
+			}
+			, "Cooked": {
+				"Cals": 1.16, "Protein": 0.0079, "Carbs": 0.3115, "Fat": 0.0018
+			}
+		}
+		,"Blackcurrant": {
+			"Raw": {
+				"Cals": 0.63, "Protein": 0.014, "Carbs": 0.1532, "Fat": 0.0041
+			}
+		}
+		,"Blackberries": {
+			"Raw": {
+				"Cals": 0.43, "Protein": 0.014, "Carbs": 0.097, "Fat": 0.0050
+			}
+		}
+		,"Cherries": {
+			"Raw": {
+				"Cals": 0.63, "Protein": 0.0106, "Carbs": 0.16, "Fat": 0.002
+			}
+		}
+		,"Cactus fruit": {
+			"Raw": {
+				"Cals": 0.41, "Protein": 0.0073, "Carbs": 0.0957, "Fat": 0.0052
+			}
+		}
+		,"Cherry": {
+			"Raw": {
+				"Cals": 0.36, "Protein": 0.01, "Carbs": 0.1218, "Fat": 0.0033
+			}
+		}
+		,"Dates": {
+			"Raw": {
+				"Cals": 282, "Protein": 0.025, "Carbs": 0.75, "Fat": 0.004
+			}
+		}
+		,"Grape": {
+			"Raw": {
+				"Cals": 0.66, "Protein": 0.0070, "Carbs": 0.1915, "Fat": 0.0020
+			}
+		}
+		,"Grapefruit": {
+			"Raw": {
+				"Cals": 0.32, "Protein": 0.0077, "Carbs": 0.1066, "Fat": 0.0014
+			}
+		}
+		,"Kiwi": {
+			"Raw": {
+				"Cals": 0.61, "Protein": 0.0114, "Carbs": 0.1412, "Fat": 0.0052
+			}
+		}
+		,"Lime": {
+			"Raw": {
+				"Cals": 0.3, "Protein": 0.007, "Carbs": 0.1552, "Fat": 0.0042
+			}
+		}
+		,"Mango": {
+			"Raw": {
+				"Cals": 0.61, "Protein": 0.0082, "Carbs": 0.1498, "Fat": 0.0038
+			}
+		}
+		,"Melon": {
+			"Raw": {
+				"Cals": 0.34, "Protein": 0.0082, "Carbs": 0.1898, "Fat": 0.0018
+			}
+		}
+		,"Orange": {
+			"Raw": {
+				"Cals": 0.51, "Protein": 0.0914, "Carbs": 0.1152, "Fat": 0.0012
+			}
+		}
+		,"Pear": {
+			"Raw": {
+				"Cals": 0.57, "Protein": 0.0036, "Carbs": 0.1512, "Fat": 0.0014
+			}
+		}
+		,"Peaches": {
+			"Raw": {
+				"Cals": 0.43, "Protein": 0.09, "Carbs": 0.097, "Fat": 0.0025
+			}
+			, "Dried": {
+				"Cals": 02.39, "Protein": 0.0361, "Carbs": 0.6133, "Fat": 0.0076
+			}
+		}
+		,"Papaya": {
+			"Raw": {
+				"Cals": 0.43, "Protein": 0.0047, "Carbs": 0.108, "Fat": 0.0026
+			}
+		}
+		,"Pineapple": {
+			"Raw": {
+				"Cals": 0.5, "Protein": (0.005/100), "Carbs": 0.1312, "Fat": 0.0012
+			}
+			, "Dried": {
+				"Cals": 2.45, "Protein": 0.0276, "Carbs": 0.6444, "Fat": 0.0061
+			}
+		}
+		,"Quince": {
+			"Raw": {
+				"Cals": 0.57, "Protein": 0.0044, "Carbs": 0.1549, "Fat": 0.001
+			}
+		}
+		,"Raspberries": {
+			"Raw": {
+				"Cals": 0.52, "Protein": 0.012, "Carbs": 0.1201, "Fat": 0.0065
+			}
+		}
+		,"Watermelon": {
+			"Raw": {
+				"Cals": 0.3, "Protein": 0.0060, "Carbs": 0.08, "Fat": 0.0015
+			}
+		}
+		,"Wild apples": {
+			"Raw": {
+				"Cals": 0.76, "Protein": 0.004, "Carbs": 0.20, "Fat": 0.003
+			}
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+}		
