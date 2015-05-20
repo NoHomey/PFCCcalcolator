@@ -1,0 +1,102 @@
+Data = {
+	Lamb : {
+		Lung : {
+			Raw : {
+				Cals : 0.95
+				, Protein : 0.167
+				, Carbs : 0
+				, Fat : 0.026
+			}
+			, Fried : {
+				Cals : 1.13
+				, Protein : 0.1988
+				, Carbs : 0
+				, Fat : 0.031
+			}
+		}
+		, Spleen : {
+			Raw : {
+				Cals : 1.01
+				, Protein : 0.172
+				, Carbs : 0
+				, Fat : 0.031
+			}
+			, Fried : {
+				Cals : 1.56
+				, Protein : 0.2646
+				, Carbs : 0
+				, Fat : 0.0477
+			}	
+		}
+		, Tongue : {
+			Raw : {
+				Cals : 2.22
+				, Protein : 0.157
+				, Carbs : 0
+				, Fat : 0.031
+			}
+			, Fried : {
+				Cals : 1.56
+				, Protein : 0.2646
+				, Carbs : 0
+				, Fat : 0.1717
+			}	
+		}
+		, Brain : {
+			Raw : {
+				Cals : 1.22
+				, Protein : 0.104
+				, Carbs : 0
+				, Fat : 0.0858
+			}
+			, Fried : {
+				Cals : 1.45
+				, Protein : 0.1255
+				, Carbs : 0
+				, Fat : 0.01017
+			}	
+		}
+		, Kedney : {
+			Raw : {
+				Cals : 0.97
+				, Protein : 0.1547
+				, Carbs : 0.0087
+				, Fat : 0.029
+			}
+			, Fried : {
+				Cals : 1.37
+				, Protein : 0.2326
+				, Carbs : 0.0099
+				, Fat : 0.0362
+			}	
+		}
+		, Liver : {
+			Raw : {
+				Cals : 1.39
+				, Protein : 0.2082
+				, Carbs : 0.0178
+				, Fat : 0.0502
+			}
+			, Fried : {
+				Cals : 2.2
+				, Protein : 0.3057
+				, Carbs : 0.0237
+				, Fat : 0.0881
+			}	
+		}
+		, Minced : {
+			Raw : {
+				Cals : 2.87
+				, Protein : 0.1656
+				, Carbs : 0
+				, Fat : 0.1966
+			}
+			, Fried : {
+				Cals : 2.83
+				, Protein : 0.2646
+				, Carbs : 0
+				, Fat : 0.0477
+			}	
+		}
+	}	
+};
