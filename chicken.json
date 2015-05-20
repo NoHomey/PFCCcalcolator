@@ -362,94 +362,7 @@ Data = {
 				, "Fat" : 0.0795
 			}
 		}
-		, "Undercut" : {
-			"Raw" : {
-				"Cals" : 1.20
-				, "Protein" : 0.2065
-				, "Carbs" : 0
-				, "Fat" : 0.0353
-			}
-			, "Roasted" : {
-				"Cals" : 1.47
-				, "Protein" : 0.2604
-				, "Carbs" : 0
-				, "Fat" : 0.0396
-			}
-			, "Griled" : {
-				"Cals" : 1.87
-				, "Protein" : 0.3042
-				, "Carbs" : 0
-				, "Fat" : 0.0633
-			}
-			, "Fried" : {
-				"Cals" : 2.01
-				, "Protein" : 0.2986
-				, "Carbs" : 0
-				, "Fat" : 0.0811
-			}
-		}
-		, "Slanitsa" : {
-			"Raw" : {
-				"Cals" : 8.57
-				, "Protein" : 0.0176
-				, "Carbs" : 0
-				, "Fat" : 0.994
-			}
-			, "Cooked" : {
-				"Cals" : 6.26
-				, "Protein" : 0.0706
-				, "Carbs" : 0
-				, "Fat" : 0.661
-			}	
-		}
-		, "Flank" : {
-			"Raw" : {
-				"Cals" : 1.82
-				, "Protein" : 0.2027
-				, "Carbs" : 0
-				, "Fat" : 0.01063
-			}
-			, "Cooked" : {
-				"Cals" : 2.09
-				, "Protein" : 0.2703
-				, "Carbs" : 0
-				, "Fat" : 0.01033
-			}	
-		}
-		, "Box" : {
-			"Raw" : {
-				"Cals" : 1.68
-				, "Protein" : 0.2048
-				, "Carbs" : 0
-				, "Fat" : 0.0896
-			}
-			, "Fried" : {
-				"Cals" : 2.34
-				, "Protein" : 0.2881
-				, "Carbs" : 0
-				, "Fat" : 0.1231
-			}
-			, "Griled" : {
-				"Cals" : 2.22
-				, "Protein" : 0.2696
-				, "Carbs" : 0
-				, "Fat" : 0.1182
-			}
-			, "Roasted" : {
-				"Cals" : 2.3
-				, "Protein" : 0.2664
-				, "Carbs" : 0
-				, "Fat" : 0.1287
-			}
-		}
-		, "Skewer" : {
-			"Griled" : {
-				"Cals" : 3.14
-				, "Protein" : 0.265
-				, "Carbs" : 0
-				, "Fat" : 0.231
-			}
-		}
+		
 		, "Skin" : {
 			"Roasted" : {
 				"Cals" : 4.54
@@ -462,6 +375,18 @@ Data = {
 				, "Protein" : 0.1522
 				, "Carbs" : 0
 				, "Fat" : 0.3304
+			}
+			, "Raw" : {
+				"Cals" : 3.49
+				, "Protein" : 0.1333
+				, "Carbs" : 0
+				, "Fat" : 0.3255
+			}
+			, "Fried" : {
+				"Cals" : 3.94
+				, "Protein" : 0.1032
+				, "Carbs" : 0.2315  
+				, "Fat" : 0.2883
 			}
 		}
 		, "Minutiae" : {
