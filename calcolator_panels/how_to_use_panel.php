@@ -1,5 +1,5 @@
 <input class="Update" value="Show Tips" id="HowTo" type="button" onclick="InstanceOfTips.Show()">
-<div class="Holder" id="Tips">
+<div class="Tips" id="Tips">
 	<input class="Remove" value="OK" id="hide" type="button" onclick="InstanceOfTips.Hide()">
 	<br></br>
 	First Choose Metric*:
@@ -62,7 +62,7 @@
        <br></br>
        Press: <input class="Remove" id="Operator" type="button" value="-"> next to the food which you want to REMOVE.
        <br></br>
-       <input class="Out" value="Calcolation name : <?php echo $_SESSION['file_name']; ?>" disabled> Is the field where you can check the name of the current calcolation.
+       <input class="Out1" value="Calcolation name : <?php echo $_SESSION['file_name']; ?>" disabled> Is the field where you can check the name of the current calcolation.
        <br></br>
        Use:  <input class="Update" type="button" value="Save current state of the Calcolation"> to save the current calcolation state.
        <br></br>
