@@ -10,6 +10,8 @@
 
 **Project start date: 18.02.2015-10:36:01.**
 
+**Project finish date: 20.05.2015-23:59:59.**
+
 **Project is developed by Team Project.**
 
 > The rights for the code in this repository and for final & staged product are held by:
