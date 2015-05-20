@@ -13,7 +13,7 @@ function HistoryElement() {
         NewElement.setAttribute("class", Class);
         if (OnClickEvent !== false) {
             NewElement.setAttribute(Event, OnClickEvent);
-            NewElement.style.width = "90px";
+            NewElement.style.width = "80px";
         }
         To.appendChild(NewElement);
         if(Class === "Remove") {
