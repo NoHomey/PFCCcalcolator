@@ -18,6 +18,9 @@
 
 >     The creator of the idea for this project and this repository.
         
+#Known Bugs:
+** The folder *calcolanions* need to have permision for *Create adn Delete Files* else you can't save files in it!**
+        
         
 # How to setup locally:
 
