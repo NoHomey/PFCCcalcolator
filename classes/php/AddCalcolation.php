@@ -20,7 +20,7 @@ class AddCalcolation extends Log
             $text = "File name cannot be shorter than 2 or longer than 64 characters";
             $this->addError($text);
         } elseif (!preg_match('/^[a-z\d]{2,64}$/i', $_POST['file_name'])) {
-            $text = "File name does not fit the name scheme: only a-Z and numbers are allowed, 2 to 64 characters";
+            $text = "File name does not fit the name scheme: only a-Z and numbers are allowed and from 2 to 64 characters";
             $this->addError($text);
         } elseif (!empty($_POST['file_name']) && strlen($_POST['file_name']) <= 64 && strlen($_POST['file_name']) >= 2 && preg_match('/^[a-z\d]{2,64}$/i', $_POST['file_name'])) {
             $this->db_connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -40,7 +40,7 @@ class AddCalcolation extends Log
                             VALUES('" . $_SESSION['file_name'] . "', '" . $_SESSION['user_name'] . "');";
                     $query_new_file_insert = $this->db_connection->query($sql);
                     if ($query_new_file_insert) {
-                        $text = "Calcolation " . $_SESSION['file_name'] . " has been created successfully. You can now Proceed.";
+                        $text = "Calcolation : " . $_SESSION['file_name'] . " has been created successfully. You can now Proceed.";
                         $this->addMessage($text);
                     } else {
                         $text = "Sorry, your File creation failed. Please Go Back and try again.";

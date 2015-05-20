@@ -18,7 +18,7 @@ class ChooseCalcolation extends Log
             $this->addError($text);
         } elseif ($_POST['choose_file_name'] != 'Select Calcolation') {
             $_SESSION['file_name'] = $_POST['choose_file_name'];
-            $text                  = 'Selected Calcolation : ' . $_SESSION['file_name'] . '. You can now Proceed.';
+            $text = 'Selected Calcolation : ' . $_SESSION['file_name'] . '. You can now Proceed.';
             $this->addMessage($text);
         } else {
             $text = "An unknown error occurred. Please Go Back and try again.";
