@@ -1,11 +1,11 @@
 html {
-	background-image:url('img/bg3.jpg');
+	background-image:url('img/bg2.jpg');
 	background-repeat:no-repeat;
 	background-size:100% 100%;
 	padding-left:14%;
 	padding-right:14%;
 	padding-top:10%;
-	color: #ed1c24;
+	color: #d9eef7;
 	font-size:30px;
 	font-weight: bold;
 	text-decoration: none;
@@ -52,9 +52,6 @@ html {
     background-image: -webkit-linear-gradient(top,rgb(142, 142, 142) 0%,rgb(70, 70, 70) 100%,rgb(95, 95, 95) 100.1%);
     background-image: linear-gradient(to bottom,rgb(142, 142, 142) 0%,rgb(70, 70, 70) 100%,rgb(95, 95, 95) 100.1%);
     background-image: -ms-linear-gradient(top,rgb(142, 142, 142) 0%,rgb(70, 70, 70) 100%,rgb(95, 95, 95) 100.1%);
-}
-#Save {
-	margin-left:26%;
 }
 #Select2{
 	width:230px;
