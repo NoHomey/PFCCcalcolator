@@ -10,7 +10,7 @@ function HistoryKeeper() {
         var UpdateMethod = "InstanceOfHistoryOverwriter.Update(this.id)";
         var RemoveMethod = "InstanceOfHistoryRemover.Remove(this.id)";
         var Result = this.InstanceOfHistoryIntializer.HistoryIntialize();
-        this.InstanceOfHistoryElement.Create(Result, (Difference + ++this.Index), "Holder", false);
+        this.InstanceOfHistoryElement.Create(Result, (Difference + ++this.Index), "Info", false);
         this.InstanceOfHistoryElement.Create(UpdateButton, this.Index, "Update", UpdateMethod);
         this.InstanceOfHistoryElement.Create(RemoveButton, this.Index, "Remove", RemoveMethod);
         this.InstanceOfHistoryLastElement.ReAddLastElement(this.Index + 1);
