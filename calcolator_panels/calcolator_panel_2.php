@@ -19,7 +19,6 @@
     <select class="Select" id="Select1" onchange="InstanceOfSelectOptions.DisplayAllSelectOptions('Select2')">
         <script>
             InstanceOfSelectOptions.DisplayAllSelectOptions('Select1');
-
         </script>
     </select>
     <select class="Select" id="Select2" onchange="InstanceOfSelectOptions.DisplayAllSelectOptions('Select3')">

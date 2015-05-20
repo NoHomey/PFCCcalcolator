@@ -60,7 +60,7 @@ class Registration extends Log
                     ";
                     $query_new_user_insert = $this->db_connection->query($sql);
                     if ($query_new_user_insert) {
-                        $text = "Your account : " . $user_name . "has been created successfully. You can now log in.";
+                        $text = "Your account : " . $user_name . " has been created successfully. You can now log in.";
                         $this->addMessage($text);
                     } else {
                         $text = "Sorry, your registration failed. Please go back and try again.";

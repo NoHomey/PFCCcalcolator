@@ -10,7 +10,7 @@ if ($calcolation->status == 1) {
         <title>
         </title>
     </head>
-    <body onload="">
+    <body>
         <?php
 require("linker.php");
 require("calcolator_panels/how_to_use_panel.php");

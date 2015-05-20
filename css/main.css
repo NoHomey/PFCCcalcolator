@@ -22,8 +22,10 @@
 	text-decoration: none;
 }
 .Plus:active, .Update:active, .Remove:active, .Select:active, .Quantity:active, .List:active{
-	position: relative;
 	top: 1px;
+}
+.Plus:active, .Update:active, .Remove:active, .Quantity:active, .List:active{
+	position: relative;
 }
 .Plus, .Out{
 	color: #fef4e9;
@@ -165,7 +167,6 @@
     left:48px;
     top:72px;
 }
-
 #hide {
 	font-size:30px; 
 	font-weight: bold;
