@@ -1,11 +1,24 @@
-.Plus, .Update, .Remove, .Select, .Holder, .Out, .login_input{
+html {
+	background-image:url('img/bg3.jpg');
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+	padding-left:14%;
+	padding-right:14%;
+	padding-top:10%;
+	color: #ed1c24;
+	font-size:30px;
+	font-weight: bold;
+	text-decoration: none;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	font-family: "Comic Sans MS", cursive, sans-serif;
+}	
+.Plus, .Update, .Remove, .Select, .Out, .login_input, .Info, .Out1, .Tips {
 	margin: 10px 10px 10px 10px;
 	outline: none;
 	cursor: pointer;
-	text-align: center;
 	text-decoration: none;
-	font-size: 23px;
-	padding: .5em 2em .55em;
+	font-size: 25px;
+	padding: 10px 10px 10px 10px;
 	text-shadow: 0 1px 1px rgba(0,0,0,.3);
 	-webkit-border-radius: .5em; 
 	-moz-border-radius: .5em;
@@ -26,6 +39,34 @@
 }
 .Plus:active, .Update:active, .Remove:active, .Quantity:active, .List:active{
 	position: relative;
+}
+.Info {
+	color:#0078a5;
+	border: solid 3px #0078a5;
+}
+.Tips {
+	color: #d9eef7;
+	background-color: #6a6a6a;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjOGU4ZThlIiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiM0NjQ2NDYiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIxIi8+PHN0b3Agc3RvcC1jb2xvcj0iIzVmNWY1ZiIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjEiLz48L2xpbmVhckdyYWRpZW50PjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjdnNnZykiIC8+PC9zdmc+);
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%,color-stop(0, rgb(142, 142, 142)),color-stop(1, rgb(70, 70, 70)),color-stop(1, rgb(95, 95, 95)));
+    background-image: -webkit-linear-gradient(top,rgb(142, 142, 142) 0%,rgb(70, 70, 70) 100%,rgb(95, 95, 95) 100.1%);
+    background-image: linear-gradient(to bottom,rgb(142, 142, 142) 0%,rgb(70, 70, 70) 100%,rgb(95, 95, 95) 100.1%);
+    background-image: -ms-linear-gradient(top,rgb(142, 142, 142) 0%,rgb(70, 70, 70) 100%,rgb(95, 95, 95) 100.1%);
+}
+#Save {
+	margin-left:26%;
+}
+#Select2{
+	width:230px;
+}
+#Select4 {
+	width:90px;
+}
+#Select5 {
+	width:210px;
+}
+#Select1, #Select3 {
+	width:195px;
 }
 .Plus, .Out{
 	color: #fef4e9;
@@ -88,12 +129,17 @@
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#aa1317', endColorstr='#ed1c24');
 }
 .Holder {
+	opacity: 1;
+	margin: 10px 10px 10px 10px;
+	outline: none;
+	cursor: pointer;
+	text-decoration: none;
+	font-size: 23px;
+	padding: 10px 10px 10px 10px;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
 	color: #d9eef7;
-	border: solid 1px #0076a3;
-	background: #0095cd;
-	background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
-	background: -moz-linear-gradient(top,  #00adee,  #0078a5);
-	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#00adee', endColorstr='#0078a5');
 }
 .Select {
 	color: #606060;
@@ -115,10 +161,10 @@
 	background: -moz-linear-gradient(top,  #ededed,  #fff);
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#ffffff');
 }
-.Out {
-	margin:20px 20px 20px 20px;
+.Out, .Out1 {
+	margin-left: 30%;
 	padding:20px 30px 20px 20px;
-	width:400px;
+	width:510px;
 	font-size: 25px;
 	color: #fef4e9;
 	border: solid 1px #da7c0c;
@@ -127,12 +173,17 @@
 	background: -moz-linear-gradient(top,  #f88e11,  #f06015);
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015');
 }
-#Select4 {
-	width:260px;
+.Out1 {margin: auto; }
+#calcolation_name {
+
+}
+#Operator {
+	width:80px;
 }
 #user {
-	width:190px;
+	width:auto;
 	float:right;
+	font-size:30px;
 }	
 #logout{
 	float:right;	
@@ -174,12 +225,12 @@
 	margin:0px 0px 0px 0px;
 }
 #Tips {
+	font-family: "Comic Sans MS", cursive, sans-serif;
 	position: fixed;
   	top: 50%;
   	left: 50%;
   	transform: translate(-50%, -50%);
 	width:1200px;
-	height:800px;
+	height:790px;
 	overflow:auto;
-
 }
