@@ -1,0 +1,468 @@
+Data = {
+	"Pork" : {
+		"Lung" : {
+			"Raw" : {
+				"Cals" : 0.95
+				, "Protein" : 0.167
+				, "Carbs" : 0
+				, "Fat" : 0.026
+			}
+			, "Fried" : {
+				"Cals" : 1.13
+				, "Protein" : 0.1988
+				, "Carbs" : 0
+				, "Fat" : 0.031
+			}
+		}
+		, "Spleen" : {
+			"Raw" : {
+				"Cals" : 0.98
+				, "Protein" : 0.183
+				, "Carbs" : 0
+				, "Fat" : 0.022
+			}
+			, "Fried" : {
+				"Cals" : 1.29
+				, "Protein" : 0.2408
+				, "Carbs" : 0
+				, "Fat" : 0.0289
+			}	
+		}
+		, "Tongue" : {
+			"Raw" : {
+				"Cals" : 2.25
+				, "Protein" : 0.1603	
+				, "Carbs" : 0
+				, "Fat" : 0.1727
+			}
+			, "Fried" : {
+				"Cals" : 2.71
+				, "Protein" : 0.241
+				, "Carbs" : 0
+				, "Fat" : 0.186
+			}	
+		}
+		, "Brain" : {
+			"Raw" : {
+				"Cals" : 1.27
+				, "Protein" : 0.1028
+				, "Carbs" : 0
+				, "Fat" : 0.0921
+			}
+			, "Fried" : {
+				"Cals" : 1.38
+				, "Protein" : 0.1214
+				, "Carbs" : 0
+				, "Fat" : 0.0951
+			}
+			, "Stew" : {
+				"Cals" : 1.42
+				, "Protein" : 0.1255
+				, "Carbs" : 0
+				, "Fat" : 0.01017
+			}
+		}
+		, "Kedney" : {
+			"Raw" : {
+				"Cals" : 1
+				, "Protein" : 0.1646
+				, "Carbs" : 0.0085
+				, "Fat" : 0.0325
+			}
+			, "Fried" : {
+				"Cals" : 1.51
+				, "Protein" : 0.2542
+				, "Carbs" : 0
+				, "Fat" : 0.047
+			}	
+		}
+		, "Liver" : {
+			"Raw" : {
+				"Cals" : 1.34
+				, "Protein" : 0.2139
+				, "Carbs" : 0.0247
+				, "Fat" : 0.0365
+			}
+			, "Fried" : {
+				"Cals" : 1.65
+				, "Protein" : 0.2602
+				, "Carbs" : 0.0376
+				, "Fat" : 0.044
+			}	
+		}
+		, "Minced" : {
+			"Raw" : {
+				"Cals" : 2.63
+				, "Protein" : 0.1688
+				, "Carbs" : 0
+				, "Fat" : 0.219
+			}
+			, "Baked" : {
+				"Cals" : 2.97
+				, "Protein" : 0.2569
+				, "Carbs" : 0
+				, "Fat" : 0.2077
+			}	
+		}
+		, "Meat" : {
+			"Raw" : {
+				"Cals" : 1.44
+				, "Protein" : 0.1935
+				, "Carbs" : 0
+				, "Fat" : 0.0677
+			}
+			, "Cookted" : {
+				"Cals" : 2.31
+				, "Protein" : 0.301
+				, "Carbs" : 0
+				, "Fat" : 0.1139
+			}
+			, "Boiled" : {
+				"Cals" : 3.64
+				, "Protein" : 0.226
+				, "Carbs" : 0.01
+				, "Fat" : 0.30
+			}
+			, "Stew" : {
+				"Cals" : 2.29
+				, "Protein" : 0.114
+				, "Carbs" : 0.012
+				, "Fat" : 0.198
+			}
+		}
+		, "Ham" : {
+			"Raw" : {
+				"Cals" : 2.45
+				, "Protein" : 0.1743
+				, "Carbs" : 0
+				, "Fat" : 0.1887
+			}
+			, "Roasted" : {
+				"Cals" : 2.73
+				, "Protein" : 0.2683
+				, "Carbs" : 0
+				, "Fat" : 0.1761
+			}
+			, "Fried" : {
+				"Cals" : 2.03
+				, "Protein" : 0.3667	
+				, "Carbs" : 0
+				, "Fat" : 0.0509
+			}
+		}
+		, "Filet" : {
+			"Fried" : {
+				"Cals" : 1.43
+				, "Protein" : 0.2143
+				, "Carbs" : 0
+				, "Fat" : 0.0566
+			}
+			, "Fried" : {
+				"Cals" : 2.04
+				, "Protein" : 0.2857
+				, "Carbs" : 0
+				, "Fat" : 0.0912
+			}
+			, "Griled" : {
+				"Cals" : 2.1
+				, "Protein" : 0.2857
+				, "Carbs" : 0
+				, "Fat" : 0.098
+			}
+			, "Roasted" : {
+				"Cals" : 2.09
+				, "Protein" : 0.2862
+				, "Carbs" : 0
+				, "Fat" : 0.0963
+			}
+		}
+		, "Ribs" : {
+			"Raw" : {
+				"Cals" : 2.16
+				, "Protein" : 0.1895
+				, "Carbs" : 0
+				, "Fat" : 0.1495
+			}
+			, "Fried" : {
+				"Cals" : 3.97
+				, "Protein" : 0.2906
+				, "Carbs" : 0
+				, "Fat" : 0.3003
+			}
+			, "Roasted" : {
+				"Cals" : 2.73
+				, "Protein" : 0.2683
+				, "Carbs" : 0
+				, "Fat" : 0.1761
+			}
+		}
+		, "Shank" : {
+			"Raw" : {
+				"Cals" : 2.01
+				, "Protein" : 0.1891
+				, "Carbs" : 0.0087
+				, "Fat" : 0.1338
+			}
+			, "Fried" : {
+				"Cals" : 2.43
+				, "Protein" : 0.2837
+				, "Carbs" : 0
+				, "Fat" : 0.1346
+			}	
+		}
+		, "Knucle" : {
+			"Raw" : {
+				"Cals" : 1.75
+				, "Protein" : 0.12869
+				, "Carbs" : 0
+				, "Fat" : 0.0583
+			}
+			, "Roasted" : {
+				"Cals" : 1.96
+				, "Protein" : 0.2936
+				, "Carbs" : 0
+				, "Fat" : 0.0786
+			}	
+			, "Fried" : {
+				"Cals" : 2.32
+				, "Protein" : 0.2596
+				, "Carbs" : 0
+				, "Fat" : 0.1342
+			}	
+		}
+		, "Ham filet" : {
+			"Raw" : {
+				"Cals" : 1.34
+				, "Protein" : 0.2055
+				, "Carbs" : 0
+				, "Fat" : 0.0508
+			}
+			, "Roasted" : {
+				"Cals" : 2.04
+				, "Protein" : 0.2835
+				, "Carbs" : 0
+				, "Fat" : 0.0917
+			}	
+		}
+		, "Fillet" : {
+			"Raw" : {
+				"Cals" : 1.92
+				, "Protein" : 0.2645
+				, "Carbs" : 0.003
+				, "Fat" : 0.1694
+			}
+			, "Roasted" : {
+				"Cals" : 1.74
+				, "Protein" : 0.2632
+				, "Carbs" : 0
+				, "Fat" : 0.0694
+			}
+			, "Fried" : {
+				"Cals" : 2.26
+				, "Protein" : 0.3357
+				, "Carbs" : 0
+				, "Fat" : 0.0915
+			}
+		}
+		, "Sholder" : {
+			"Raw" : {
+				"Cals" : 2.36
+				, "Protein" : 0.1718
+				, "Carbs" : 0
+				, "Fat" : 0.1719
+			}
+			, "Roasted" : {
+				"Cals" : 2.92
+				, "Protein" : 0.2528
+				, "Carbs" : 0
+				, "Fat" : 0.2139
+			}
+			, "Griled" : {
+				"Cals" : 1.99
+				, "Protein" : 0.3268
+				, "Carbs" : 0
+				, "Fat" : 0.0601
+			}
+			, "Fried" : {
+				"Cals" : 2.35
+				, "Protein" : 0.2488
+				, "Carbs" : 0
+				, "Fat" : 0.1433
+			}
+		}
+		, "Neck" : {
+			"Raw" : {
+				"Cals" : 1.43
+				, "Protein" : 0.2122
+				, "Carbs" : 0
+				, "Fat" : 0.0584
+			}
+			, "Roasted" : {
+				"Cals" : 2.17
+				, "Protein" : 0.257
+				, "Carbs" : 0
+				, "Fat" : 0.1189
+			}
+			, "Griled" : {
+				"Cals" : 1.93
+				, "Protein" : 0.2499
+				, "Carbs" : 0
+				, "Fat" : 0.0956
+			}
+			, "Fried" : {
+				"Cals" : 1.98
+				, "Protein" : 0.3266
+				, "Carbs" : 0
+				, "Fat" : 0.0648
+			}
+		}
+		, "Hart" : {
+			"Raw" : {
+				"Cals" : 1.18
+				, "Protein" : 0.1727
+				, "Carbs" : 0.0133
+				, "Fat" : 0.0434
+			}
+			, "Fried" : {
+				"Cals" : 1.48
+				, "Protein" : 0.236
+				, "Carbs" : 0.01
+				, "Fat" : 0.30
+			}
+			, "Stew" : {
+				"Cals" : 1.55
+				, "Protein" : 0.2497
+				, "Carbs" : 1
+				, "Fat" : 0.0568
+			}
+		}
+		, "Loin" : {
+			"Raw" : {
+				"Cals" : 1.27
+				, "Protein" : 0.2199
+				, "Carbs" : 0
+				, "Fat" : 0.0371
+			}
+			, "Fried" : {
+				"Cals" : 2
+				, "Protein" : 0.302
+				, "Carbs" : 0
+				, "Fat" : 0.0786
+			}
+			, "Griled" : {
+				"Cals" : 1.8
+				, "Protein" : 0.2676
+				, "Carbs" : 0
+				, "Fat" : 0.06729
+			}
+			, "Roasted" : {
+				"Cals" : 1.94
+				, "Protein" : 0.2858
+				, "Carbs" : 0
+				, "Fat" : 0.0795
+			}
+		}
+		, "Tail" : {
+			"Raw" : {
+				"Cals" : 3.78
+				, "Protein" : 0.1775
+				, "Carbs" : 0
+				, "Fat" : 0.336
+			}
+			, "Boiled" : {
+				"Cals" : 3.96
+				, "Protein" : 0.17
+				, "Carbs" : 0
+				, "Fat" : 0.358
+			}	
+		}
+		, "Undercut" : {
+			"Raw" : {
+				"Cals" : 1.20
+				, "Protein" : 0.2065
+				, "Carbs" : 0
+				, "Fat" : 0.0353
+			}
+			, "Roasted" : {
+				"Cals" : 1.47
+				, "Protein" : 0.2604
+				, "Carbs" : 0
+				, "Fat" : 0.0396
+			}
+			, "Griled" : {
+				"Cals" : 1.87
+				, "Protein" : 0.3042
+				, "Carbs" : 0
+				, "Fat" : 0.0633
+			}
+			, "Fried" : {
+				"Cals" : 2.01
+				, "Protein" : 0.2986
+				, "Carbs" : 0
+				, "Fat" : 0.0811
+			}
+		}
+		, "Slanitsa" : {
+			"Raw" : {
+				"Cals" : 8.57
+				, "Protein" : 0.0176
+				, "Carbs" : 0
+				, "Fat" : 0.994
+			}
+			, "Cooked" : {
+				"Cals" : 6.26
+				, "Protein" : 0.0706
+				, "Carbs" : 0
+				, "Fat" : 0.661
+			}	
+		}
+		, "Flank" : {
+			"Raw" : {
+				"Cals" : 1.82
+				, "Protein" : 0.2027
+				, "Carbs" : 0
+				, "Fat" : 0.01063
+			}
+			, "Cooked" : {
+				"Cals" : 2.09
+				, "Protein" : 0.2703
+				, "Carbs" : 0
+				, "Fat" : 0.01033
+			}	
+		}
+		, "Box" : {
+			"Raw" : {
+				"Cals" : 1.68
+				, "Protein" : 0.2048
+				, "Carbs" : 0
+				, "Fat" : 0.0896
+			}
+			, "Fried" : {
+				"Cals" : 2.34
+				, "Protein" : 0.2881
+				, "Carbs" : 0
+				, "Fat" : 0.1231
+			}
+			, "Griled" : {
+				"Cals" : 2.22
+				, "Protein" : 0.2696
+				, "Carbs" : 0
+				, "Fat" : 0.1182
+			}
+			, "Roasted" : {
+				"Cals" : 2.3
+				, "Protein" : 0.2664
+				, "Carbs" : 0
+				, "Fat" : 0.1287
+			}
+		}
+		, "Skewer" : {
+			"Griled" : {
+				"Cals" : 3.14
+				, "Protein" : 0.265
+				, "Carbs" : 0
+				, "Fat" : 0.231
+			}
+		}
+	}	
+};
