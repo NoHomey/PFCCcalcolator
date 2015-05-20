@@ -6,7 +6,9 @@ function ResultUpdater() {
         var ArrayOfValues = ["Protein", "Fat", "Carbs", "Calories"];
         var Id = "Select5";
         var Element = document.getElementById(Id);
-        Element.disabled = true;
+        if(Element.value != "Choose Metric") {
+            Element.disabled = true;
+        }
         var CurrentValue = Element.options[Element.selectedIndex].text;
         switch (CurrentValue) {
         case "Kilogram(kg)":
