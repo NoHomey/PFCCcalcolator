@@ -1,3 +1,8 @@
+# PFCCcalcolator
+Course project for the `Programming technologies practise` course in ***ELSYS (TUES) - Technological shcool "Electronic systems"***.
+
+This project has so many bugs that there is one even in it's name (C++ who's laughing now -> everyone laughs at PHP ofcourse ?). This project should stand as demonstration of worst JavaScript OOP (Object Oriented Programming) practices, as well this was the project with which I learned JavaScript and developed ilness for PHP :)
+
 **Ivo Stratev, Borislav Stratev.**
 
 **Project is named PFCCcalcolator.**
