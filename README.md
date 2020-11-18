@@ -7,9 +7,9 @@ This project has so many bugs that there is one even in it's name (C++ who's lau
 
 **Project is named PFCCcalcolator.**
 
-> PFCCcalcalcolator stands for Protein, Fat & Carbs. Calorie calcolator.
+> PFCCcalcalcolator stands for Protein, Fat & Carbs. Calorie calculator.
 
-> The Purpose of this project is to make calcolations based on:
+> The Purpose of this project is to make calculations based on:
 
 > Protein, Fat & Carbs. Calories for multiple foods.
 
